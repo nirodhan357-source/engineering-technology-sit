@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="si"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>විදුලි තාක්ෂණය – A/L ස්වයං අධ්‍යයන පාඩම</title>
+<link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600;700;800&family=Gemunu+Libre:wght@700&family=JetBrains+Mono&family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--tx:#14202e;--mut:#556377;--bd:#d6dde6;--ac:#0b6e99;--am:#b45309;--amb:#fff4dc;--ok:#15803d;--bad:#b91c1c;--wb:#fde8e8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f172a;--card:#1e293b;--tx:#e6edf5;--mut:#9fb0c3;--bd:#2a3a4d;--ac:#4cc3f0;--am:#fbbf24;--amb:#2b2410;--ok:#4ade80;--bad:#f87171;--wb:#2e1717;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--tx:#e6edf5;--mut:#9fb0c3;--bd:#2a3a4d;--ac:#4cc3f0;--am:#fbbf24;--amb:#2b2410;--ok:#4ade80;--bad:#f87171;--wb:#2e1717;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.8 'Noto Sans Sinhala','Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:.01em;display:grid;grid-template-columns:260px 1fr}
+h1,h2,h3{font-family:'Abhaya Libre','Noto Sans Sinhala',serif;line-height:1.4;margin:.3em 0}
+h1{font-size:2.1rem;font-weight:800}h2{font-size:1.7rem;font-weight:700;color:var(--ac)}h3{font-size:1.25rem;font-weight:700}
+code,.m{font-family:'JetBrains Mono','Plus Jakarta Sans',monospace}
+nav{position:sticky;top:0;height:100dvh;overflow:auto;padding:18px 14px;border-right:1px solid var(--bd);background:var(--card);align-self:start}
+nav a{display:flex;gap:8px;align-items:center;padding:7px 10px;border-radius:8px;color:var(--tx);text-decoration:none;font-weight:500}
+nav a:hover,nav a.on{background:var(--bg);color:var(--ac)}nav a.done::after{content:"✓";margin-left:auto;color:var(--ok);font-weight:700}
+.bar{height:8px;background:var(--bd);border-radius:6px;margin:8px 0 14px}.bar i{display:block;height:100%;width:0;background:var(--ac);border-radius:6px;transition:width .3s}
+main{padding:24px clamp(14px,4vw,40px);width:100%;max-width:1600px;min-width:0;justify-self:center}
+section{margin-bottom:56px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 18px;margin:14px 0}
+.law{border-left:6px solid var(--am);background:var(--amb);border-radius:10px;padding:14px 18px;margin:14px 0;box-shadow:0 0 18px color-mix(in srgb,var(--am) 30%,transparent)}
+.law b.t{font-family:'Abhaya Libre',serif;font-size:1.2rem;color:var(--am)}
+.warn{border-left:6px solid var(--bad);background:var(--wb);border-radius:10px;padding:14px 18px;margin:14px 0}
+.fm{font:600 1.15rem 'JetBrains Mono','Plus Jakarta Sans',monospace;color:var(--ac)}
+details{margin-top:8px}summary{cursor:pointer;color:var(--ac);font-weight:600}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid var(--bd);padding:6px 10px;text-align:left}
+button,select,input[type=number]{font:inherit;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:5px 12px;cursor:pointer}
+button.on,button:hover{border-color:var(--ac);color:var(--ac)}button.p{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+button:focus-visible,summary:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:8px 0}.row label{display:flex;gap:8px;align-items:center}
+input[type=range]{accent-color:var(--ac);width:150px}
+canvas,svg.sv{display:block;width:100%;max-width:none;height:auto;border-radius:10px;background:#0f172a}
+.out{background:var(--bg);border:1px dashed var(--bd);border-radius:8px;padding:8px 12px;margin-top:8px}
+.q{margin:10px 0}.q p{margin:4px 0;font-weight:600}.q button{display:block;width:100%;text-align:left;margin:4px 0}
+.q .ok{background:color-mix(in srgb,var(--ok) 22%,transparent);border-color:var(--ok)}.q .no{background:color-mix(in srgb,var(--bad) 22%,transparent);border-color:var(--bad)}
+.ex{display:none;margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--bg)}
+.sw{display:inline-block;padding:8px 14px;margin:4px;border-radius:8px;border:2px solid var(--bd);font-weight:700}.sw.on{background:var(--ok);color:#fff;border-color:var(--ok)}.sw.off{background:var(--bad);color:#fff;border-color:var(--bad)}
+#top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+@media(max-width:860px){body{grid-template-columns:minmax(0,1fr)}nav{position:static;height:auto;border-right:0;border-bottom:1px solid var(--bd)}main{max-width:none;padding:20px clamp(14px,3vw,28px)}}
+@media(min-width:1601px){main{max-width:1800px;padding-inline:clamp(32px,4vw,72px)}}
+@media(max-width:520px){nav{padding:12px 10px}main{padding:16px 12px}h1{font-size:1.7rem}.formula-cards{grid-template-columns:minmax(0,1fr)}.gal{grid-template-columns:minmax(0,1fr)}.mode-switch{padding:8px}.mode-switch button{flex-basis:100%;font-size:.92rem}.law-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 4px;line-height:1.35}.fr>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}.ref .card{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}.gal .card{display:flex;gap:12px;align-items:center;margin:0}.gal svg{flex:none;color:var(--ac)}.gal h3{font-size:1.1rem;margin:0}.gal small{color:var(--mut)}
+</style>
+<style>
+.visual-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-bottom:8px}
+.visual-box{display:grid;place-items:center;min-height:92px;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);text-align:center}
+.visual-box svg{width:100%;max-width:150px;height:72px;background:transparent}
+.visual-box small{font-size:.75rem;color:var(--mut)}
+.gal .card{display:block}.gal .card>div:last-child{line-height:1.6}
+.gal .card h3{color:var(--tx)}.gal .card small{color:var(--mut)}
+.wire{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.table-wrap{overflow:auto}
+.sim-note{font-size:.9rem;color:var(--mut)}
+.law-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:16px}
+.law-card{margin:0;padding:18px;border:2px solid color-mix(in srgb,var(--am) 42%,var(--bd));border-top:5px solid var(--am);border-radius:12px;background:var(--amb);box-shadow:0 6px 18px color-mix(in srgb,var(--am) 14%,transparent)}
+.law-card h3{color:var(--am);margin:0 0 6px}
+.law-card p{margin:6px 0}
+.law-equation{display:block;margin:12px 0;padding:12px;border-radius:9px;background:var(--card);border:1px solid var(--bd);color:var(--ac);font:700 1.15rem/1.7 'JetBrains Mono','Plus Jakarta Sans',monospace;text-align:center}
+.law-intro{padding:16px 18px;border:2px solid var(--am);background:var(--amb);border-radius:12px;font-weight:600}
+.law-section-label{margin-top:22px;padding-bottom:6px;border-bottom:2px solid var(--bd)}
+.reference-notice{padding:12px 16px;border-left:5px solid var(--ac);background:var(--bg);border-radius:8px}
+.mode-switch{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 18px;padding:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px}
+.mode-switch button{flex:1 1 260px;min-height:48px;font-weight:700}
+.mode-switch button[aria-selected="true"]{background:var(--ac);color:#fff;border-color:var(--ac)}
+.mode-view[hidden]{display:none!important}
+.formula-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+.solver-card{border:1px solid var(--bd);border-top:5px solid var(--ac);border-radius:12px;padding:16px;background:var(--card);box-shadow:0 5px 16px color-mix(in srgb,var(--ac) 12%,transparent)}
+.solver-card h3{margin:0 0 8px;color:var(--ac)}
+.solver-equation{font:700 1.2rem/1.7 'JetBrains Mono','Plus Jakarta Sans',monospace;color:var(--ac);padding:10px;background:var(--bg);border-radius:8px;text-align:center}
+.variable-buttons{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.variable-buttons button{font-weight:700;min-width:58px}
+.variable-buttons button[aria-pressed="true"]{background:var(--ac);color:#fff}
+.solver-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
+.solver-inputs label{display:grid;gap:3px;font-weight:600;color:var(--mut)}
+.solver-inputs input{width:100%;min-width:0}
+.solver-result{margin-top:12px;padding:12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
+.solver-result .step{margin:5px 0}
+.solver-result .answer{font-size:1.1rem;font-weight:800;color:var(--ok)}
+.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .2em}
+.fraction>span:first-child{border-bottom:2px solid currentColor;padding:0 .25em .08em}
+.fraction>span:last-child{padding:.08em .25em 0}
+body.formula-mode{grid-template-columns:1fr}
+body.formula-mode>nav{display:none}
+@media(max-width:520px){.visual-pair{grid-template-columns:1fr 1fr}}
+
+/* ===== readability upgrade ===== */
+body{font-size:17px;line-height:1.95;letter-spacing:.012em}
+p{margin:.55em 0}sub,sup{font-size:.72em;line-height:0}
+section>h2{background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 18%,var(--card)),var(--card) 85%);border-left:7px solid var(--ac);padding:10px 16px;border-radius:10px;margin:0 0 14px}
+h3{color:var(--tx);border-bottom:2px dashed var(--bd);padding-bottom:4px;margin-top:.2em}
+.card{padding:18px 22px;box-shadow:0 2px 10px rgba(15,23,42,.07);border-radius:14px}
+.law{box-shadow:0 2px 10px rgba(15,23,42,.08);padding:16px 22px}
+th{background:color-mix(in srgb,var(--ac) 14%,var(--card));font-weight:700}tr:nth-child(even) td{background:color-mix(in srgb,var(--bd) 22%,transparent)}
+td,th{padding:8px 12px;line-height:1.6}
+.fm{font:600 1.22rem/2 'JetBrains Mono','Noto Sans Sinhala',monospace;display:inline-block;background:color-mix(in srgb,var(--ac) 11%,var(--card));border:1px solid color-mix(in srgb,var(--ac) 30%,var(--bd));padding:1px 12px;border-radius:9px;margin:3px 3px}
+.m{font-size:1.04em}
+.fr,.fraction{margin:0 7px;font-size:1.04em}.fr>span:first-child{border-bottom:2.5px solid currentColor;padding:0 7px 3px}.fr>span:last-child{padding:3px 7px 0}
+.solver-equation{font-size:1.35rem;line-height:2}
+.iwrow b{color:var(--am)}.ext{border-left:6px solid var(--ok)}
+nav a{padding:9px 12px;font-size:.98rem}
+</style><style id="lv-css">
+/* ===== පාඩම් එකින් එක පෙන්වන සැලසුම (lesson layout) ===== */
+.homeMap{display:none}
+.is-home .homeMap{display:block}
+.is-home section,.is-lesson section{display:none}
+.is-lesson section.cur{display:block}
+.is-lesson #top,.is-lesson .intro,.is-lesson .homeMap{display:none}
+/* පාඩම් ශීර්ෂ පුවරුව */
+.lhead{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;align-items:center;padding:20px 24px;margin-bottom:6px;border-radius:20px;background:var(--ac);color:var(--bg);box-shadow:0 8px 24px color-mix(in srgb,var(--ac) 28%,transparent)}
+.lbadge{width:84px;height:84px;border-radius:50%;background:var(--bg);color:var(--ac);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.lbadge small{font-size:.72rem;font-weight:600;color:var(--mut)}
+.lbadge b{font:800 2rem/1.1 'Plus Jakarta Sans',sans-serif}
+.lhead h2{margin:0;color:inherit;font-size:1.9rem;background:none;border:0;padding:0}
+.lmeta{font-size:.95rem;opacity:.92;margin-top:2px}
+.chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--bg) 35%,transparent)}
+.chips .lbl{width:100%;font-size:.85rem;font-weight:700;opacity:.9}
+.chip{display:inline-flex;gap:6px;align-items:center;max-width:100%;border:0;border-radius:999px;padding:4px 13px;font-size:.88rem;line-height:1.6;background:var(--bg);color:var(--tx)}
+.chip b{color:var(--ac);font-family:'JetBrains Mono',monospace}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}
+.chip:hover{outline:2px solid var(--bg);outline-offset:1px;color:var(--tx)}
+/* කොටස් බෙදුම් තීරුව */
+.tbar{display:flex;align-items:center;gap:10px;margin:40px 0 8px;scroll-margin-top:14px}
+.lhead+.tbar{margin-top:22px}
+.tbar::after{content:"";flex:1;height:2px;border-radius:2px;background:var(--bd)}
+.tn{background:#0b6e99;color:#fff;border-radius:9px;padding:1px 11px;font:700 .95rem/1.7 'JetBrains Mono',monospace}
+.tk{font-size:.9rem;font-weight:600;color:var(--mut)}
+.k-law .tn{background:#b45309}.k-warn .tn{background:#b91c1c}.k-quiz .tn,.k-ext .tn{background:#15803d}.k-sim .tn{background:#6d28d9}.k-grp .tn{background:#475569}.k-sym .tn{background:#0f766e}
+.k-grp{margin-top:52px}
+.k-grp .tk{font-size:1rem;color:var(--tx)}
+.law-card{scroll-margin-top:14px}
+/* පාඩම් පහළ සංචලන */
+.lnav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;margin-top:22px;padding-top:18px;border-top:2px dashed var(--bd)}
+.lnav a{display:block;padding:12px 16px;border:1px solid var(--bd);border-radius:12px;background:var(--card);text-decoration:none;color:var(--tx);font-weight:600;line-height:1.5}
+.lnav a small{display:block;color:var(--mut);font-weight:500}
+.lnav a:hover{border-color:var(--ac);color:var(--ac)}
+.lnav .nx{text-align:right;border-color:var(--ac)}
+.lnav .mid{display:flex;align-items:center;justify-content:center}
+section>button[id^="d"]{display:block;width:100%;margin-top:30px!important;padding:12px;font-weight:700;border:2px solid var(--ok);color:var(--ok);border-radius:12px}
+@media(max-width:700px){.lnav{grid-template-columns:1fr}.lnav .nx{text-align:left}.lhead{grid-template-columns:1fr;padding:16px}.lbadge{width:68px;height:68px}.lhead h2{font-size:1.5rem}}
+/* පාඩම් සිතියම (මුල් පිටුව) */
+.hm-t{font-size:1.9rem;margin:6px 0 4px;color:var(--tx)}
+.hm-start{display:inline-flex;align-items:center;gap:8px;margin:12px 0 4px;padding:12px 22px;border-radius:12px;background:var(--ac);color:var(--bg);text-decoration:none;font-weight:700}
+.hm-g{margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--bd);color:var(--tx)}
+.hm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.hm-card{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;padding:14px 16px;border:1px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);text-decoration:none;box-shadow:0 2px 10px rgba(15,23,42,.07);transition:transform .15s,border-color .15s}
+.hm-card:hover{border-color:var(--ac);transform:translateY(-2px)}
+.hn{width:48px;height:48px;border-radius:13px;background:#0b6e99;color:#fff;display:grid;place-items:center;font:800 1.3rem 'Plus Jakarta Sans',sans-serif}
+.ht{font-weight:700;line-height:1.5}
+.hc{grid-column:2/4;font-size:.85rem;color:var(--mut)}
+.hm-card.done{border-color:var(--ok)}
+.hm-card.done .hn{background:#15803d}
+.hm-card.done::after{content:"✓";color:var(--ok);font-weight:800;grid-column:3;grid-row:1}
+/* පැති තීරුව */
+nav .srch{margin:0 0 10px}
+nav input[type=search]{width:100%;font:inherit;font-size:.95rem;padding:8px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+#sres{margin-top:6px}
+#sres button{display:block;width:100%;text-align:left;margin:3px 0;font-size:.9rem;line-height:1.5;border-radius:8px;padding:5px 10px}
+#sres small{display:block;color:var(--mut)}
+#sres .none{color:var(--mut);font-size:.9rem;padding:4px 8px}
+nav a.on{background:color-mix(in srgb,var(--ac) 16%,var(--card));color:var(--ac);font-weight:700;box-shadow:inset 4px 0 0 var(--ac)}
+nav .sub{display:none;margin:2px 0 8px 14px;padding-left:10px;border-left:2px solid var(--bd)}
+nav a.on+.sub{display:block}
+nav .sub button{display:block;width:100%;text-align:left;border:0;background:none;padding:4px 8px;font-size:.88rem;line-height:1.5;color:var(--mut)}
+nav .sub button:hover{color:var(--ac)}
+nav .sub b{color:var(--ac);font-family:'JetBrains Mono',monospace;margin-right:4px}
+@media(max-width:860px){nav .sub{display:none!important}}
+</style></head><body>
+<nav aria-label="පාඩම් මාවත">
+<a href="electrical-technology-lesson.html" style="display:block;margin:0 0 12px;padding:7px 10px;border-radius:8px;color:var(--ac);text-decoration:none;font-weight:700">← විදුලි පාඩම් කොටස තෝරන්න</a>
+<div style="font:800 1.3rem 'Abhaya Libre',serif">⚡ විදුලි තාක්ෂණය</div>
+<div class="m" id="pct" style="color:var(--mut);font-size:.85rem">ප්‍රගතිය 0%</div><div class="bar"><i id="pb"></i></div>
+<div id="links"></div>
+<button id="th" style="margin-top:14px;width:100%">🌓 අඳුරු / ආලෝක</button>
+</nav>
+<main>
+
+
+<div id="top"><h1>මූලික විදුලි තාක්ෂණය, ට්‍රාන්ස්ෆෝමර් සහ ගෘහස්ථ රැහැන් ඇදීම</h1></div>
+<p style="color:var(--mut)">A/L තාක්ෂණ අංශය – ගුරුවරයෙකු නැතිව තනිවම ඉගෙන ගැනීමට සකස් කළ පාඩම. සෑම කොටසක්ම කියවා, සිමියුලේෂන් සමඟ සෙල්ලම් කර, ප්‍රශ්නවලට පිළිතුරු දී, “සම්පූර්ණයි” ලෙස සලකුණු කරන්න.</p>
+
+<section id="s1"><h2>පියවර 1 – මූලික රාශි සහ නියම</h2>
+<div class="card"><h3>විද්‍යුත් ධාරාව, වෝල්ටීයතාව, ප්‍රතිරෝධය</h3>
+<p><b>ධාරාව (I):</b> සන්නායකයක් හරහා ඒකක කාලයකදී ගලන ආරෝපණ ප්‍රමාණය, <span class="m">I = <span class="fr"><span>Q</span><span>t</span></span></span>, ඒකකය ඇම්පියර් (A). ඇමීටරය <b>ශ්‍රේණිගතව</b> සම්බන්ධ කරයි (අභ්‍යන්තර ප්‍රතිරෝධය අඩුයි). සම්මත ධාරාව ධන අග්‍රයේ සිට ඍණ අග්‍රයට; ඉලෙක්ට්‍රෝන ගලන්නේ ඊට ප්‍රතිවිරුද්ධ දිශාවටයි.</p>
+<p><b>වෝල්ටීයතාව (V):</b> ඒකක ආරෝපණයක් ලක්ෂ්‍ය දෙකක් අතර ගෙන යාමට කළ කාර්යය, <span class="m">V = <span class="fr"><span>W</span><span>Q</span></span></span>, ඒකකය වෝල්ට් (V). වෝල්ට්මීටරය <b>සමාන්තරගතව</b> සම්බන්ධ කරයි (අභ්‍යන්තර ප්‍රතිරෝධය වැඩියි).</p>
+<p><b>ප්‍රතිරෝධය (R):</b> ධාරාවට එල්ලවන බාධාව, ඒකකය ඕම් (Ω). බලපාන සාධක 4: දිග (L), හරස්කඩ වර්ගඵලය (A), ද්‍රව්‍යයේ ප්‍රතිරෝධකතාව (ρ), උෂ්ණත්වය.</p></div>
+
+<div class="law"><b class="t">🔥 මතක තබාගත යුතු නියම සහ සූත්‍ර</b>
+<p><b>ඕම්ගේ නියමය:</b> උෂ්ණත්වය නියතව පවතින විට සන්නායකයක දෙකෙළවර විභව අන්තරය ධාරාවට අනුලෝමව සමානුපාතික වේ. <span class="fm">V = I × R</span></p>
+<p><b>KCL:</b> මංසන්ධියකට ගලා එන ධාරා ඓක්‍යය = ඉවතට ගලන ධාරා ඓක්‍යය. <span class="fm">ΣI<sub>in</sub> = ΣI<sub>out</sub></span></p>
+<p><b>KVL:</b> සංවෘත පුඩුවක emf ඓක්‍යය = විභව බැසීම් ඓක්‍යය. <span class="fm">ΣE = ΣIR</span></p>
+<p><b>ශ්‍රේණිගත:</b> <span class="fm">R = R₁+R₂+R₃</span> &nbsp; <b>සමාන්තරගත:</b> <span class="fm"><span class="fr"><span>1</span><span>R</span></span> = <span class="fr"><span>1</span><span>R₁</span></span> + <span class="fr"><span>1</span><span>R₂</span></span> + <span class="fr"><span>1</span><span>R₃</span></span></span></p></div>
+
+<div class="card"><h3>සූත්‍ර කාඩ්පත්</h3>
+<div class="card"><span class="fm">V = I × R &nbsp; I = <span class="fr"><span>V</span><span>R</span></span> &nbsp; R = <span class="fr"><span>V</span><span>I</span></span></span> <small>(V – වෝල්ට්, I – ඇම්පියර්, R – ඕම්)</small><details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>230 V සැපයුමකට 46 Ω තාපන ප්‍රතිරෝධයක් සම්බන්ධ කළ විට ධාරාව?<br>1) <span class="fm">I = <span class="fr"><span>V</span><span>R</span></span></span><br>2) <span class="fm">I = <span class="fr"><span>230 V</span><span>46 Ω</span></span></span><br><b>I = 5 A</b></p></details></div>
+<div class="card"><span class="fm">R = ρ <span class="fr"><span>L</span><span>A</span></span></span> <small>(ρ: Ω·m, L: m, A: m² ; 1 mm² = 10⁻⁶ m²)</small><details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>තඹ කම්බියක දිග 100 m, හරස්කඩ 1.5 mm², ρ = 1.68×10⁻⁸ Ωm. R = ?<br>1) A = 1.5 mm² = 1.5×10⁻⁶ m² (මෙහිදී mm² → m² මාරු කිරීම අමතක නොකරන්න)<br>2) R = 1.68×10⁻⁸ × 100 ÷ 1.5×10⁻⁶<br><b>R ≈ 1.12 Ω</b></p></details></div>
+<div class="card"><span class="fm">P = V × I = I²R = <span class="fr"><span>V²</span><span>R</span></span> &nbsp; E = P×t</span><details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>1000 W යකඩයක් දිනකට පැය 2ක් භාවිතා කළ විට ඒකක?<br>ඒකක = <span class="fr"><span>W × h</span><span>1000</span></span> = <span class="fr"><span>1000 × 2</span><span>1000</span></span> = <b>2 ඒකක (kWh)</b>. මාසයකට (දින 30) = 60 ඒකක.</p></details></div>
+<div class="card"><span class="fm">V<sub>peak</sub> = V<sub>rms</sub> × √2 ≈ 1.414 V<sub>rms</sub> &nbsp; V<sub>rms</sub> = <span class="fr"><span>V<sub>peak</sub></span><span>√2</span></span> = 0.707 V<sub>peak</sub></span><details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>230 V සැපයුමක උපරිම අගය?<br>V<sub>max</sub> = √2 × 230 = 1.414 × 230 = <b>325 V</b>. එනම් AC තරංගය 325 V දක්වා ඉහළ ගියත්, තාපන බලපෑම DC 230 V ට සමාන වේ.</p></details></div></div>
+
+
+<div class="warn"><b>⚠️ විභාගයට අමතක නොකළ යුතු වැදගත් රහස් සහ සිසුන් නිතර කරන වැරදි</b><br>• ඇමීටරය ශ්‍රේණිගතව, වෝල්ට්මීටරය සමාන්තරගතව. &nbsp;• ප්‍රතිරෝධය ගණනයේදී mm² → m² (×10⁻⁶) කිරීම. &nbsp;• 230 V යනු RMS අගයයි, උපරිම අගය නොවේ.</div>
+<div class="mq" data-k="a"></div>
+<h3 class="law-section-label">🔬 ඕම් නියමය සහ පරිපථ පරීක්ෂණාගාරය</h3>
+<div class="card"><h3>සිමියුලේෂන් 1: AC / DC සහ ඕම් නියම පරීක්ෂණාගාරය</h3>
+<div class="row"><button id="mDC" class="on">සරල ධාරා (DC)</button><button id="mAC">ප්‍රත්‍යාවර්තක (AC)</button></div>
+<div class="row"><label>V (rms) <input type="range" id="v1" min="0" max="230" value="12"><b class="m" id="v1o">12</b></label><label>R <input type="range" id="r1" min="1" max="500" value="10"><b class="m" id="r1o">10</b></label><label>f <input type="range" id="f1" min="1" max="100" value="50"><b class="m" id="f1o">50</b></label></div>
+<canvas id="c1" width="720" height="260"></canvas><div class="out" id="o1"></div><canvas id="c6" width="720" height="240"></canvas><div class="out">V–I ප්‍රස්තාරයේ X අක්ෂය I සහ Y අක්ෂය V වේ. සෘජු Ohmic රේඛාවේ බෑවුම <span class="fm"><span class="fr"><span>ΔV</span><span>ΔI</span></span> = R</span> යි; රෝස තිත වත්මන් (I, V) පාඨාංකයයි.</div></div>
+<div class="card"><h3>ගෘහස්ථ විදුලි ඒකක ගණකය (kWh)</h3>
+<div class="row"><select id="ap"><option value="1000">යකඩය 1000 W</option><option value="12">LED බල්බය 12 W</option><option value="150">ශීතකරණය 150 W</option><option value="60">විදුලි පංකාව 60 W</option></select><label>පැය/දිනට <input type="number" id="hr" value="2" min="0" max="24" step="0.5" style="width:80px"></label></div><div class="out" id="o5"></div></div>
+<div class="card"><h3>සිමියුලේෂන් 2: ශ්‍රේණිගත vs සමාන්තරගත (බල්බ 3 – 12 V, එක බල්බයක් 6 Ω)</h3>
+<div class="row"><button id="pS" class="on">ශ්‍රේණිගත</button><button id="pP">සමාන්තරගත</button><span>බල්බයක් පිළිස්සීම:</span><button class="bb" data-i="0">R₁</button><button class="bb" data-i="1">R₂</button><button class="bb" data-i="2">R₃</button></div>
+<canvas id="c3" width="720" height="210"></canvas><div class="out" id="o3"></div></div>
+<div class="law"><b class="t">⚡ ඕම්ගේ නියමය සහ කර්චොෆ් නියම</b><p><span class="fm">V = IR</span> &nbsp; <b>KCL:</b> <span class="fm">ΣI<sub>in</sub> = ΣI<sub>out</sub></span> &nbsp; <b>KVL:</b> <span class="fm">ΣE = ΣIR</span> (පුඩුවක් වටා බැස්ම/නැගීම සලකුණු සමඟ).</p></div>
+<div class="card"><h3>KCL + KVL පියවරෙන් පියවර උදාහරණය</h3><p>ශාඛා 3ක පරිපථය: E₁ = 12 V (R₁ = 2 Ω), E₂ = 6 V (R₂ = 3 Ω) දෙක මැද R₃ = 6 Ω ප්‍රතිරෝධකයට සම්බන්ධයි. ධාරා I₁, I₂ (බැටරි දෙකෙන්) ඉන් පසු I₃ (R₃ හරහා) ලෙස ගනිමු.</p>
+<p><b>පියවර 1 (KCL):</b> <span class="fm">I₃ = I₁ + I₂</span></p><p><b>පියවර 2 (KVL, පුඩුව 1):</b> 12 = 2I₁ + 6I₃ = 2I₁ + 6(I₁+I₂) ⇒ <span class="fm">8I₁ + 6I₂ = 12</span> ⇒ <span class="fm">4I₁ + 3I₂ = 6</span> …(i)</p><p><b>පියවර 3 (KVL, පුඩුව 2):</b> 6 = 3I₂ + 6(I₁+I₂) ⇒ <span class="fm">6I₁ + 9I₂ = 6</span> ⇒ <span class="fm">2I₁ + 3I₂ = 2</span> …(ii)</p><p><b>පියවර 4:</b> (i) − (ii): 2I₁ = 4 ⇒ <b>I₁ = 2 A</b>. (ii) ට ආදේශ: 4 + 3I₂ = 2 ⇒ <b>I₂ = −0.667 A</b>. <b>I₃ = 2 − 0.667 = 1.333 A</b>.</p><p><b>සත්‍යාපනය:</b> 8(2) + 6(−0.667) = 12 ✓. ඍණ I₂ යනු E₂ කෝෂය හරහා ධාරාව ආරෝපණ දිශාවට ගලන බවයි (E₂ ආරෝපණය වේ).</p></div>
+<div class="card"><h3>ඕම් නියමය පරීක්ෂණය: මිනුම් හා උපකල්පන</h3>
+<p>ඇමීටරය භාරය සමඟ ශ්‍රේණිගතවද, වෝල්ට්මීටරය භාරයට සමාන්තරවද සම්බන්ධ වේ. Rheostat එකෙන් ධාරාව වෙනස් කර කියවීම් සටහන් කරගන්න. ස්ථාවර උෂ්ණත්වයේ ලෝහ සන්නායකයක් සඳහා V–I ප්‍රස්තාරය සෘජු රේඛාවකි; තාපදීප්ත බල්බයක තන්තුව රත් වීමෙන් ප්‍රතිරෝධය වෙනස් වන බැවින් වක්‍ර වේ.</p>
+<div id="labExtra"></div><p class="sim-note">මෙය සැපයුමේ අභ්‍යන්තර ප්‍රතිරෝධය නොසලකන අධ්‍යාපනික පරිපථ ආකෘතියකි; විශේෂයෙන් ρL/A මාදිලියේදී ගණනය කළ ධාරා ප්‍රායෝගික සැපයුම් ධාරා සීමා ඉක්මවිය හැක. 230 V mains සම්බන්ධ නොකරන්න.</p></div><div class="mq" data-k="b"></div></section>
+<section id="s10"><h2>පියවර 2 – ප්‍රතිරෝධක (Resistors) සහ ප්‍රතිරෝධය</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="r"></div></div>
+<div class="card"><h3>ප්‍රතිරෝධකයක කාර්යය</h3><p>ප්‍රතිරෝධකය යනු පරිපථයේ <b>ධාරාව සීමා කිරීමට</b>, <b>වෝල්ටීයතාව බෙදීමට</b> සහ විදුලි ශක්තිය තාපය බවට හැරවීමට යොදන උපාංගයකි. ඒකකය ඕම් (Ω); 1 kΩ = 10³ Ω, 1 MΩ = 10⁶ Ω. ක්‍රියාකාරිත්වය: ද්‍රව්‍යයේ ඇති පරමාණු සමඟ ඉලෙක්ට්‍රෝන ගැටීම නිසා ධාරාවට බාධාවක් ඇති වී, ශක්තිය තාපය ලෙස පිට වේ.</p></div>
+<div class="card"><h3>ප්‍රතිරෝධක වර්ග</h3><div class="table-wrap"><table><tr><th>වර්ගය</th><th>ලක්ෂණ</th><th>භාවිතය</th></tr>
+<tr><td>කාබන් (සංයුක්ත / පටල)</td><td>ලාභයි, ඉවසීම ±5%, ක්ෂමතාව 0.25–2 W</td><td>සාමාන්‍ය ඉලෙක්ට්‍රොනික පරිපථ</td></tr>
+<tr><td>කම්බි එතුම් (Wire-wound)</td><td>නික්‍රෝම් කම්බිය සෙරමික් හරයක් මත එතූ; ඉහළ ක්ෂමතා (5 W+), නිරවද්‍ය, ඉහළ උෂ්ණත්වය ඉවසයි</td><td>බල සැපයුම්, තාපක, රියෝස්ටැට්</td></tr>
+<tr><td>විචල්‍ය (රියෝස්ටැටය / පොටෙන්ශියෝමීටරය)</td><td>සර්පණ අග්‍රයක් මගින් R වෙනස් කරයි. රියෝස්ටැටය – ධාරාව පාලනය (අග්‍ර 2); පොටෙන්ශියෝමීටරය – වෝල්ටීයතා බෙදුම (අග්‍ර 3)</td><td>ශබ්ද පාලකය, මෝටර් වේග පාලනය</td></tr>
+<tr><td>LDR (Light Dependent Resistor)</td><td>ආලෝකය වැඩි වන විට R <b>අඩු</b> වේ (අඳුරේ MΩ, ආලෝකයේ kΩ)</td><td>ස්වයංක්‍රීය වීදි පහන්</td></tr>
+<tr><td>තර්මිස්ටරය (NTC)</td><td>උෂ්ණත්වය වැඩි වන විට R <b>අඩු</b> වේ</td><td>උෂ්ණත්ව සංවේදක, ආරම්භක ධාරා සීමාව</td></tr>
+<tr><td>තර්මිස්ටරය (PTC)</td><td>උෂ්ණත්වය වැඩි වන විට R <b>වැඩි</b> වේ</td><td>ස්වයං ප්‍රතිෂ්ඨාපන ආරක්ෂක</td></tr></table></div></div>
+<div class="law"><b class="t">🔥 ප්‍රතිරෝධයට බලපාන සාධක සහ සූත්‍ර</b>
+<p><b>(1) ද්‍රව්‍යය, (2) දිග, (3) හරස්කඩ වර්ගඵලය, (4) උෂ්ණත්වය.</b></p>
+<p><span class="fm">R = ρ <span class="fr"><span>L</span><span>A</span></span></span> – ρ: ප්‍රතිරෝධකතාව (Ω·m), L: දිග (m), A: හරස්කඩ (m²). R ∝ L, R ∝ 1/A.</p>
+<p><span class="fm">R<sub>θ</sub> = R<sub>0</sub>(1 + αΔθ)</span> – ලෝහ සඳහා උෂ්ණත්වය වැඩි වන විට R වැඩි වේ. α: ප්‍රතිරෝධ උෂ්ණත්ව සංගුණකය (/°C), Δθ: උෂ්ණත්ව වෙනස.</p>
+<p><span class="fm">G = <span class="fr"><span>1</span><span>R</span></span></span> (සන්නායකතාව, ඒකකය S) &nbsp; <span class="fm">σ = <span class="fr"><span>1</span><span>ρ</span></span></span> (සන්නායකතාවය, S/m)</p>
+<p><b>ශ්‍රේණිගත:</b> <span class="fm">R = R₁+R₂+…</span> &nbsp; <b>සමාන්තරගත:</b> <span class="fm">1/R = 1/R₁+1/R₂+…</span> (දෙකක් සඳහා <span class="fm">R = R₁R₂/(R₁+R₂)</span>)</p>
+<p><b>වෝල්ටීයතා බෙදුම:</b> <span class="fm">V<sub>out</sub> = V<sub>in</sub> × <span class="fr"><span>R₂</span><span>R₁+R₂</span></span></span> &nbsp; <b>ධාරා බෙදුම (සමාන්තර ශාඛා 2):</b> <span class="fm">I₁ = I × <span class="fr"><span>R₂</span><span>R₁+R₂</span></span></span></p>
+<p><b>ක්ෂමතාව:</b> <span class="fm">P = VI = I²R = V²/R</span>. ප්‍රතිරෝධකයේ ක්ෂමතා අගය (W) ඉක්මවන්නට නොදිය යුතුය.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>තඹ කම්බියක දිග 50 m, හරස්කඩ 2.5 mm², ρ = 1.68×10⁻⁸ Ω·m. R = ?<br>A = 2.5×10⁻⁶ m²; R = 1.68×10⁻⁸ × 50 ÷ 2.5×10⁻⁶ = <b>0.336 Ω</b>.<br>0 °C හි R = 100 Ω ලෝහ පටියක α = 0.004 /°C; 50 °C හිදී R = 100(1 + 0.004×50) = <b>120 Ω</b>.</p></details></div>
+<div class="card"><h3>ප්‍රතිරෝධක වර්ණ කේතනය (Colour Code)</h3>
+<div class="table-wrap"><table><tr><th>වර්ණය</th><th>ඉලක්කම</th><th>ගුණකය</th><th>ඉවසීම</th></tr>
+<tr><td>කළු</td><td>0</td><td>×1</td><td>—</td></tr><tr><td>දුඹුරු</td><td>1</td><td>×10</td><td>±1%</td></tr><tr><td>රතු</td><td>2</td><td>×10²</td><td>±2%</td></tr><tr><td>තැඹිලි</td><td>3</td><td>×10³</td><td>—</td></tr><tr><td>කහ</td><td>4</td><td>×10⁴</td><td>—</td></tr><tr><td>කොළ</td><td>5</td><td>×10⁵</td><td>±0.5%</td></tr><tr><td>නිල්</td><td>6</td><td>×10⁶</td><td>±0.25%</td></tr><tr><td>දම්</td><td>7</td><td>×10⁷</td><td>±0.1%</td></tr><tr><td>අළු</td><td>8</td><td>×10⁸</td><td>±0.05%</td></tr><tr><td>සුදු</td><td>9</td><td>×10⁹</td><td>—</td></tr><tr><td>රන්වන්</td><td>—</td><td>×0.1</td><td>±5%</td></tr><tr><td>රිදී</td><td>—</td><td>×0.01</td><td>±10%</td></tr><tr><td>පටියක් නැත</td><td>—</td><td>—</td><td>±20%</td></tr></table></div>
+<p><b>පටි 4:</b> 1 වන ඉලක්කම, 2 වන ඉලක්කම, ගුණකය, ඉවසීම. &nbsp; <b>පටි 5:</b> 1, 2, 3 වන ඉලක්කම, ගුණකය, ඉවසීම. <span class="fm">R = (ඉලක්කම් සංඛ්‍යාව) × ගුණකය ± ඉවසීම%</span>. රන්/රිදී පටිය (ඉවසීම) දකුණු කෙළවරේ තබා වමේ සිට කියවන්න.</p>
+<details><summary>උදාහරණ</summary><p><b>කහ, දම්, රතු, රන්වන්</b> → 47 × 10² = 4700 Ω = <b>4.7 kΩ ±5%</b> (4465 Ω – 4935 Ω).<br><b>දුඹුරු, කළු, කළු, රතු, දුඹුරු</b> (පටි 5) → 100 × 10² = 10 000 Ω = <b>10 kΩ ±1%</b>.</p></details></div>
+<div class="card"><h3>🎨 අන්තර්ක්‍රියාකාරී වර්ණ කේත ගණකය</h3><div class="row"><button id="b4" class="on">පටි 4</button><button id="b5">පටි 5</button></div><div class="row" id="rcSel"></div><svg class="sv" id="rcSvg" viewBox="0 0 300 70" role="img" aria-label="ප්‍රතිරෝධකය"></svg><div class="out" id="rcOut"></div></div>
+<div class="warn"><b>⚠️ අමතක නොකළ යුතුයි</b><br>• ගණනයේදී mm² → m² (×10⁻⁶). &nbsp;• ලෝහවල උෂ්ණත්වය වැඩි වන විට R වැඩිවේ; තර්මිස්ටර (NTC) හි අඩු වේ. &nbsp;• වර්ණ කේතයේ ගුණකය යනු බිංදු ගණන බව සිතන්න.</div>
+<div class="mq" data-k="f"></div></section>
+<section id="s11"><h2>පියවර 3 – ධාරිත්‍රක (Capacitors) සහ ධාරණාව</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="c"></div></div>
+<div class="card"><h3>ධාරණාව (Capacitance, C) යනු කුමක්ද?</h3><p>ධාරිත්‍රකයක් යනු පාරවිද්‍යුත් ද්‍රව්‍යයකින් (Dielectric) වෙන් කළ සන්නායක තහඩු දෙකකි. වෝල්ටීයතාවක් යෙදූ විට තහඩු දෙකේ සමාන හා ප්‍රතිවිරුද්ධ ආරෝපණ (+Q, −Q) ගොඩ නැගී විද්‍යුත් ක්ෂේත්‍රයක ශක්තිය ගබඩා වේ. <b>ධාරණාව</b> යනු ඒකක වෝල්ටීයතාවකට ගබඩා කළ හැකි ආරෝපණ ප්‍රමාණයයි. ඒකකය ෆැරඩ් (F): 1 µF = 10⁻⁶ F, 1 nF = 10⁻⁹ F, 1 pF = 10⁻¹² F.</p></div>
+<div class="law"><b class="t">🔥 ධාරිත්‍රක සූත්‍ර</b>
+<p><span class="fm">Q = C V</span> &nbsp; <span class="fm">C = <span class="fr"><span>Q</span><span>V</span></span></span> &nbsp; <span class="fm">V = <span class="fr"><span>Q</span><span>C</span></span></span></p>
+<p><b>භෞතික සාධක:</b> <span class="fm">C = <span class="fr"><span>ε A</span><span>d</span></span> = <span class="fr"><span>ε₀ε<sub>r</sub> A</span><span>d</span></span></span> – A: තහඩු වර්ගඵලය (m²), d: තහඩු අතර දුර (m), ε: පාරවිද්‍යුත් පාරගම්‍යතාව, ε₀ = 8.85×10⁻¹² F/m (රික්තය), ε<sub>r</sub>: සාපේක්ෂ පාරවිද්‍යුතාංකය (වාතය ≈ 1; මයිකා ≈ 5–7; සෙරමික් 10–10 000). A වැඩි / d අඩු / ε වැඩි වන විට C වැඩි වේ.</p>
+<p><b>ගබඩා වන ශක්තිය:</b> <span class="fm">E = ½CV² = ½QV = <span class="fr"><span>Q²</span><span>2C</span></span></span> (ජූල්)</p>
+<p><b>සමාන්තරගත:</b> <span class="fm">C = C₁ + C₂ + C₃</span> (සෑම ධාරිත්‍රකයකටම V එකයි; Q බෙදේ).</p>
+<p><b>ශ්‍රේණිගත:</b> <span class="fm">1/C = 1/C₁ + 1/C₂ + 1/C₃</span>; දෙකක් නම් <span class="fm">C = C₁C₂/(C₁+C₂)</span> (සෑම ධාරිත්‍රකයකටම Q එකයි; V බෙදේ: V₁ = Q/C₁).</p>
+<p><b>RC ආරෝපණය/විසර්ජනය:</b> කාල නියතය <span class="fm">τ = RC</span>. ආරෝපණය: <span class="fm">v<sub>C</sub> = V(1 − e<sup>−t/RC</sup>)</span>; විසර්ජනය: <span class="fm">v<sub>C</sub> = V₀ e<sup>−t/RC</sup></span>. ≈ 5τ ට පසු සම්පූර්ණ වේ (τ හිදී 63%).</p>
+<p><b>AC වලදී:</b> ධාරණ ප්‍රතිබාධය <span class="fm">X<sub>C</sub> = <span class="fr"><span>1</span><span>2πfC</span></span></span> (Ω). DC වලදී ආරෝපණය පිරුණු පසු ධාරාව නොගලයි (විවෘත පරිපථයක් සේ); AC ගලා යයි.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලු</summary><p>(අ) 100 µF, 12 V: Q = CV = 100×10⁻⁶ × 12 = <b>1.2 mC</b>; E = ½CV² = ½ × 100×10⁻⁶ × 144 = <b>7.2 mJ</b>.<br>(ආ) A = 0.01 m², d = 1 mm, ε<sub>r</sub> = 5: C = 8.85×10⁻¹² × 5 × 0.01 ÷ 10⁻³ = <b>0.4425 nF</b>.<br>(ඇ) 4 µF සහ 12 µF: <b>ශ්‍රේණිගත</b> = 48/16 = <b>3 µF</b>; <b>සමාන්තර</b> = <b>16 µF</b>.<br>(ඈ) 4 µF, 12 µF ශ්‍රේණිගතව 16 V: Q = 3 µF × 16 V = 48 µC; V₁ = 48/4 = 12 V, V₂ = 48/12 = 4 V (එකතුව 16 V).<br>(ඉ) R = 10 kΩ, C = 100 µF: τ = 10⁴ × 10⁻⁴ = <b>1 s</b>; X<sub>C</sub> (50 Hz) = 1/(2π×50×100×10⁻⁶) ≈ <b>31.8 Ω</b>.</p></details></div>
+<div class="card"><h3>ධාරිත්‍රක වර්ග</h3><div class="table-wrap"><table><tr><th>ලක්ෂණය</th><th>විද්‍යුත් විච්ඡේද්‍ය (Electrolytic)</th><th>සෙරමික් (Ceramic)</th></tr>
+<tr><td>ධාරණාව</td><td>විශාලයි (1 µF – දස දහස් µF)</td><td>කුඩායි (pF – 1 µF)</td></tr>
+<tr><td>ධ්‍රැවීයතාව</td><td>ධ්‍රැවීයයි (+/− සලකුණු; වැරදි ලෙස සම්බන්ධ කළොත් පිපිරිය හැක)</td><td>ධ්‍රැවීය නොවේ</td></tr>
+<tr><td>පාරවිද්‍යුතය</td><td>තුනී ඔක්සයිඩ් ස්ථරය</td><td>සෙරමික් තැටිය</td></tr>
+<tr><td>ඉවසීම / කාන්දුව</td><td>±20%, කාන්දු ධාරාව වැඩියි, ආයු කාලය සීමිතයි</td><td>කාන්දුව අඩුයි, ඉහළ සංඛ්‍යාතයට සුදුසුයි</td></tr>
+<tr><td>භාවිතය</td><td>ඍජුකාරක සුමටනය, බල සැපයුම්</td><td>ඩෙකප්ලිං, ෆිල්ටර, සුසර කිරීම</td></tr></table></div><p>කේත: සෙරමික් මත “104” = 10 × 10⁴ pF = 100 nF. කොන්ඩෙන්සර් පරිපථවලදී ධාරිත්‍රකයේ වෝල්ටීයතා ශ්‍රේණිය (උදා: 25 V) ඉක්මවන්න එපා.</p></div>
+<div class="mq" data-k="g"></div></section>
+<section id="s12"><h2>පියවර 4 – ප්‍රේරක (Inductors) සහ ප්‍රේරණාව</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="l"></div></div>
+<div class="card"><h3>ප්‍රේරණාව (Inductance, L) යනු කුමක්ද?</h3><p>ප්‍රේරකයක් යනු කම්බි දඟරයකි (බොහෝ විට යකඩ/ෆෙරයිට් හරයක් මත). ධාරාව ගලන විට එය චුම්බක ක්ෂේත්‍රයක් ලෙස ශක්තිය ගබඩා කරයි. ධාරාව වෙනස් වන විට දඟරය හරහා ස්‍රාවය වෙනස් වී ප්‍රතිවිරුද්ධ දිශාවට වි.ගා.බ. ප්‍රේරණය වේ. <b>ස්වයං ප්‍රේරණය:</b> එම දඟරයේම ධාරා වෙනසෙන් වන ප්‍රේරණය. <b>අන්‍යෝන්‍ය ප්‍රේරණය:</b> එක් දඟරයක ධාරා වෙනස අසල ඇති අනෙක් දඟරයේ වි.ගා.බ. ප්‍රේරණය කිරීම (ට්‍රාන්ස්ෆෝමරයේ මූලධර්මය). ඒකකය හෙන්රි (H): 1 H = ධාරාව 1 A/s බැගින් වෙනස් වන විට 1 V ප්‍රේරණය කරන ප්‍රේරණාව.</p></div>
+<div class="law"><b class="t">🔥 ප්‍රේරක සූත්‍ර</b>
+<p><span class="fm">L = <span class="fr"><span>NΦ</span><span>I</span></span></span> (N: පොට ගණන, Φ: ස්‍රාවය, I: ධාරාව)</p>
+<p><b>භෞතික සාධක:</b> <span class="fm">L = <span class="fr"><span>μ N² A</span><span>l</span></span></span>, <span class="fm">μ = μ₀μ<sub>r</sub></span>, μ₀ = 4π×10⁻⁷ H/m. පොට ගණන (N², වර්ගයට), හරස්කඩ A, හරයේ පාරගම්‍යතාව μ වැඩි වන විට / දඟරයේ දිග l අඩු වන විට L වැඩි වේ.</p>
+<p><b>ප්‍රේරිත වි.ගා.බ.:</b> <span class="fm">v = L <span class="fr"><span>di</span><span>dt</span></span></span> (මන්දනය e = −L di/dt). &nbsp; <b>අන්‍යෝන්‍ය:</b> <span class="fm">e₂ = −M <span class="fr"><span>di₁</span><span>dt</span></span></span>, <span class="fm">M = k√(L₁L₂)</span> (0 ≤ k ≤ 1).</p>
+<p><b>ගබඩා වන ශක්තිය:</b> <span class="fm">E = ½LI²</span> (ජූල්) &nbsp; <b>ශ්‍රේණිගත (සම්බන්ධ නොවන):</b> <span class="fm">L = L₁+L₂+…</span> &nbsp; <b>සමාන්තරගත:</b> <span class="fm">1/L = 1/L₁+1/L₂+…</span></p>
+<p><b>කාල නියතය (RL):</b> <span class="fm">τ = <span class="fr"><span>L</span><span>R</span></span></span>; ධාරාව වැඩි වීම: <span class="fm">i = (V/R)(1 − e<sup>−Rt/L</sup>)</span>.</p>
+<p><b>AC වලදී:</b> ප්‍රේරක ප්‍රතිබාධය <span class="fm">X<sub>L</sub> = 2πfL</span> (Ω). සංඛ්‍යාතය වැඩි වන විට බාධාව වැඩිවේ.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලු</summary><p>N = 500, l = 0.1 m, A = 2 cm² = 2×10⁻⁴ m², μ<sub>r</sub> = 1000: μ = 4π×10⁻⁷ × 1000 = 1.257×10⁻³. L = 1.257×10⁻³ × 500² × 2×10⁻⁴ ÷ 0.1 ≈ <b>0.628 H</b>.<br>I = 2 A: E = ½ × 0.628 × 2² ≈ <b>1.26 J</b>.<br>L = 0.5 H, di/dt = 4 A/s: v = 0.5 × 4 = <b>2 V</b>.<br>50 Hz දී X<sub>L</sub> = 2π × 50 × 0.628 ≈ <b>197 Ω</b>.</p></details></div>
+<div class="card"><h3>DC සහ AC වලදී ප්‍රේරකයේ හැසිරීම</h3><div class="table-wrap"><table><tr><th>අවස්ථාව</th><th>හැසිරීම</th></tr>
+<tr><td>DC ස්විචය ON කළ සැනින්</td><td>ධාරා වැඩි වීමට ප්‍රේරකය විරුද්ධ වේ; ධාරාව ක්‍රමයෙන් (τ = L/R) වැඩි වේ.</td></tr>
+<tr><td>DC ස්ථිර තත්ත්වය</td><td>di/dt = 0 ⇒ v = 0; ප්‍රේරකය සාමාන්‍ය කම්බියක් (ලඝු) සේ ක්‍රියා කරයි, ප්‍රතිරෝධය දඟරයේ R පමණි.</td></tr>
+<tr><td>DC ස්විචය OFF කළ විට</td><td>ධාරාව ක්ෂණිකව බිඳීමට උත්සාහ කිරීමෙන් විශාල ප්‍රතිවිරුද්ධ වි.ගා.බ. (spark) – රිලේ වල ඩයෝඩයක් යොදන්නේ ඒ නිසාය.</td></tr>
+<tr><td>AC</td><td>ධාරාව සෑම විටම වෙනස් වන නිසා X<sub>L</sub> = 2πfL බාධාව ඇත; ධාරාව වෝල්ටීයතාවට 90° පසු (lag) වේ; ඉහළ f වලට වැඩි බාධාවක් (චෝක්, ෆිල්ටර).</td></tr></table></div></div>
+<div class="mq" data-k="h"></div></section>
+<section id="s15"><h2>පියවර 5 – AC / DC ධාරා සහ තරංග හැඩ</h2>
+<div class="card"><h3>DC සහ AC</h3><p>DC හි දිශාව කාලයත් සමඟ වෙනස් නොවේ. AC හි දිශාව සහ විශාලත්වය සයිනාකාරව ආවර්තිතව වෙනස් වේ. ශ්‍රී ලංකාවේ: තනි කලා <b>230 V</b>, තෙකලා <b>400 V</b>, සංඛ්‍යාතය <b>50 Hz</b> (ආවර්ත කාලය <span class="m">T = <span class="fr"><span>1</span><span>f</span></span> = 20 ms</span>). තාරකා (Star) සම්බන්ධතාවේ <span class="m">V<sub>L</sub> = √3 V<sub>P</sub></span> (230×1.732 ≈ 400 V, උදාසීන තන්තුවක් ඇත); ඩෙල්ටා (Delta) සම්බන්ධතාවේ <span class="m">V<sub>L</sub> = V<sub>P</sub></span>.</p></div>
+<div class="card"><h3>AC තරංගයක පරාමිති (සයින් තරංගය)</h3><svg class="sv" viewBox="0 0 720 320" role="img" aria-label="AC සයින් තරංගය: උච්ච අගය V_p, උච්චයෙන් උච්ච අගය V_pp, ආවර්ත කාලය T"><g font-family="sans-serif" font-size="15">
+<line x1="70" y1="290" x2="70" y2="58" stroke="#94a3b8" stroke-width="2"/><polygon points="70,50 65,62 75,62" fill="#94a3b8"/><text x="78" y="62" fill="#cbd5e1" font-size="13">v (V)</text>
+<line x1="70" y1="170" x2="605" y2="170" stroke="#94a3b8" stroke-width="2"/><polygon points="613,170 601,165 601,175" fill="#94a3b8"/><text x="590" y="190" fill="#cbd5e1" font-size="13">t (s)</text>
+<line x1="70" y1="170" x2="70" y2="278" stroke="#475569" stroke-dasharray="2 4"/><text x="70" y="298" text-anchor="middle" fill="#cbd5e1" font-size="14">0</text><line x1="190.0" y1="170" x2="190.0" y2="278" stroke="#475569" stroke-dasharray="2 4"/><text x="190.0" y="298" text-anchor="middle" fill="#cbd5e1" font-size="14">T/2</text><line x1="310" y1="170" x2="310" y2="278" stroke="#475569" stroke-dasharray="2 4"/><text x="310" y="298" text-anchor="middle" fill="#cbd5e1" font-size="14">T</text><line x1="430.0" y1="170" x2="430.0" y2="278" stroke="#475569" stroke-dasharray="2 4"/><text x="430.0" y="298" text-anchor="middle" fill="#cbd5e1" font-size="14">3T/2</text><line x1="550" y1="170" x2="550" y2="278" stroke="#475569" stroke-dasharray="2 4"/><text x="550" y="298" text-anchor="middle" fill="#cbd5e1" font-size="14">2T</text>
+<g stroke="#f59e0b" stroke-dasharray="6 4" stroke-width="1.5"><line x1="70" y1="80" x2="648" y2="80"/><line x1="70" y1="260" x2="648" y2="260"/></g>
+<polyline points="70.0,170.0 73.0,162.9 76.0,155.9 79.0,149.0 82.0,142.2 85.0,135.6 88.0,129.1 91.0,123.0 94.0,117.1 97.0,111.5 100.0,106.4 103.0,101.6 106.0,97.2 109.0,93.3 112.0,89.8 115.0,86.9 118.0,84.4 121.0,82.5 124.0,81.1 127.0,80.3 130.0,80.0 133.0,80.3 136.0,81.1 139.0,82.5 142.0,84.4 145.0,86.9 148.0,89.8 151.0,93.3 154.0,97.2 157.0,101.6 160.0,106.4 163.0,111.5 166.0,117.1 169.0,123.0 172.0,129.1 175.0,135.6 178.0,142.2 181.0,149.0 184.0,155.9 187.0,162.9 190.0,170.0 193.0,177.1 196.0,184.1 199.0,191.0 202.0,197.8 205.0,204.4 208.0,210.9 211.0,217.0 214.0,222.9 217.0,228.5 220.0,233.6 223.0,238.4 226.0,242.8 229.0,246.7 232.0,250.2 235.0,253.1 238.0,255.6 241.0,257.5 244.0,258.9 247.0,259.7 250.0,260.0 253.0,259.7 256.0,258.9 259.0,257.5 262.0,255.6 265.0,253.1 268.0,250.2 271.0,246.7 274.0,242.8 277.0,238.4 280.0,233.6 283.0,228.5 286.0,222.9 289.0,217.0 292.0,210.9 295.0,204.4 298.0,197.8 301.0,191.0 304.0,184.1 307.0,177.1 310.0,170.0 313.0,162.9 316.0,155.9 319.0,149.0 322.0,142.2 325.0,135.6 328.0,129.1 331.0,123.0 334.0,117.1 337.0,111.5 340.0,106.4 343.0,101.6 346.0,97.2 349.0,93.3 352.0,89.8 355.0,86.9 358.0,84.4 361.0,82.5 364.0,81.1 367.0,80.3 370.0,80.0 373.0,80.3 376.0,81.1 379.0,82.5 382.0,84.4 385.0,86.9 388.0,89.8 391.0,93.3 394.0,97.2 397.0,101.6 400.0,106.4 403.0,111.5 406.0,117.1 409.0,123.0 412.0,129.1 415.0,135.6 418.0,142.2 421.0,149.0 424.0,155.9 427.0,162.9 430.0,170.0 433.0,177.1 436.0,184.1 439.0,191.0 442.0,197.8 445.0,204.4 448.0,210.9 451.0,217.0 454.0,222.9 457.0,228.5 460.0,233.6 463.0,238.4 466.0,242.8 469.0,246.7 472.0,250.2 475.0,253.1 478.0,255.6 481.0,257.5 484.0,258.9 487.0,259.7 490.0,260.0 493.0,259.7 496.0,258.9 499.0,257.5 502.0,255.6 505.0,253.1 508.0,250.2 511.0,246.7 514.0,242.8 517.0,238.4 520.0,233.6 523.0,228.5 526.0,222.9 529.0,217.0 532.0,210.9 535.0,204.4 538.0,197.8 541.0,191.0 544.0,184.1 547.0,177.1 550.0,170.0" fill="none" stroke="#4ade80" stroke-width="3.5"/>
+<circle cx="130.0" cy="80" r="4.5" fill="#f472b6"/><circle cx="370.0" cy="80" r="4.5" fill="#38bdf8"/>
+<line x1="130.0" y1="166" x2="130.0" y2="82" stroke="#f472b6" stroke-width="2.5"/><polygon points="130.0,82.0 133.6,91.0 126.4,91.0" fill="#f472b6"/><text x="122.0" y="128" text-anchor="end" fill="#f472b6" font-weight="bold">V<tspan font-size="11" dy="3">p</tspan></text>
+<g stroke="#38bdf8" stroke-dasharray="3 3" stroke-width="1.5"><line x1="130.0" y1="76" x2="130.0" y2="50"/><line x1="370.0" y1="76" x2="370.0" y2="50"/></g>
+<line x1="130.0" y1="54" x2="370.0" y2="54" stroke="#38bdf8" stroke-width="2.5"/><polygon points="370.0,54.0 361.0,57.6 361.0,50.4" fill="#38bdf8"/><polygon points="130.0,54.0 139.0,57.6 139.0,50.4" fill="#38bdf8"/><text x="250.0" y="40" text-anchor="middle" fill="#38bdf8" font-weight="bold">T = ආවර්ත කාලය (එක් සම්පූර්ණ චක්‍රයක් &nbsp;·&nbsp; f = 1/T)</text>
+<line x1="660" y1="80" x2="660" y2="260" stroke="#f59e0b" stroke-width="2.5"/><polygon points="660.0,260.0 656.4,251.0 663.6,251.0" fill="#f59e0b"/><polygon points="660.0,80.0 656.4,89.0 663.6,89.0" fill="#f59e0b"/><text x="668" y="164" fill="#f59e0b" font-weight="bold">V<tspan font-size="11" dy="3">pp</tspan></text><text x="668" y="186" fill="#f59e0b" font-size="13">= 2V<tspan font-size="10" dy="3">p</tspan></text>
+<text x="76" y="74" fill="#f59e0b" font-size="13">+V<tspan font-size="10" dy="3">p</tspan></text><text x="76" y="277" fill="#f59e0b" font-size="13">−V<tspan font-size="10" dy="3">p</tspan></text>
+</g></svg>
+<p class="sim-note">රූපයේ වර්ණ: <b style="color:#f472b6">උච්ච අගය V<sub>p</sub></b> (ශුන්‍ය රේඛාවේ සිට උපරිමය) · <b style="color:#f59e0b">උච්චයෙන් උච්ච V<sub>pp</sub></b> (ධන උච්චයේ සිට ඍණ උච්චය දක්වා) · <b style="color:#38bdf8">ආවර්ත කාලය T</b> (එක් උච්චයක සිට ඊළඟ උච්චය දක්වා, එනම් එක් සම්පූර්ණ චක්‍රය).</p>
+<div class="table-wrap"><table><tr><th>පරාමිතිය</th><th>සංකේතය</th><th>අර්ථය</th><th>ඒකකය</th><th>සූත්‍රය</th><th>230 V, 50 Hz ට</th></tr>
+<tr><td>උච්ච අගය</td><td>V<sub>p</sub> , I<sub>p</sub></td><td>ශුන්‍යයේ සිට උපරිම අගය</td><td>V , A</td><td>V<sub>p</sub> = √2 · V<sub>rms</sub></td><td>325 V</td></tr>
+<tr><td>උච්චයෙන් උච්ච</td><td>V<sub>pp</sub></td><td>+V<sub>p</sub> සිට −V<sub>p</sub> දක්වා පරාසය</td><td>V</td><td>V<sub>pp</sub> = 2 V<sub>p</sub></td><td>650 V</td></tr>
+<tr><td>ආවර්ත කාලය</td><td>T</td><td>එක් චක්‍රයකට ගතවන කාලය</td><td>s</td><td>T = 1 / f</td><td>20 ms</td></tr>
+<tr><td>සංඛ්‍යාතය</td><td>f</td><td>තත්පරයකට චක්‍ර ගණන</td><td>Hz</td><td>f = 1 / T</td><td>50 Hz</td></tr>
+<tr><td>කෝණික සංඛ්‍යාතය</td><td>ω</td><td>රේඩියන්/තත්පරය</td><td>rad/s</td><td>ω = 2πf</td><td>314 rad/s</td></tr>
+<tr><td>ක්ෂණික අගය</td><td>v(t)</td><td>t මොහොතේ වෝල්ටීයතාව</td><td>V</td><td>v = V<sub>p</sub> sin(2πft)</td><td>—</td></tr></table></div></div>
+<div class="law"><b class="t">🔥 RMS (වර්ග මධ්‍යන මූල) අගය</b>
+<p>AC තරංගයක <b>RMS අගය</b> යනු, එම AC මගින් ප්‍රතිරෝධකයක නිපදවන තාපයම නිපදවන <b>සමාන DC අගයයි</b>. ගණනය: ක්ෂණික අගයන් වර්ග කර (square), එහි මධ්‍යන්‍යය (mean) ගෙන, වර්ගමූලය (root) ලබා ගැනීම: <span class="fm">V<sub>rms</sub> = √(මධ්‍යන්‍ය v²)</span>.</p>
+<p><span class="fm">V<sub>rms</sub> = <span class="fr"><span>V<sub>p</sub></span><span>√2</span></span> ≈ 0.707 V<sub>p</sub></span> &nbsp; <span class="fm">I<sub>rms</sub> = <span class="fr"><span>I<sub>p</sub></span><span>√2</span></span> ≈ 0.707 I<sub>p</sub></span></p>
+<p><span class="fm">V<sub>p</sub> = √2 V<sub>rms</sub> ≈ 1.414 V<sub>rms</sub></span> &nbsp; <span class="fm">V<sub>pp</sub> = 2√2 V<sub>rms</sub> ≈ 2.828 V<sub>rms</sub></span> &nbsp; <span class="fm">P<sub>avg</sub> = V<sub>rms</sub>I<sub>rms</sub> = I<sub>rms</sub>²R = <span class="fr"><span>V<sub>p</sub>I<sub>p</sub></span><span>2</span></span></span></p>
+<p><b>මධ්‍යන්‍ය අගය (අර්ධ චක්‍රය):</b> <span class="fm">V<sub>avg</sub> = <span class="fr"><span>2V<sub>p</sub></span><span>π</span></span> ≈ 0.637 V<sub>p</sub></span> (සයින් තරංගය; සම්පූර්ණ චක්‍රයක මධ්‍යන්‍යය 0). &nbsp;<b>ආකෘති සාධකය</b> = V<sub>rms</sub>/V<sub>avg</sub> = 1.11 &nbsp;<b>උච්ච සාධකය</b> = V<sub>p</sub>/V<sub>rms</sub> = 1.414.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>ශ්‍රී ලංකාවේ 230 V, 50 Hz: V<sub>rms</sub> = 230 V ⇒ V<sub>p</sub> = 1.414 × 230 ≈ <b>325 V</b>; V<sub>pp</sub> = 2 × 325 = <b>650 V</b>; T = 1/50 = <b>20 ms</b>. 230 V දී 46 Ω තාපකයක I<sub>rms</sub> = 5 A ⇒ I<sub>p</sub> = 7.07 A; P = 5² × 46 = 1150 W.</p></details>
+<div class="table-wrap"><table><tr><th>තරංගය</th><th>V<sub>rms</sub></th><th>අර්ධ-චක්‍ර මධ්‍යන්‍යය</th></tr><tr><td>සයිනාකාර</td><td>V<sub>p</sub>/√2 ≈ 0.707 V<sub>p</sub></td><td>2V<sub>p</sub>/π ≈ 0.637 V<sub>p</sub></td></tr><tr><td>හතරැස්</td><td>V<sub>p</sub></td><td>V<sub>p</sub></td></tr><tr><td>ත්‍රිකෝණාකාර</td><td>V<sub>p</sub>/√3 ≈ 0.577 V<sub>p</sub></td><td>0.5 V<sub>p</sub></td></tr><tr><td>කියත්දැති</td><td>V<sub>p</sub>/√3 ≈ 0.577 V<sub>p</sub></td><td>0.5 V<sub>p</sub></td></tr></table></div></div>
+<div class="card"><h3>සිමියුලේෂන් 5: AC තරංග හැඩ පරීක්ෂණාගාරය</h3>
+<div class="row" id="wvBtns"><button class="on" data-w="sine">සයිනාකාර (Sine)</button><button data-w="square">හතරැස් (Square)</button><button data-w="tri">ත්‍රිකෝණාකාර (Triangle)</button><button data-w="saw">කියත්දැති (Sawtooth)</button></div>
+<div class="row"><label>V<sub>p</sub> <input type="range" id="wvP" min="1" max="325" value="230"><b class="m" id="wvPo">230</b> V</label><label>f <input type="range" id="wvF" min="1" max="100" value="50"><b class="m" id="wvFo">50</b> Hz</label></div>
+<canvas id="wvC" width="720" height="320"></canvas><div class="out" id="wvOut"></div></div>
+<div class="warn"><b>⚠️ අමතක නොකළ යුතුයි</b><br>• V<sub>rms</sub> = V<sub>p</sub>/√2 වලංගු වන්නේ <b>සයින් තරංගයට</b> පමණි. &nbsp;• V<sub>pp</sub> = 2V<sub>p</sub> (සමමිතික තරංග සඳහා). &nbsp;• මල්ටිමීටරය AC දී පෙන්වන්නේ RMS අගයයි.</div>
+<div class="card ext"><h3>➕ AC පරිපථ – අමතර කරුණු</h3>
+<p><b>කලා වෙනස (φ):</b> ප්‍රතිරෝධකයේ V, I එකම කලාවේ (φ = 0°); ප්‍රේරකයේ I, V ට 90° පසුපසින් (lag); ධාරිත්‍රකයේ I, V ට 90° ඉදිරියෙන් (lead) – <b>“CIVIL”</b>.</p>
+<p><b>ප්‍රතිබාධය (Z):</b> ශ්‍රේණි R–L–C: <span class="fm">Z = √(R² + (X<sub>L</sub> − X<sub>C</sub>)²)</span> &nbsp; <span class="fm">I = <span class="fr"><span>V</span><span>Z</span></span></span> &nbsp; <span class="fm">cos φ = <span class="fr"><span>R</span><span>Z</span></span></span></span></p>
+<p><b>අනුනාදය:</b> X<sub>L</sub> = X<sub>C</sub> වන විට Z අවමයි (Z = R), ධාරාව උපරිමයි: <span class="fm">f<sub>0</sub> = <span class="fr"><span>1</span><span>2π√(LC)</span></span></span></p>
+<p><b>ක්ෂමතා ත්‍රිකෝණය:</b> සත්‍ය ක්ෂමතාව <span class="fm">P = VI cos φ</span> (W) &nbsp; ප්‍රත්‍යාවර්ත ක්ෂමතාව <span class="fm">Q = VI sin φ</span> (VAr) &nbsp; ආකාර ක්ෂමතාව <span class="fm">S = VI</span> (VA) &nbsp; <span class="fm">S² = P² + Q²</span> &nbsp; ක්ෂමතා සාධකය = cos φ = P/S.</p>
+<p><b>තෙකලා ක්ෂමතාව:</b> <span class="fm">P = √3 V<sub>L</sub> I<sub>L</sub> cos φ</span> (Star: I<sub>L</sub> = I<sub>P</sub>; Delta: I<sub>L</sub> = √3 I<sub>P</sub>). උදා: 400 V, 10 A, cos φ = 0.8 ⇒ P = 1.732×400×10×0.8 ≈ 5.54 kW.</p>
+<p><b>තරංග ආකාර:</b> හතරැස්, ත්‍රිකෝණාකාර, කියත්දැති තරංග ඩිජිටල්/ඉලෙක්ට්‍රොනික සංඥා වේ; සිමියුලේෂන් 5 සහ පියවර 8 හි ආදාන තරංග ලෙස තෝරා බලන්න.</p></div>
+<div class="mq" data-k="k"></div></section>
+<section id="s14"><h2>පියවර 6 – විදුලි හා විද්‍යුත් චුම්බක නියම</h2>
+<div class="law-intro">මෙම පාඩමට අදාළ සියලු ප්‍රධාන නියම, සූත්‍ර සහ ඒවායේ භාවිතය මෙහි දැක්වේ.</div>
+<div class="law"><b class="t">🔥 ජූල්ගේ තාපන නියමය</b><p>ප්‍රතිරෝධකයක ධාරාවක් ගලන විට නිපදවෙන තාපය ධාරාවේ වර්ගයට, ප්‍රතිරෝධයට සහ කාලයට අනුලෝමව සමානුපාතිකයි.</p><p><span class="fm">E = I²Rt = VIt = <span class="fr"><span>V²t</span><span>R</span></span></span> (J) &nbsp; <span class="fm">Q = mcΔθ</span> (රත් කළ ජලයේ තාපය)</p><p>යෙදීම්: විදුලි කේතලය, යකඩය, බල්බ තන්තුව, <b>විලායකය</b> (අධි ධාරාවෙන් උණු වේ). සම්ප්‍රේෂණ රැහැන්වල හානි P = I²R අඩු කිරීමට අධි වෝල්ටීයතාව (අඩු I) යොදයි.</p><details><summary>උදාහරණය</summary><p>R = 46 Ω තාපකයක් 230 V දී විනාඩි 5ක්: I = 5 A; E = I²Rt = 25 × 46 × 300 = <b>345 000 J = 345 kJ</b>. මෙම තාපයෙන් 1 kg ජලය (c = 4200 J/kg°C) ආසන්න වශයෙන් 82 °C කින් රත් කළ හැක.</p></details></div>
+<div class="law"><b class="t">🧲 ෆැරඩේගේ ප්‍රේරණ නියම</b><p><b>1 වන නියමය:</b> සන්නායකයක් හෝ දඟරයක් හරහා චුම්බක ස්‍රාවය වෙනස් වන විට වි.ගා.බ. ප්‍රේරණය වේ. <b>2 වන නියමය:</b> ප්‍රේරිත වි.ගා.බ.හි විශාලත්වය ස්‍රාව ඛණ්ඩන වෙනස් වීමේ සීඝ්‍රතාවට (ශීඝ්‍රතාවට) අනුලෝමව සමානුපාතිකයි.</p><p><span class="fm">e = −N <span class="fr"><span>dΦ</span><span>dt</span></span></span> &nbsp; <span class="fm">Φ = B A cosθ</span> (Wb) &nbsp; <span class="fm">B = <span class="fr"><span>Φ</span><span>A</span></span></span> (T)</p><p><b>චලන වි.ගා.බ.:</b> <span class="fm">e = B l v sinθ</span> &nbsp; <b>ජෙනරේටරය (දඟරය භ්‍රමණය):</b> <span class="fm">e = NBAω sin ωt</span>, <span class="fm">e<sub>max</sub> = NBAω</span>.</p></div>
+<div class="law"><b class="t">🧭 ලෙන්ස්ගේ නියමය</b><p>ප්‍රේරිත වි.ගා.බ. නිසා ඇති වන ධාරාවේ දිශාව සැමවිටම එය ඇති කළ <b>ස්‍රාව වෙනසට විරුද්ධ වන</b> දිශාවෙනි. මෙය සූත්‍රයේ ඍණ ලකුණ (−) මගින් දැක්වේ; ශක්ති සංස්ථිති නියමයේ ප්‍රතිඵලයකි. උදා: දඟරයකට උත්තර ධ්‍රැවයක් ළං කළ විට දඟරයේ එම පැත්තේ ද උත්තර ධ්‍රැවයක් සෑදී එයට විරුද්ධ වේ (තල්ලු කරයි); ඈත් කළ විට දකුණු ධ්‍රැවයක් සෑදී ආපසු ඇද ගනී.</p></div>
+<div class="law"><b class="t">✋ ෆ්ලෙමින්ගේ නියම</b><p>මාපට ඇඟිල්ල, දබරැඟිල්ල, මැදඟිල්ල එකිනෙකට ලම්බකව තබන්න: <b>මාපටය = චලිතය/බලය (F)</b>, <b>දබරැඟිල්ල = චුම්බක ක්ෂේත්‍රය (N→S)</b>, <b>මැදඟිල්ල = ධාරාව (I)</b>.</p>
+<p><b>වමත් නියමය (මෝටරය):</b> ක්ෂේත්‍රයක ධාරා සහිත සන්නායකයට බලයක් ඇති වේ; එය භාවිතයෙන් බලයේ දිශාව සෙවේ. <span class="fm">F = B I l sinθ</span> (N). මෝටරයේ දඟරය ක්ෂේත්‍රයේ භ්‍රමණය වේ.</p>
+<p><b>දකුණත් නියමය (ජෙනරේටරය):</b> ක්ෂේත්‍රයක සන්නායකය චලනය කළ විට ප්‍රේරණය වන ධාරාවේ දිශාව සෙවීමට; මාපටය = චලිතය, දබරැඟිල්ල = ක්ෂේත්‍රය, මැදඟිල්ල = ප්‍රේරිත ධාරාව.</p>
+<p>මතක සටහන: <b>මෝටරය – වම (බලය ලැබේ), ජෙනරේටරය – දකුණ (වි.ගා.බ. ලැබේ)</b>.</p></div>
+<div class="card"><h3>වෙනත් වැදගත් නියම (ET 7 වන පාඩම)</h3><div class="table-wrap"><table><tr><th>නියමය</th><th>සූත්‍රය / පැහැදිලි කිරීම</th></tr>
+<tr><td>කූලෝම්ගේ නියමය</td><td><span class="m">F = k <span class="fr"><span>Q₁Q₂</span><span>r²</span></span></span>, k = 9×10⁹ N·m²/C²; ආරෝපණ දෙකක් අතර බලය</td></tr>
+<tr><td>විද්‍යුත් ක්ෂේත්‍ර තීව්‍රතාව</td><td><span class="m">E = F/Q = V/d</span> (V/m) (සමාන්තර තහඩු අතර)</td></tr>
+<tr><td>ඇම්පියර් / සරල සන්නායක ක්ෂේත්‍රය</td><td>දිග කම්බියක් අසල: <span class="m">B = <span class="fr"><span>μ₀I</span><span>2πr</span></span></span>; දකුණත් අල්ලන නියමය (මාපටය = ධාරාව, ඇඟිලි = ක්ෂේත්‍රය)</td></tr>
+<tr><td>සොලෙනොයිඩය</td><td><span class="m">B = μ₀ <span class="fr"><span>N I</span><span>l</span></span></span> (දඟරය ඇතුළත)</td></tr>
+<tr><td>ධාරා සහිත සන්නායකයක බලය</td><td><span class="m">F = BIl sinθ</span>; ආරෝපණයක් සඳහා <span class="m">F = Bqv sinθ</span></td></tr>
+<tr><td>චුම්බක පරිපථ (Hopkinson)</td><td>චුම්බක ගාමක බලය <span class="m">mmf = NI = Φ S</span>, අකමැත්ත <span class="m">S = <span class="fr"><span>l</span><span>μA</span></span></span></td></tr>
+<tr><td>ශක්ති සංස්ථිතිය / ක්ෂමතාව</td><td><span class="m">P = VI = I²R = V²/R</span>; <span class="m">Units (kWh) = P(W)·t(h)/1000</span></td></tr>
+<tr><td>ට්‍රාන්ස්ෆෝමර් (ෆැරඩේ + අන්‍යෝන්‍ය ප්‍රේරණය)</td><td><span class="m">Vₚ/Vₛ = Nₚ/Nₛ = Iₛ/Iₚ</span> (පියවර 7 බලන්න)</td></tr></table></div></div>
+<div class="mq" data-k="j"></div></section>
+<section id="s3"><h2>පියවර 7 – ට්‍රාන්ස්ෆෝමර් (පරිණාමක)</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="t"></div></div>
+<div class="card"><p>ට්‍රාන්ස්ෆෝමරය AC වෝල්ටීයතාවක් සංඛ්‍යාතය වෙනස් නොකර වැඩි/අඩු කරයි. ප්‍රාථමික දඟරයේ (N<sub>p</sub>) AC ධාරාව හරයේ <b>විචල්‍ය චුම්බක ස්‍රාවයක්</b> සාදයි; එය ද්විතීයික දඟරයේ (N<sub>s</sub>) emf එකක් ප්‍රේරණය කරයි (<b>අන්‍යෝන්‍ය ප්‍රේරණය</b>, ෆැරඩේ නියමය). DC මගින් ස්‍රාව වෙනසක් නොවන නිසා ට්‍රාන්ස්ෆෝමරය ක්‍රියා නොකරයි. හරය: ආස්තරිත මෘදු යකඩ.</p>
+<p><b>අධිකර:</b> N<sub>s</sub> &gt; N<sub>p</sub> ⇒ V<sub>s</sub> &gt; V<sub>p</sub>, I<sub>s</sub> &lt; I<sub>p</sub>. &nbsp; <b>අවකර:</b> N<sub>s</sub> &lt; N<sub>p</sub> ⇒ V<sub>s</sub> &lt; V<sub>p</sub>, I<sub>s</sub> &gt; I<sub>p</sub>.</p></div>
+<div class="law"><b class="t">🔥 ට්‍රාන්ස්ෆෝමර් සමීකරණ</b><p class="fm"><span class="fr"><span>V<sub>p</sub></span><span>V<sub>s</sub></span></span> = <span class="fr"><span>N<sub>p</sub></span><span>N<sub>s</sub></span></span> = <span class="fr"><span>I<sub>s</sub></span><span>I<sub>p</sub></span></span> &nbsp;&nbsp; η = <span class="fr"><span>P<sub>out</sub></span><span>P<sub>in</sub></span></span> × 100%</p><p>පරිපූර්ණ ට්‍රාන්ස්ෆෝමරයක V<sub>p</sub>I<sub>p</sub> = V<sub>s</sub>I<sub>s</sub>.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලුව</summary><p>230 V, N<sub>p</sub> = 1000 → V<sub>s</sub> = 12 V. N<sub>s</sub> = ?<br>N<sub>s</sub> = N<sub>p</sub> × V<sub>s</sub>/V<sub>p</sub> = 1000 × 12/230 ≈ <b>52 පොටවල්</b> (අවකර).<br>P<sub>in</sub> = 100 W, P<sub>out</sub> = 90 W නම් η = 90/100 × 100 = <b>90%</b>.</p></details></div>
+<div class="card"><h3>ශක්ති හානි සහ විසඳුම්</h3><table><tr><th>හානිය</th><th>හේතුව</th><th>විසඳුම</th></tr>
+<tr><td>සුළි ධාරා</td><td>හරය තුළ ප්‍රේරිත ධාරා</td><td>ආස්තරිත හරය</td></tr>
+<tr><td>හිස්ටෙරෙසිස්</td><td>නැවත නැවත චුම්බකනය</td><td>මෘදු යකඩ / සිලිකන් වානේ</td></tr>
+<tr><td>තඹ (I²R)</td><td>දඟරවල ප්‍රතිරෝධය</td><td>ඝන තඹ කම්බි</td></tr>
+<tr><td>ස්‍රාව කාන්දුව</td><td>ස්‍රාවය සියල්ල ද්විතීයිකයට නොයෑම</td><td>දඟර එකක් මත එකක් එතීම</td></tr></table></div>
+<div class="card"><h3>ජාතික විදුලිබල සම්ප්‍රේෂණය</h3><p>බලාගාරය 11 kV → අධිකර 132/220 kV → අවකර උප පොළ 33 kV → 11 kV → වීදි ට්‍රාන්ස්ෆෝමරය 400 V (තෙකලා) / 230 V (තනි කලා). අධි වෝල්ටීයතාවයෙන් සම්ප්‍රේෂණයේදී ධාරාව (I) අඩු වන නිසා රැහැන්වල ජූල් තාප හානිය <b>P = I²R</b> අවම වේ.</p></div>
+<div class="warn"><b>⚠️ විභාගයට අමතක නොකළ යුතු වැදගත් රහස් සහ සිසුන් නිතර කරන වැරදි</b><br>• අධිකරයේ වෝල්ටීයතාව වැඩි වුවත් ධාරාව අඩුය; ක්ෂමතාව වැඩි නොවේ. &nbsp;• සුළි ධාරා හානියට ආස්තරිත හරය; හිස්ටෙරෙසිස් හානියට මෘදු යකඩ – මිශ්‍ර නොකරන්න.</div>
+<div class="mq" data-k="c"></div></section>
+<section id="s4"><h2>පියවර 8 – ඍජුකරණය, සුමටනය සහ සිමියුලේෂන්</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="d"></div></div>
+<div class="card"><p><b>අර්ධ තරංග:</b> තනි ඩයෝඩයෙන් ඍණ අර්ධ චක්‍රය කැපේ. <b>මැද අග්‍ර (ඩයෝඩ 2):</b> 12V-0-12V දඟරයෙන් පූර්ණ තරංග. <b>සේතු (ඩයෝඩ 4):</b> ධන අර්ධ චක්‍රයේ D₁,D₂; ඍණයේ D₃,D₄ ක්‍රියාත්මක වී ස්පන්දන DC (100 Hz, 1.4 V බැස්ම). <b>ධාරිත්‍රකය:</b> භාරයට සමාන්තරව ආරෝපණය/විසර්ජනය වී රැලිති අඩු කරයි. <b>7812 IC / Zener:</b> නියත 12 V DC දෙයි.</p></div>
+<div class="card"><div class="row"><button id="tA" class="on">AC ආදානය</button><button id="tD">DC ආදානය</button>
+<label>V<sub>p</sub> <input type="range" id="vp" min="0" max="240" value="230"><b class="m" id="vpo">230</b></label>
+<label>N<sub>p</sub> <input type="range" id="np" min="100" max="1000" step="10" value="1000"><b class="m" id="npo">1000</b></label>
+<label>N<sub>s</sub> <input type="range" id="ns" min="100" max="1000" step="10" value="100"><b class="m" id="nso">100</b></label></div>
+<div class="row iwrow"><b>ආදාන සංඥා තරංගය:</b><button class="iw on" data-w="sine">සයිනාකාර</button><button class="iw" data-w="square">හතරැස්</button><button class="iw" data-w="tri">ත්‍රිකෝණාකාර</button><button class="iw" data-w="saw">කියත්දැති</button></div>
+<div class="row"><button class="st on" data-s="ac">පිරිසිදු AC</button><button class="st" data-s="half">අර්ධ තරංග (D×1)</button><button class="st" data-s="ct">මැද අග්‍ර (D×2)</button><button class="st" data-s="br">සේතු (D×4)</button></div>
+<div class="row"><label><input type="checkbox" id="cap"> සුමටන ධාරිත්‍රකය</label><label>C <input type="range" id="cv" min="100" max="4700" step="100" value="470"><b class="m" id="cvo">470</b> µF</label><label><input type="checkbox" id="reg"> 7812 යාමකය</label></div>
+<canvas id="c4" width="720" height="280"></canvas>
+<div class="out" id="o4"></div></div>
+<div class="card"><h3>ඍජුකරණ වර්ග හා ප්‍රතිදාන</h3><div class="table-wrap"><table><tr><th>පරිපථය</th><th>ඩයෝඩ</th><th>ප්‍රතිදානය / සංඛ්‍යාතය</th><th>සටහන</th></tr>
+<tr><td>අර්ධ තරංග</td><td>1</td><td>f<sub>out</sub> = f<sub>in</sub> (50 Hz); උපරිම බැස්ම ≈ 0.7 V</td><td>එක් අර්ධ චක්‍රයක් පමණක් භාවිතා කරයි.</td></tr>
+<tr><td>මැද අග්‍ර පූර්ණ තරංග</td><td>2</td><td>f<sub>out</sub> = 2f<sub>in</sub> (100 Hz); එක් මාර්ගයක ≈ 0.7 V</td><td>මැද-අග්‍ර ද්විතීයික දඟරයක් අවශ්‍යය.</td></tr>
+<tr><td>සේතු පූර්ණ තරංග</td><td>4</td><td>f<sub>out</sub> = 2f<sub>in</sub> (100 Hz); ≈ 1.4 V බැස්ම</td><td>එක් අවස්ථාවක ඩයෝඩ දෙකක් ගමන් කරයි.</td></tr></table></div>
+<p>මෙම බැස්ම 0.7 V බැගින් වන silicon diode සඳහා ආසන්න අගයකි; සත්‍ය බැස්ම ධාරාව සහ උෂ්ණත්වය අනුව වෙනස් වේ. සුමටන ධාරිත්‍රකය රැලිති අඩු කරයි. Zener ඩයෝඩය ප්‍රතිලෝම බිඳවැටීමේ ප්‍රදේශයේ වෝල්ටීයතාව ස්ථායී කිරීමට යොදා ගනී; 78XX IC පවුලේ උපාංග නියත ධන DC ප්‍රතිදාන (උදා: 7805 = 5 V, 7812 = 12 V) ලබා දෙයි. නියම කළ ආදාන පරාසය, ධාරා සීමාව සහ තාප විසර්ජනය අනුගමනය කළ යුතුය.</p></div>
+<div class="card ext"><h3>➕ ඍජුකරණ සහ සංඥා තරංග – අමතර කරුණු</h3>
+<p><b>ආදාන තරංගය හා ඩයෝඩය:</b> ඩයෝඩය ධන අර්ධ චක්‍රය පමණක් ගමන් කරවයි. සයිනාකාර, හතරැස්, ත්‍රිකෝණාකාර, කියත්දැති ඕනෑම AC සංඥාවක් ට්‍රාන්ස්ෆෝමරයෙන් ගමන් කරන්නේ ස්‍රාව වෙනස් වන නිසා ය (සමාන V<sub>p</sub> සඳහා V<sub>rms</sub> වෙනස් වේ – සිමියුලේෂනයේ පෙන්වයි). හතරැස් තරංගය ඉක්මනින් උච්චයට පැමිණෙන නිසා සුමටන ධාරිත්‍රකයට ඉතා ස්ථායී DC ලැබේ.</p>
+<div class="table-wrap"><table><tr><th>රාශිය</th><th>අර්ධ තරංග</th><th>පූර්ණ තරංග (මැද අග්‍ර / සේතු)</th></tr>
+<tr><td>සාමාන්‍ය DC (සයින්)</td><td>V<sub>dc</sub> = V<sub>p</sub>/π ≈ 0.318 V<sub>p</sub></td><td>V<sub>dc</sub> = 2V<sub>p</sub>/π ≈ 0.637 V<sub>p</sub></td></tr>
+<tr><td>රැලි සංඛ්‍යාතය</td><td>f</td><td>2f</td></tr>
+<tr><td>උපරිම ප්‍රතිලෝම වෝල්ටීයතාව (PIV)</td><td>V<sub>p</sub></td><td>මැද අග්‍ර: 2V<sub>p</sub> (V<sub>p</sub> = අඩ දඟරයේ උච්චය); සේතු: V<sub>p</sub></td></tr>
+<tr><td>උපරිම කාර්යක්ෂමතාව</td><td>40.6 %</td><td>81.2 %</td></tr></table></div>
+<p>සුමටන ධාරිත්‍රකය සහිත රැලි වෝල්ටීයතාව (උච්චයෙන් උච්ච): <span class="fm">V<sub>r</sub> ≈ <span class="fr"><span>I<sub>L</sub></span><span>f<sub>r</sub> C</span></span></span> (f<sub>r</sub> = රැලි සංඛ්‍යාතය: අර්ධ 50 Hz, පූර්ණ 100 Hz). C වැඩි වන විට රැලි අඩුයි.</p>
+<p><b>Zener යාමකය:</b> <span class="fm">R<sub>s</sub> = <span class="fr"><span>V<sub>in</sub> − V<sub>Z</sub></span><span>I<sub>Z</sub> + I<sub>L</sub></span></span></span> &nbsp; <b>LED ශ්‍රේණි ප්‍රතිරෝධකය:</b> <span class="fm">R = <span class="fr"><span>V<sub>s</sub> − V<sub>F</sub></span><span>I<sub>F</sub></span></span></span> (උදා: 5 V, V<sub>F</sub> = 2 V, 10 mA ⇒ R = 300 Ω).</p>
+<div class="table-wrap"><table><tr><th>තරංගය</th><th>වැදගත් ලක්ෂණය</th><th>භාවිතය</th></tr>
+<tr><td>හතරැස්</td><td>ක්ෂණික ON/OFF; ඒකකයට ආවර්ත්‍ය; ඩියුටි චක්‍රය D = t<sub>on</sub>/T × 100 %, V<sub>avg</sub> = D × V<sub>p</sub> (0–V<sub>p</sub> ස්පන්දන)</td><td>ඩිජිටල් පරිපථ, ඔරලෝසු, PWM</td></tr>
+<tr><td>ත්‍රිකෝණාකාර</td><td>රේඛීය ඉහළ/පහළ යාම</td><td>ශබ්ද උත්පාදක, PWM පාලනය</td></tr>
+<tr><td>කියත්දැති</td><td>රේඛීයව ඉහළ යා හදිසියේ පහළ වැටේ</td><td>CRT/ඔසිලෝස්කෝප් කාල පාදය</td></tr></table></div></div>
+<div class="mq" data-k="d"></div></section>
+<section id="s13"><h2>පියවර 9 – කෝෂ සහ බැටරි (Cells & Batteries)</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="b"></div></div>
+<div class="card"><h3>ප්‍රාථමික සහ ද්විතීයික කෝෂ</h3><div class="table-wrap"><table><tr><th></th><th>ප්‍රාථමික (Primary)</th><th>ද්විතීයික (Secondary)</th></tr><tr><td>රසායනික ප්‍රතික්‍රියාව</td><td>ආපසු හැරවිය නොහැක</td><td>ආපසු හැරවිය හැක (ආරෝපණය කළ හැක)</td></tr><tr><td>නැවත භාවිතය</td><td>එක් වරක් පමණි</td><td>නැවත නැවත ආරෝපණය කර භාවිතා කළ හැක</td></tr><tr><td>උදාහරණ</td><td>සින්ක්-කාබන් (1.5 V), ක්ෂාරීය, බොත්තම් කෝෂ</td><td>ලෙඩ්-ඇසිඩ් (2 V/කෝෂය), Li-ion (3.6–3.7 V), Ni-MH</td></tr></table></div></div>
+<div class="card"><h3>ලෙඩ්-ඇසිඩ් (Lead-Acid) බැටරිය</h3><p>ධන තහඩුව PbO₂, ඍණ තහඩුව Pb, ඉලෙක්ට්‍රොලයිටය තනුක H₂SO₄. කෝෂයක් 2 V; කෝෂ 6ක් ශ්‍රේණිගත වූ විට 12 V බැටරිය. <b>විසර්ජනය:</b> <span class="fm">Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O</span> (අම්ලය තනුක වී ඝනත්වය අඩු වේ). <b>ආරෝපණය:</b> ප්‍රතිවිරුද්ධ ප්‍රතික්‍රියාව (බාහිර DC සැපයුමකින්). ඝනත්වය (hydrometer) මගින් ආරෝපණ මට්ටම දැනගත හැක (පූර්ණ ආරෝපිත ≈ 1.26–1.28). ඇසුරුම ලාභයි, ඉහළ ධාරා දෙයි; බරයි, ගැඹුරු විසර්ජනය (<50%) හානිකරයි. භාවිතය: වාහන, UPS, සූර්ය පද්ධති.</p></div>
+<div class="card"><h3>ලිතියම් අයන (Li-ion) බැටරිය</h3><p>ධන ඉලෙක්ට්‍රෝඩය ලිතියම් ලෝහ ඔක්සයිඩ් (උදා: LiCoO₂), ඍණ ඉලෙක්ට්‍රෝඩය ග්‍රැෆයිට්, ඉලෙක්ට්‍රොලයිටය ලිතියම් ලවණ කාබනික ද්‍රාවණයක්. <b>විසර්ජනයේදී</b> Li⁺ අයන ඍණයේ සිට ධනයට ඉලෙක්ට්‍රොලයිටය හරහා ගමන් කරන අතර ඉලෙක්ට්‍රෝන බාහිර පරිපථය හරහා ගලයි; <b>ආරෝපණයේදී</b> ප්‍රතිවිරුද්ධයි. සැහැල්ලුයි, ඉහළ ශක්ති ඝනත්වය, ස්වයං විසර්ජනය අඩුයි; නමුත් අධික ආරෝපණය/රත් වීම අනතුරුදායකයි (BMS ආරක්ෂාව අවශ්‍යයි).</p></div>
+<div class="law"><b class="t">🔥 කෝෂ සූත්‍ර</b>
+<p><b>විද්‍යුත් ගාමක බලය (E)</b> යනු ධාරාව නොගලන විට කෝෂයේ අග්‍ර අතර වෝල්ටීයතාවයි. <b>අභ්‍යන්තර ප්‍රතිරෝධය (r)</b> නිසා ධාරාව ගලන විට අග්‍ර වෝල්ටීයතාව අඩු වේ.</p>
+<p><span class="fm">V = E − Ir</span> &nbsp; <span class="fm">E = I(R + r)</span> &nbsp; <span class="fm">I = <span class="fr"><span>E</span><span>R + r</span></span></span> &nbsp; <span class="fm">r = <span class="fr"><span>E − V</span><span>I</span></span></span></span></p>
+<p><b>සමාන කෝෂ n ක් ශ්‍රේණිගත:</b> <span class="fm">E<sub>total</sub> = nE, r<sub>total</sub> = nr, I = nE/(R + nr)</span>; ධාරිතාව (Ah) වෙනස් නොවේ. <b>සමාන්තරගත:</b> <span class="fm">E<sub>total</sub> = E, r<sub>total</sub> = r/n, I = E/(R + r/n)</span>; ධාරිතාව <span class="fm">n × Ah</span>.</p>
+<p><b>බැටරි ධාරිතාව:</b> <span class="fm">Capacity (Ah) = I × t</span>; ශක්තිය <span class="fm">Wh = V × Ah</span>; ක්‍රියාත්මක කාලය <span class="fm">t = <span class="fr"><span>V × Ah</span><span>P</span></span></span> (පරමාදර්ශී).</p>
+<p><b>ධාරිතාවට බලපාන සාධක:</b> ඉලෙක්ට්‍රෝඩ ප්‍රමාණය සහ ද්‍රව්‍ය, ඉලෙක්ට්‍රොලයිට ප්‍රමාණය/සාන්ද්‍රණය, විසර්ජන ධාරාව (වැඩි ධාරාවකදී ධාරිතාව අඩු – Peukert), උෂ්ණත්වය (අඩු උෂ්ණත්වයේ අඩු), බැටරියේ වයස/චක්‍ර ගණන, විසර්ජනයේ ගැඹුර.</p>
+<details><summary>පියවරෙන් පියවර විසඳූ ගැටලු</summary><p>(අ) E = 12 V, r = 0.5 Ω, R = 5.5 Ω: I = 12/(5.5+0.5) = <b>2 A</b>; V = 12 − 2×0.5 = <b>11 V</b>; බැටරියේ ඇතුළත ක්ෂමතා හානිය I²r = 2 W.<br>(ආ) 1.5 V, 2000 mAh කෝෂ 4ක්: <b>ශ්‍රේණිගත</b> → 6 V, 2 Ah; <b>සමාන්තර</b> → 1.5 V, 8 Ah; <b>2S2P</b> → 3 V, 4 Ah.<br>(ඇ) 12 V, 100 Ah බැටරියක් 120 W බරක් පවත්වන කාලය: t = 12×100/120 = <b>10 h</b> (ලෙඩ්-ඇසිඩ් 50% පමණක් භාවිතා කිරීමෙන් ≈ 5 h).</p></details></div>
+<div class="mq" data-k="i"></div></section>
+<section id="s5"><h2>පියවර 10 – ගෘහස්ථ රැහැන් ඇදීම සහ ආරක්ෂාව</h2>
+<div class="card"><h3>🔣 සම්මත පරිපථ සංකේතය සහ සැබෑ උපාංගයේ රූපය</h3><div class="gal" data-sym="w"></div></div>
+<div class="card"><p><b>අනුපිළිවෙල:</b> සේවා රැහැන → සේවා විලායකය (60 A) → kWh මීටරය → ප්‍රධාන ස්විචය (40/63 A) → RCCB (40 A, 30 mA) → MCB → උප පරිපථ.</p>
+<table><tr><th>තන්තුව</th><th>නව</th><th>පැරණි</th></tr><tr><td>සජීවී L</td><td>දුඹුරු</td><td>රතු</td></tr><tr><td>උදාසීන N</td><td>නිල්</td><td>කළු</td></tr><tr><td>භූගත E</td><td>කොළ-කහ</td><td>කොළ</td></tr></table>
+<p>කම්බි: ආලෝක 1.0 / 1.5 mm² (6 A / 10 A MCB); කෙවෙනි 2.5 mm² (16 A / 20 A අරීය, 32 A වලයාකාර MCB); ප්‍රධාන 6–10 mm².</p></div>
+<div class="law"><b class="t">🔥 ආරක්ෂක උපාංග</b><br><b>ප්‍රධාන ස්විචය</b> – අලුත්වැඩියාවට සම්පූර්ණ සැපයුම විසන්ධි කිරීම. <b>RCCB (30 mA)</b> – සජීවී හා උදාසීන ධාරා අතර ශේෂ වෙනස හඳුනාගෙන අමතර කාන්දු ආරක්ෂාව සපයයි; එය ආරක්ෂාවට සහතිකයක් නොවේ, භූගත කිරීම වෙනුවටද නොවේ. <b>MCB / විලායකය</b> – අධි ධාරාව සහ ලඝු පරිපථයේදී රැහැන් හා උපකරණ ආරක්ෂාව. ස්විචය සැමවිටම <b>සජීවී</b> තන්තුවට.</div>
+<div class="card"><h3>සිමියුලේෂන් 3: පාරිභෝගික ඒකකය (DB Box) දෝෂ පරීක්ෂකය</h3>
+<div class="row"><span class="sw on" id="sI" role="button" tabindex="0">ප්‍රධාන ස්විචය 63A</span><span class="sw on" id="sR" role="button" tabindex="0">RCCB 40A/30mA</span><span class="sw on" id="sL" role="button" tabindex="0">ආලෝක MCB 6A</span><span class="sw on" id="sK" role="button" tabindex="0">කෙවෙනි MCB 16A</span><span class="sw on" id="sE" role="button" tabindex="0">භූගත තන්තුව සම්බන්ධයි</span></div>
+<div class="row"><button class="p" id="fO">අධි ධාරාව (Overload)</button><button class="p" id="fS">ලඝු පරිපථය (Short)</button><button class="p" id="fE">විදුලි සැර / භූගත කාන්දුව</button></div>
+<svg class="sv" id="svgdb" viewBox="0 0 760 300" width="760" height="300"></svg><div class="out" id="o6" style="font-size:1.1rem"></div><div class="out" id="o7"></div></div>
+<div class="card"><h3>සිමියුලේෂන් 4: දෙමං (2-Way) ස්විච පඩිපෙළ පරිපථය</h3>
+<p style="margin:0">ස්විච ක්ලික් කර බල්බය පාලනය කරන්න.</p>
+<svg class="sv" id="svg2" viewBox="0 0 720 260" width="720" height="260"></svg><div class="out" id="o8"></div></div>
+<div class="card"><h3>ගෘහස්ථ රැහැන් හා ආරක්ෂාව – අමතර කරුණු</h3>
+<div class="table-wrap"><table><tr><th>කේබල් / පරිපථය</th><th>සාමාන්‍ය අධ්‍යයන උදාහරණය</th><th>සටහන</th></tr><tr><td>ආලෝක රැහැන්</td><td>1.0–1.5 mm²</td><td>සැලසුම, දිග, ස්ථාපන ක්‍රමය සහ දේශීය නීති අනුව ප්‍රමාණ තෝරන්න.</td></tr><tr><td>කෙවෙනි රැහැන්</td><td>2.5 mm²</td><td>Radial සහ Ring පරිපථ සඳහා සැලසුම/ආරක්ෂක උපකරණ වෙනස් විය හැක.</td></tr><tr><td>පැරණි වර්ණ</td><td>Live රතු, Neutral කළු, Earth කොළ</td><td>පවතින ස්ථාපනවල වර්ණය පමණක් විශ්වාස නොකරන්න.</td></tr><tr><td>නව වර්ණ</td><td>Live දුඹුරු, Neutral නිල්, Earth කොළ/කහ</td><td>වයරින් කිරීමට පෙර සුදුසු උපකරණයෙන් තහවුරු කරන්න.</td></tr></table></div>
+<p><b>Radial:</b> පාරිභෝගික ඒකකයෙන් පරිභෝජක වෙත එක් මාර්ගයකින් යයි. <b>Ring:</b> පරිපථය පාරිභෝජකයන් හරහා ගොස් ආරම්භයට නැවත සම්බන්ධ වේ; එය නිසි ලෙස පරීක්ෂා කර සැලසුම් කළ යුතුය. 13 A Type‑G ප්ලග් එකක Live දකුණු අග්‍රයට සහ ෆියුස් හරහා, Neutral වම් අග්‍රයට, Earth ඉහළ අග්‍රයට සම්බන්ධ වේ. අග්‍ර සැකැස්ම plug එකේ ඉදිරිපස/පසුපස බැලීම අනුව වෙනස්ව පෙනිය හැකි නිසා terminal සලකුණු අනුව හඳුනාගන්න.</p>
+<p>RCCB 30 mA අගය එහි rated residual operating current (IΔn) යි; එය සෑම අවස්ථාවකම ආරක්ෂාව සහතික කරන මායිමක් නොවේ. RCCB ජීවිත ආරක්ෂාවට අමතර ස්ථරයක් පමණක් වන අතර, නිසි earthing, MCB/විලායක, පරීක්ෂණ සහ සුදුසුකම් ලත් විදුලි කාර්මිකයෙකු අත්‍යවශ්‍යය. මෙම වෙබ් යෙදුම අධ්‍යාපනික අනුකරණයක් පමණි—සැබෑ ජාල වෝල්ටීයතාවයක වැඩ නොකරන්න.</p></div>
+<div class="card ext"><h3>➕ ස්විච වර්ග සංසන්දනය</h3><div class="table-wrap"><table><tr><th>ස්විචය</th><th>ධ්‍රැව / මං</th><th>අග්‍ර</th><th>භාවිතය</th></tr>
+<tr><td>තනි මං (SPST, 1-Way)</td><td>1 ධ්‍රැවය, 1 මං</td><td>2</td><td>බල්බ/පංකා ON–OFF (සජීවී තන්තුවට)</td></tr>
+<tr><td>දෙමං (SPDT, 2-Way)</td><td>1 ධ්‍රැවය, 2 මං</td><td>3 (COM, L1, L2)</td><td>ස්ථාන දෙකකින් පාලනය – පඩිපෙළ</td></tr>
+<tr><td>දිවි ධ්‍රැව තනි මං (DPST)</td><td>2 ධ්‍රැව, 1 මං</td><td>4</td><td>L සහ N දෙකම විසන්ධි කිරීම; වෙන්කරණය (Isolator)</td></tr>
+<tr><td>දිවි ධ්‍රැව දෙමං (DPDT)</td><td>2 ධ්‍රැව, 2 මං</td><td>6</td><td>මෝටර් දිශා මාරුව, ජාලය/ජනක මාරුව</td></tr>
+<tr><td>බහුමං (Intermediate)</td><td>හරස් මාරු ස්විචය</td><td>4</td><td>2-Way + Intermediate(ස) + 2-Way: ස්ථාන 3+ න් පාලනය</td></tr>
+<tr><td>එබුම් බොත්තම</td><td>ක්ෂණික (Momentary)</td><td>2</td><td>දොරබෙල්, ටයිමර්, ආරම්භක බොත්තම්</td></tr></table></div>
+<p><b>මතක තබාගන්න:</b> ධ්‍රැව = එකවර මාරු වන පරිපථ ගණන; මං = ධ්‍රැවයක් සම්බන්ධ විය හැකි ස්ථාන ගණන. සාමාන්‍ය ස්විචය සජීවී (L) තන්තුවට පමණි; DP ස්විචය L සහ N දෙකම කපයි.</p></div>
+<div class="mq" data-k="e"></div></section>
+<section id="s6"><h2>පියවර 11 – විභාග පෙරහුරු ප්‍රශ්න පත්‍රය</h2>
+<div class="card"><b>ලකුණු: <span id="score" class="m">0 / 0</span></b><div id="quiz"></div></div>
+<div class="card"><h3>ව්‍යුහගත ප්‍රශ්නය</h3><p>(අ) 230 V / 12 V ට්‍රාන්ස්ෆෝමරයක ප්‍රාථමික පොට් 1150 නම් ද්විතීයික පොට් ගණන? (ආ) ද්විතීයික ධාරාව 2 A නම් ප්‍රාථමික ධාරාව? (පරිපූර්ණ). (ඇ) 100 W බල්බ 5ක් පැය 4ක් දල්වා, 1500 W යකඩයක් පැය 1ක් භාවිතා කළ විට ඒකක?</p>
+<details><summary>ආදර්ශ පිළිතුර</summary><p>(අ) N<sub>s</sub> = 1150 × 12/230 = <b>60</b>.<br>(ආ) V<sub>p</sub>I<sub>p</sub> = V<sub>s</sub>I<sub>s</sub> ⇒ I<sub>p</sub> = 12×2/230 ≈ <b>0.104 A</b>.<br>(ඇ) බල්බ: 500 W × 4 h = 2 kWh; යකඩය: 1.5 kWh; එකතුව <b>3.5 ඒකක</b>.</p></details></div></section>
+<section id="s7" class="ref"><h2>පියවර 12 – 📚 නියම සහ සූත්‍ර එකතුව (සාරාංශය)</h2>
+<p class="law-intro">මෙම කොටස මූලික විදුලි තාක්ෂණය, ට්‍රාන්ස්ෆෝමර් සහ ඍජුකරණ පාඩම්වල වැදගත් නියම හා සූත්‍ර එක් තැනකින් ඉක්මනින් නැවත අධ්‍යයනය කිරීමට සකසා ඇත. සෑම තැඹිලි පැහැති කාඩ්පතකම සූත්‍රය සහ එහි අර්ථය පැහැදිලි කර ඇත.</p>
+<p class="law-section-label"><b>මූලික රාශි සහ පරිපථ නියම</b></p>
+<div class="law-grid">
+<article class="law-card"><h3>විදුලි ධාරාව</h3><p>කාලය <i>t</i> තුළ සන්නායකයකින් ගමන් කරන ආරෝපණය <i>Q</i> අනුව ධාරාව තීරණය වේ.</p><span class="law-equation">I = <span class="fr"><span>Q</span><span>t</span></span></span><p>ඒකක: ආරෝපණය <b>Q (C)</b>, කාලය <b>t (s)</b>, ධාරාව <b>I (A)</b>.</p></article>
+<article class="law-card"><h3>විභව අන්තරය / වෝල්ටීයතාව</h3><p>ආරෝපණ ඒකකයකට සිදු කරන කාර්යය වෝල්ටීයතාවයි.</p><span class="law-equation">V = <span class="fr"><span>W</span><span>Q</span></span></span><p>ඒකක: කාර්යය <b>W (J)</b>, ආරෝපණය <b>Q (C)</b>, වෝල්ටීයතාව <b>V (V)</b>.</p></article>
+<article class="law-card"><h3>ඕම්ගේ නියමය</h3><p>උෂ්ණත්වය හා අනෙකුත් භෞතික තත්ත්ව නියතව ඇති විට, සන්නායකයේ විභව අන්තරය එහි ධාරාවට අනුලෝමව සමානුපාතික වේ.</p><span class="law-equation">V = I × R<br>I = <span class="fr"><span>V</span><span>R</span></span> &nbsp; R = <span class="fr"><span>V</span><span>I</span></span></span><p>ඒකක: <b>V</b> වෝල්ට් (V), <b>I</b> ඇම්පියර් (A), <b>R</b> ඕම් (Ω).</p></article>
+<article class="law-card"><h3>සන්නායකයක ප්‍රතිරෝධය</h3><p>නියත ද්‍රව්‍යයක් හා උෂ්ණත්වයක් සඳහා ප්‍රතිරෝධය දිගට අනුලෝමවත් හරස්කඩ වර්ගඵලයට ප්‍රතිලෝමවත් සමානුපාතික වේ.</p><span class="law-equation">R = ρ <span class="fr"><span>L</span><span>A</span></span></span><p><b>ρ</b>: ප්‍රතිරෝධකතාව (Ω·m), <b>L</b>: දිග (m), <b>A</b>: හරස්කඩ වර්ගඵලය (m²). mm² භාවිතා කරන විට ඒකක මාරු කිරීම නිවැරදිව කරන්න.</p></article>
+<article class="law-card"><h3>කර්චොෆ්ගේ ධාරා නියමය (KCL)</h3><p>මංසන්ධියකට ඇතුළු වන ධාරාවන්ගේ එකතුව එයින් පිටවන ධාරාවන්ගේ එකතුවට සමාන වේ.</p><span class="law-equation">∑ I<sub>in</sub> = ∑ I<sub>out</sub></span><p>මෙය මංසන්ධියකදී ආරෝපණ සංරක්ෂණය පැහැදිලි කරයි.</p></article>
+<article class="law-card"><h3>කර්චොෆ්ගේ වෝල්ටීයතා නියමය (KVL)</h3><p>සංවෘත පරිපථ පුඩුවක විද්‍යුත් ගාමක බලවල එකතුව විභව බැසීම්වල එකතුවට සමාන වේ.</p><span class="law-equation">∑ E = ∑ (I × R)</span><p>පුඩුවක් වටා වෝල්ටීයතා ඉහළවීම් හා බැසීම් එකිනෙක සමතුලිත වේ.</p></article>
+<article class="law-card"><h3>ශ්‍රේණිගත ප්‍රතිරෝධක</h3><p>ශ්‍රේණිගත සම්බන්ධයක සමාකාර ප්‍රතිරෝධය එක් එක් ප්‍රතිරෝධයේ එකතුවයි.</p><span class="law-equation">R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub> + ⋯</span></article>
+<article class="law-card"><h3>සමාන්තරගත ප්‍රතිරෝධක</h3><p>සමාන්තර ශාඛා සඳහා ප්‍රතිරෝධයේ ප්‍රතිලෝම අගයන් එකතු වේ.</p><span class="law-equation"><span class="fr"><span>1</span><span>R<sub>eq</sub></span></span> = <span class="fr"><span>1</span><span>R<sub>1</sub></span></span> + <span class="fr"><span>1</span><span>R<sub>2</sub></span></span> + <span class="fr"><span>1</span><span>R<sub>3</sub></span></span> + ⋯</span></article>
+</div>
+<p class="law-section-label"><b>ක්ෂමතාව, ශක්තිය සහ ප්‍රත්‍යාවර්තක ධාරාව</b></p>
+<div class="law-grid">
+<article class="law-card"><h3>විද්‍යුත් ක්ෂමතාව</h3><p>ක්ෂමතාව යනු ඒකක කාලයකදී පරිවර්තනය වන හෝ භාවිතා වන විද්‍යුත් ශක්තියේ අනුපාතයයි. ඕම්ගේ නියමය භාවිතයෙන් සමාන ආකාර ලැබේ.</p><span class="law-equation">P = V × I = I<sup>2</sup>R = <span class="fr"><span>V<sup>2</sup></span><span>R</span></span></span><p>ඒකකය: වොට් (W).</p></article>
+<article class="law-card"><h3>ජූල්ගේ තාපන නියමය</h3><p>ප්‍රතිරෝධකයක ධාරාව ගලා යන කාලය තුළ නිපදවන තාප ශක්තිය ධාරාවේ වර්ගයට, ප්‍රතිරෝධයට සහ කාලයට අනුලෝමව සමානුපාතික වේ.</p><span class="law-equation">E = I<sup>2</sup>R × t</span><p>ඒකකය: ජූල් (J); මෙහි <b>I</b> ඇම්පියර්, <b>R</b> ඕම් සහ <b>t</b> තත්පර වේ.</p></article>
+<article class="law-card"><h3>විද්‍යුත් ශක්තිය සහ විදුලි ඒකක</h3><p>ශක්තිය = ක්ෂමතාව × කාලය. විදුලි මීටරයේ වාණිජ ඒකකය කිලෝවොට්-පැය (kWh) වේ.</p><span class="law-equation">E = P × t (J)<br>Units (kWh) = <span class="fr"><span>P (W) × t (h)</span><span>1000</span></span></span><p>පැය භාවිතා කරන විට ක්ෂමතාව වොට්වලින් යොදා 1000න් බෙදන්න.</p></article>
+<article class="law-card"><h3>AC RMS සහ උච්ච වෝල්ටීයතාව</h3><p>සයිනාකාර AC සඳහා RMS අගය සහ උච්ච අගය අතර සම්බන්ධය පහත පරිදි වේ.</p><span class="law-equation">V<sub>rms</sub> = <span class="fr"><span>V<sub>peak</sub></span><span>√2</span></span> ≈ 0.707 × V<sub>peak</sub><br>V<sub>peak</sub> = √2 × V<sub>rms</sub> ≈ 1.414 × V<sub>rms</sub></span><p>උදාහරණය: 230 V RMS සැපයුමක උච්ච අගය ≈ 325 V.</p></article>
+</div>
+<p class="law-section-label"><b>ට්‍රාන්ස්ෆෝමර් සහ ඍජුකරණය</b></p>
+<div class="law-grid">
+<article class="law-card"><h3>ට්‍රාන්ස්ෆෝමර් අනුපාතය</h3><p>පරිපූර්ණ ට්‍රාන්ස්ෆෝමරයක ප්‍රාථමික/ද්විතීයික වෝල්ටීයතා අනුපාතය පොටවල් අනුපාතයට සමාන වන අතර, එය ධාරා අනුපාතයට ප්‍රතිලෝම වේ.</p><span class="law-equation"><span class="fr"><span>V<sub>p</sub></span><span>V<sub>s</sub></span></span> = <span class="fr"><span>N<sub>p</sub></span><span>N<sub>s</sub></span></span> = <span class="fr"><span>I<sub>s</sub></span><span>I<sub>p</sub></span></span></span><p><b>p</b>: ප්‍රාථමික, <b>s</b>: ද්විතීයික; <b>V</b>: වෝල්ටීයතාව, <b>N</b>: පොට ගණන, <b>I</b>: ධාරාව.</p></article>
+<article class="law-card"><h3>ට්‍රාන්ස්ෆෝමර් බලය හා කාර්යක්ෂමතාව</h3><p>පරිපූර්ණ අවස්ථාවේ ආදාන බලය ප්‍රතිදාන බලයට සමාන වේ. සැබෑ උපකරණයක කාර්යක්ෂමතාව ප්‍රතිදාන හා ආදාන බල අනුපාතයයි.</p><span class="law-equation">P<sub>in</sub> = P<sub>out</sub><br>η = <span class="fr"><span>P<sub>out</sub></span><span>P<sub>in</sub></span></span> × 100% = <span class="fr"><span>V<sub>s</sub>I<sub>s</sub></span><span>V<sub>p</sub>I<sub>p</sub></span></span> × 100%</span><p>කාර්යක්ෂමතාව ප්‍රතිශතයෙන් දක්වයි.</p></article>
+<article class="law-card"><h3>සේතු ඍජුකාරකයේ උච්ච ප්‍රතිදානය</h3><p>එක් අවස්ථාවක silicon ඩයෝඩ දෙකක් සන්නයනය කරන බැවින් ඒවායේ ආසන්න 0.7 V බැගින් වූ බැස්ම එකතුව 1.4 V වේ.</p><span class="law-equation">V<sub>out(peak)</sub> = V<sub>s(peak)</sub> − 1.4 V</span><p>මෙය ආසන්න අගයකි; සත්‍ය ඩයෝඩ බැස්ම ක්‍රියාකාරී තත්ත්ව අනුව වෙනස් වේ.</p></article>
+<article class="law-card"><h3>පූර්ණ තරංග ඍජුකරණ ස්පන්දන සංඛ්‍යාතය</h3><p>ආදාන AC චක්‍රයක අර්ධ දෙකම භාවිතා කරන විට ප්‍රතිදාන ස්පන්දන සංඛ්‍යාතය දෙගුණ වේ.</p><span class="law-equation">f<sub>out</sub> = 2 × f<sub>in</sub></span><p>උදාහරණය: 50 Hz ආදානය → 100 Hz ප්‍රතිදාන ස්පන්දන.</p></article>
+</div>
+<div class="reference-notice"><b>විභාග මතක් කිරීම:</b> ඇමීටරය පරිපථයට ශ්‍රේණිගතවද, වෝල්ට්මීටරය මනින සංරචකයට සමාන්තරගතවද සම්බන්ධ කරයි. ගෘහස්ථ නව වර්ණ සංකේත: Live — දුඹුරු; Neutral — නිල්; Earth — කොළ/කහ. සජීවී විදුලි පද්ධතිවලට අත්හදා බැලීම් නොකරන්න.</div>
+</section>
+<div id="gal" class="gal" hidden></div>
+
+</main>
+<script>
+const $=i=>document.getElementById(i),TAU=Math.PI*2;
+// ---------- nav & progress ----------
+const SEC=[['s1','1. මූලික රාශි සහ නියම'],['s10','2. ප්‍රතිරෝධක'],['s11','3. ධාරිත්‍රක'],['s12','4. ප්‍රේරක'],['s15','5. AC/DC සහ තරංග හැඩ'],['s14','6. විදුලි/චුම්බක නියම'],['s3','7. ට්‍රාන්ස්ෆෝමර්'],['s4','8. ඍජුකරණය'],['s13','9. කෝෂ සහ බැටරි'],['s5','10. රැහැන් ඇදීම'],['s6','11. විභාග ප්‍රශ්න'],['s7','12. සූත්‍ර එකතුව']];
+let done={};try{done=JSON.parse(localStorage.getItem('el_done')||'{}')}catch(e){}
+function prog(){const n=SEC.filter(s=>done[s[0]]).length,p=Math.round(n/SEC.length*100);$('pct').textContent='ප්‍රගතිය '+p+'%';$('pb').style.width=p+'%';
+SEC.forEach(s=>{$('l'+s[0]).classList.toggle('done',!!done[s[0]]);const b=$('d'+s[0]);b.textContent=done[s[0]]?'✓ සම්පූර්ණයි':'සම්පූර්ණ ලෙස සලකුණු කරන්න';b.classList.toggle('p',!!done[s[0]])});
+try{localStorage.setItem('el_done',JSON.stringify(done))}catch(e){}}
+SEC.forEach(s=>{const a=document.createElement('a');a.href='#'+s[0];a.id='l'+s[0];a.textContent=s[1];$('links').append(a);
+const b=document.createElement('button');b.id='d'+s[0];b.style.marginTop='12px';b.onclick=()=>{done[s[0]]=!done[s[0]];prog()};$(s[0]).append(b)});
+prog();
+let dk=matchMedia('(prefers-color-scheme: dark)').matches;$('th').onclick=()=>{dk=!dk;document.documentElement.dataset.theme=dk?'dark':'light'};
+// ---------- quizzes ----------
+const MQ={k:[{q:'AC තරංගයක V_p = 100 V නම් V_pp සහ V_rms (සයින්)?',o:['100 V, 70.7 V','200 V, 70.7 V','200 V, 141 V'],a:1,e:'V_pp = 2V_p = 200 V; V_rms = 100/√2 ≈ 70.7 V.'},{q:'f = 50 Hz නම් ආවර්ත කාලය T?',o:['50 ms','20 ms','2 ms'],a:1,e:'T = 1/f = 1/50 = 0.02 s = 20 ms.'}],f:[{q:'කහ, දම්, රතු, රන්වන් පටි ඇති ප්‍රතිරෝධකයේ අගය?',o:['470 Ω ±5%','4.7 kΩ ±5%','47 kΩ ±10%'],a:1,e:'47 × 10² = 4700 Ω = 4.7 kΩ; රන්වන් = ±5%.'},{q:'ලෝහ කම්බියක දිග දෙගුණ කර හරස්කඩ දෙගුණ කළ විට ප්‍රතිරෝධය?',o:['වෙනස් නොවේ','දෙගුණ වේ','හතර ගුණ වේ'],a:0,e:'R = ρL/A; L සහ A දෙකම දෙගුණ වන නිසා R නොවෙනස්ව පවතී.'}],
+g:[{q:'ධාරිත්‍රක 6 µF සහ 3 µF ශ්‍රේණිගත කළ විට ධාරණාව?',o:['9 µF','2 µF','4.5 µF'],a:1,e:'(6×3)/(6+3) = 2 µF.'},{q:'100 µF ධාරිත්‍රකයක් 10 V දක්වා ආරෝපණය කළ විට ගබඩා වන ශක්තිය?',o:['5 mJ','50 mJ','0.5 mJ'],a:0,e:'E = ½CV² = ½ × 100×10⁻⁶ × 100 = 5×10⁻³ J = 5 mJ.'}],
+h:[{q:'ප්‍රේරකයක ස්ථිර තත්ත්වයේ DC ධාරාවක් ගලන විට එහි හැසිරීම?',o:['විවෘත පරිපථයක් සේ','සාමාන්‍ය කම්බියක් (ලඝු) සේ','ධාරිත්‍රකයක් සේ'],a:1,e:'di/dt = 0 නිසා v = L di/dt = 0.'},{q:'ප්‍රේරණාව L = μN²A/l හි පොට ගණන දෙගුණ කළ විට L?',o:['දෙගුණ','හතර ගුණ','අඩක්'],a:1,e:'L ∝ N²; N දෙගුණ ⇒ L හතර ගුණ.'}],
+i:[{q:'E = 12 V, r = 1 Ω බැටරියකින් R = 5 Ω ට ධාරාව ගලන විට අග්‍ර වෝල්ටීයතාව?',o:['12 V','10 V','2 V'],a:1,e:'I = 12/6 = 2 A; V = E − Ir = 12 − 2 = 10 V.'},{q:'1.5 V, 2 Ah කෝෂ 3ක් ශ්‍රේණිගත කළ විට?',o:['4.5 V, 2 Ah','1.5 V, 6 Ah','4.5 V, 6 Ah'],a:0,e:'ශ්‍රේණිගතව වෝල්ටීයතාව එකතු වේ; ධාරිතාව (Ah) නොවෙනස්.'}],
+j:[{q:'ජෙනරේටරයක ප්‍රේරිත ධාරාවේ දිශාව සෙවීමට යොදන්නේ?',o:['ෆ්ලෙමින්ගේ වමත් නියමය','ෆ්ලෙමින්ගේ දකුණත් නියමය','ඕම්ගේ නියමය'],a:1,e:'ජෙනරේටරය = දකුණත; මෝටරය = වමත.'},{q:'ෆැරඩේ නියමයේ e = −N dΦ/dt හි ඍණ ලකුණ කුමන නියමය නිරූපණය කරයිද?',o:['ලෙන්ස්ගේ නියමය','ජූල්ගේ නියමය','කර්චොෆ්ගේ නියමය'],a:0,e:'ප්‍රේරිත ධාරාව ස්‍රාව වෙනසට විරුද්ධ වේ – ලෙන්ස්ගේ නියමය.'}],
+a:[{q:'ඇමීටරය පරිපථයට සම්බන්ධ කරන්නේ කෙසේද?',o:['ශ්‍රේණිගතව','සමාන්තරගතව','ඕනෑම ලෙස'],a:0,e:'ඇමීටරයේ අභ්‍යන්තර ප්‍රතිරෝධය ඉතා අඩු නිසා ශ්‍රේණිගතව සම්බන්ධ කරයි.'},{q:'230 V AC සැපයුමක උපරිම වෝල්ටීයතාව?',o:['230 V','325 V','163 V'],a:1,e:'V_max = √2 × 230 ≈ 325 V.'}],
+b:[{q:'ගෘහස්ථ රැහැන් ඇදීමේ බල්බ සම්බන්ධ කරන්නේ?',o:['ශ්‍රේණිගතව','සමාන්තරගතව'],a:1,e:'සමාන්තරගතව නම් එක් බල්බයක් පිළිස්සුණත් අනෙක් ඒවා සම්පූර්ණ ආලෝකයෙන් දැල්වේ.'},{q:'3 Ω, 6 Ω සමාන්තරගත ප්‍රතිරෝධය?',o:['9 Ω','2 Ω','4.5 Ω'],a:1,e:'(3×6)/(3+6) = 2 Ω.'}],
+c:[{q:'ආස්තරිත හරය භාවිතා කරන්නේ කුමන හානිය අඩු කිරීමටද?',o:['සුළි ධාරා හානිය','තඹ හානිය','ස්‍රාව කාන්දුව'],a:0,e:'තුනී පරිවරණ තහඩු නිසා සුළි ධාරා මාර්ග බිඳේ.'},{q:'අධිකර ට්‍රාන්ස්ෆෝමරයක ද්විතීයික ධාරාව ප්‍රාථමිකයට වඩා?',o:['වැඩි','අඩු','සමාන'],a:1,e:'V_pI_p = V_sI_s, V_s වැඩි නිසා I_s අඩුය.'}],
+d:[{q:'සේතු ඍජුකාරකයේ ඩයෝඩ කීයක්ද? ස්පන්දන සංඛ්‍යාතය?',o:['2, 50 Hz','4, 100 Hz','4, 50 Hz'],a:1,e:'ඩයෝඩ 4; අර්ධ චක්‍ර දෙකම භාවිතා වන නිසා 100 Hz.'},{q:'ධාරිත්‍රකයේ අගය වැඩි කළ විට රැලිති?',o:['වැඩි වේ','අඩු වේ'],a:1,e:'විසර්ජන කාලය (RC) වැඩි වන නිසා වෝල්ටීයතා පහළ බැසීම අඩුය.'}],
+e:[{q:'30 mA සංවේදීතාවක් ඇති ආරක්ෂක උපාංගය?',o:['MCB','RCCB','විලායකය'],a:1,e:'RCCB ජීවිත ආරක්ෂාවට; MCB අධි ධාරාවට.'},{q:'කෙවෙනි පරිපථයකට සුදුසු කම්බිය?',o:['1.0 mm²','2.5 mm²'],a:1,e:'කෙවෙනි පරිපථවලට 2.5 mm²; ආලෝකවලට 1.0/1.5 mm².'}]};
+const QZ=[{q:'සජීවී තන්තුවේ නව වර්ණය?',o:['රතු','දුඹුරු','නිල්'],a:1,e:'නව: දුඹුරු; පැරණි: රතු.'},{q:'උදාසීන තන්තුවේ නව වර්ණය?',o:['කළු','නිල්','කොළ-කහ'],a:1,e:'නව: නිල්; පැරණි: කළු.'},{q:'230 V, 100 W බල්බයක ධාරාව?',o:['0.43 A','2.3 A','23 A'],a:0,e:'I = P/V = 100/230 ≈ 0.43 A.'},{q:'ට්‍රාන්ස්ෆෝමරයක් DC මගින් ක්‍රියා නොකරන්නේ?',o:['ප්‍රතිරෝධය වැඩි නිසා','විචල්‍ය ස්‍රාවයක් නැති නිසා','හරය රත් වන නිසා'],a:1,e:'ප්‍රේරණයට ස්‍රාව වෙනසක් අවශ්‍යයි.'},{q:'විදුලි සැර වැදීමකදී ක්‍රියා කළ යුත්තේ?',o:['MCB 16A','RCCB 30mA','ප්‍රධාන ස්විචය'],a:1,e:'30 mA කාන්දුව RCCB හඳුනාගනී.'},{q:'1000 W උපකරණයක් පැය 3ක් දැල්වූ විට ඒකක?',o:['3','0.3','300'],a:0,e:'1000×3/1000 = 3 kWh.'},{q:'1 kΩ, 1 kΩ ශ්‍රේණිගත ප්‍රතිරෝධය?',o:['500 Ω','1 kΩ','2 kΩ'],a:2,e:'R = R₁+R₂ = 2 kΩ.'},{q:'සේතු ඍජුකාරකයේ ඩයෝඩ බැස්ම (සමස්ත)?',o:['0.7 V','1.4 V','2.8 V'],a:1,e:'ඕනෑම අවස්ථාවක ඩයෝඩ 2ක් ශ්‍රේණිගතව: 2×0.7 = 1.4 V.'}];
+let sc=0,tot=0;
+function mk(el,arr,cb){arr.forEach(Q=>{const d=document.createElement('div');d.className='q card';d.innerHTML='<p>'+Q.q+'</p>';const ex=document.createElement('div');ex.className='ex';ex.textContent=Q.e;let ans=false;
+Q.o.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{if(ans)return;ans=true;b.classList.add(i==Q.a?'ok':'no');if(i!=Q.a)d.querySelectorAll('button')[Q.a].classList.add('ok');ex.style.display='block';ex.textContent=(i==Q.a?'✔ නිවැරදියි! ':'✘ වැරදියි. ')+Q.e;cb&&cb(i==Q.a)};d.append(b)});d.append(ex);el.append(d)})}
+document.querySelectorAll('.mq').forEach(e=>mk(e,MQ[e.dataset.k]));
+mk($('quiz'),QZ,ok=>{tot++;if(ok)sc++;$('score').textContent=sc+' / '+tot+' (මුළු '+QZ.length+')'});
+// ---------- canvas helpers ----------
+const W='#e2e8f0';
+function perim(u){u=((u%1)+1)%1*2*(140+60);const w=140,h=60;if(u<w)return[40+u,50];u-=w;if(u<h)return[180,50+u];u-=h;if(u<w)return[180-u,110];u-=w;return[40,110-u]}
+// ---------- Sim 1 ----------
+let mode='DC',off=0;const c1=$('c1'),x1=c1.getContext('2d');
+function sel(a,b,on){a.classList.toggle('on',on);b.classList.toggle('on',!on)}
+$('mDC').onclick=()=>{mode='DC';sel($('mDC'),$('mAC'),true)};$('mAC').onclick=()=>{mode='AC';sel($('mDC'),$('mAC'),false)};
+['v1','r1','f1'].forEach(i=>$(i).oninput=()=>$(i+'o').textContent=$(i).value);
+function d1(t){const V=+$('v1').value,R=+$('r1').value,f=+$('f1').value,I=V/R,P=V*I;x1.clearRect(0,0,720,260);x1.lineWidth=3;x1.strokeStyle='#94a3b8';x1.strokeRect(40,50,140,60);
+const b=Math.min(1,Math.sqrt(P/100));x1.shadowColor='#facc15';x1.shadowBlur=40*b;x1.fillStyle='rgba(250,204,21,'+(0.1+0.9*b)+')';x1.beginPath();x1.arc(110,110,16,0,TAU);x1.fill();x1.shadowBlur=0;x1.strokeStyle='#facc15';x1.stroke();
+x1.fillStyle=W;x1.font='13px sans-serif';x1.fillText(mode+'  I='+I.toFixed(2)+'A',40,30);x1.fillText('බල්බය',88,150);
+if(mode=='DC')off+=Math.min(.05,I*.0008);const osc=mode=='AC'?.03*Math.min(1,I)*Math.sin(t*.004*Math.min(f,10)):0;
+x1.fillStyle='#38bdf8';for(let i=0;i<16;i++){const p=perim(i/16+off+osc);x1.beginPath();x1.arc(p[0],p[1],4,0,TAU);x1.fill()}
+const X=360,Y=130,w=340,Vm=mode=='AC'?V*1.4142:V;x1.strokeStyle='#334155';x1.lineWidth=1;x1.strokeRect(X,10,w,240);x1.beginPath();x1.moveTo(X,Y);x1.lineTo(X+w,Y);x1.stroke();
+const sy=v=>Y-v/340*115;x1.strokeStyle='#4ade80';x1.lineWidth=2;x1.beginPath();const cy=1+f/10;
+for(let k=0;k<=w;k++){const v=mode=='AC'?Vm*Math.sin(TAU*(cy*k/w-t*.0003*Math.min(f,10))):V;k?x1.lineTo(X+k,sy(v)):x1.moveTo(X+k,sy(v))}x1.stroke();
+if(mode=='AC'){x1.setLineDash([5,4]);x1.strokeStyle='#f59e0b';[Vm,-Vm].forEach(v=>{x1.beginPath();x1.moveTo(X,sy(v));x1.lineTo(X+w,sy(v));x1.stroke()});x1.strokeStyle='#f472b6';[V,-V].forEach(v=>{x1.beginPath();x1.moveTo(X,sy(v));x1.lineTo(X+w,sy(v));x1.stroke()});x1.setLineDash([]);x1.fillStyle='#f59e0b';x1.fillText('Vmax='+Vm.toFixed(0)+'V',X+4,sy(Vm)-4);x1.fillStyle='#f472b6';x1.fillText('Vrms='+V+'V',X+4,sy(V)+14)}
+$('o1').innerHTML=(mode=='DC'?'<b>DC:</b> ඉලෙක්ට්‍රෝන එක දිශාවට ගලයි; V වැඩි කළ විට I = V/R වැඩි වී ඒවා වේගවත් වේ.':'<b>AC:</b> ඉලෙක්ට්‍රෝන ඉදිරියට පසුපසට දෝලනය වේ; V<sub>max</sub> = √2×V<sub>rms</sub> = 1.414×'+V+' = '+Vm.toFixed(1)+' V; f වැඩි කළ විට තරංග ගණන වැඩිවේ (T = '+(1000/f).toFixed(1)+' ms).')+'<br><span class="m">I = '+I.toFixed(2)+' A, P = '+P.toFixed(1)+' W</span> – ක්ෂමතාව වැඩි වන විට බල්බය දීප්තිමත් වේ.'}
+function d5(){const p=+$('ap').value,h=+$('hr').value,u=p*h/1000;$('o5').innerHTML='දිනකට <b class="m">'+u.toFixed(2)+'</b> ඒකක; මාසයකට (දින 30) <b class="m">'+(u*30).toFixed(1)+'</b> ඒකක (kWh = W×h÷1000)'}
+$('ap').onchange=$('hr').oninput=d5;d5();
+// ---------- Sim 2 series/parallel ----------
+let par=false,burnt=[0,0,0];const c3=$('c3'),x3=c3.getContext('2d');
+$('pS').onclick=()=>{par=false;sel($('pS'),$('pP'),true)};$('pP').onclick=()=>{par=true;sel($('pS'),$('pP'),false)};
+document.querySelectorAll('.bb').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;burnt[i]^=1;b.classList.toggle('on',!!burnt[i])});
+function d3(){const n=burnt.filter(x=>!x).length,R=6,V=12;let Req,It,vb=[0,0,0],br=[0,0,0];
+if(!par){if(n==3){Req=18;It=V/18;vb=[4,4,4];br=[1,1,1].map(_=>(16/R)/24)}else{Req=Infinity;It=0}}
+else{Req=n?R/n:Infinity;It=n?V/Req:0;burnt.forEach((x,i)=>{if(!x){vb[i]=V;br[i]=1}})}
+x3.clearRect(0,0,720,210);x3.strokeStyle='#94a3b8';x3.lineWidth=3;const bx=[200,360,520];
+const bulb=(x,y,i)=>{x3.fillStyle='rgba(250,204,21,'+(burnt[i]?0.05:0.1+0.9*br[i])+')';x3.beginPath();x3.arc(x,y,22,0,TAU);x3.fill();x3.strokeStyle=burnt[i]?'#ef4444':'#facc15';x3.stroke();x3.fillStyle=W;x3.fillText('R'+(i+1)+(burnt[i]?' ✘':''),x-10,y+40)};
+x3.strokeStyle='#94a3b8';if(!par){x3.strokeRect(80,50,560,110);x3.clearRect(150,40,420,24);bx.forEach((x,i)=>bulb(x,50,i));}
+else{x3.beginPath();x3.moveTo(80,40);x3.lineTo(640,40);x3.moveTo(80,170);x3.lineTo(640,170);x3.moveTo(80,40);x3.lineTo(80,170);x3.stroke();bx.forEach((x,i)=>{x3.strokeStyle='#94a3b8';x3.beginPath();x3.moveTo(x,40);x3.lineTo(x,170);x3.stroke();bulb(x,105,i)})}
+x3.fillStyle='#38bdf8';x3.fillText('12 V',30,110);
+$('o3').innerHTML='<span class="m">R<sub>eq</sub> = '+(Req==Infinity?'∞ (විවෘත)':Req.toFixed(2)+' Ω')+', I<sub>මුළු</sub> = '+It.toFixed(2)+' A, V<sub>බල්බ</sub> = '+vb.map(v=>v.toFixed(1)).join(' / ')+' V</span><br>'+(par?(n<3?'සමාන්තරගතයි: එක බල්බයක් පිළිස්සුණත් අනෙක් ඒවාට තවමත් 12 V ලැබී සම්පූර්ණ දීප්තියෙන් දැල්වේ. (ගෘහස්ථ රැහැන් මෙසේය)':'සෑම බල්බයකටම සම්පූර්ණ 12 V ලැබේ.'):(n<3?'ශ්‍රේණිගතයි: පරිපථය බිඳුණු නිසා ධාරාව නැත, සියලු බල්බ නිවී යයි.':'වෝල්ටීයතාව 3ට බෙදී ඇති නිසා සෑම බල්බයක්ම අඩු දීප්තියෙන් දැල්වේ (V = 4 V).'))}
+// ---------- Sim 4 transformer / rectifier lab ----------
+let ac=true,stage='ac',arr=[],inp=[],iw='sine',Vs=0,t4=0;const WNm={sine:'සයිනාකාර',square:'හතරැස්',tri:'ත්‍රිකෝණාකාර',saw:'කියත්දැති'};
+function W4(c){const p=c-Math.floor(c);return iw=='sine'?Math.sin(TAU*p):iw=='square'?(p<.5?1:-1):iw=='tri'?(p<.25?4*p:p<.75?2-4*p:4*p-4):2*p-1}
+document.querySelectorAll('.iw').forEach(b=>b.onclick=()=>{iw=b.dataset.w;document.querySelectorAll('.iw').forEach(x=>x.classList.toggle('on',x==b));calc()});const c4=$('c4'),x4=c4.getContext('2d');
+$('tA').onclick=()=>{ac=true;sel($('tA'),$('tD'),true);calc()};$('tD').onclick=()=>{ac=false;sel($('tA'),$('tD'),false);calc()};
+document.querySelectorAll('.st').forEach(b=>b.onclick=()=>{stage=b.dataset.s;document.querySelectorAll('.st').forEach(x=>x.classList.toggle('on',x==b));calc()});
+['vp','np','ns','cv'].forEach(i=>$(i).oninput=()=>{$(i+'o').textContent=$(i).value;calc()});$('cap').onchange=$('reg').onchange=calc;
+function calc(){const vp=+$('vp').value,np=+$('np').value,ns=+$('ns').value,C=+$('cv').value*1e-6;Vs=ac?vp*ns/np:0;const pk=Vs*1.4142,dt=1e-4;let vc=0;arr=[];inp=[];
+for(let t=0;t<.56;t+=dt){const s=pk*W4(50*t);let o=s;
+if(stage!='ac'){o=stage=='half'?Math.max(0,s-.7):stage=='ct'?Math.max(0,Math.abs(s)-.7):Math.max(0,Math.abs(s)-1.4);if($('cap').checked){vc=Math.max(o,vc*(1-dt/(100*C)));o=vc}}
+if($('reg').checked&&stage!='ac')o=Math.min(12,Math.max(0,o-2));if(t>=.5){arr.push(o);inp.push(s)}}
+const irms=Math.sqrt(inp.reduce((a,b)=>a+b*b,0)/inp.length);
+const up=ns>np;const D={ac:'පිරිසිදු AC (ද්විතීයිකය)',half:'අර්ධ තරංග – ඍණ අර්ධ චක්‍රය කැපේ',ct:'මැද අග්‍ර පූර්ණ තරංග – ඩයෝඩ 2 (ධන: D₁, ඍණ: D₂)',br:'සේතු ඍජුකරණය – ධන: D₁,D₂ | ඍණ: D₃,D₄ (1.4 V බැස්ම, 100 Hz)'}[stage];
+const avg=arr.reduce((a,b)=>a+b,0)/arr.length;
+$('o4').innerHTML='<b style="color:var(--am)">ආදාන තරංගය: '+WNm[iw]+'</b> &nbsp;<b>'+(up?'අධිකර ට්‍රාන්ස්ෆෝමරය (Step-Up)':ns<np?'අවකර ට්‍රාන්ස්ෆෝමරය (Step-Down)':'සමාන (1:1)')+'</b> &nbsp;<span class="m">V<sub>s</sub>(rms) = '+irms.toFixed(1)+' V, V<sub>peak</sub> = '+pk.toFixed(1)+' V, සාමාන්‍ය DC ≈ '+avg.toFixed(1)+' V</span><br>'+(ac?'':'<b style="color:var(--bad)">සරල ධාරා (DC) මගින් විචල්‍ය චුම්බක ස්‍රාවයක් නිපදවන්නේ නැති බැවින් ට්‍රාන්ස්ෆෝමරය ක්‍රියා නොකරයි!</b><br>')+D+(stage!='ac'&&$('cap').checked?'<br>ධාරිත්‍රකය උච්චයේදී ආරෝපණය වී අතරතුර විසර්ජනය වෙයි; C වැඩි කළ විට රැලිති අඩුය.':'')+($('reg').checked&&stage!='ac'?'<br>7812 යාමකය: ආදානය ~14 V ට වැඩි නම් නියත 12 V DC.':'')}
+function d4(t){x4.clearRect(0,0,720,280);const X=40,w=660,Y=250,top=20,mx=Math.max(1,...arr,Vs*1.4142*(stage=='ac'?1:1));const sy=v=>Y-(v+(stage=='ac'?mx:0))/(stage=='ac'?2*mx:mx)*(Y-top-10);
+x4.strokeStyle='#334155';x4.lineWidth=1;x4.strokeRect(X,top,w,Y-top);if(stage=='ac'){x4.beginPath();x4.moveTo(X,sy(0));x4.lineTo(X+w,sy(0));x4.stroke()}
+x4.strokeStyle='#4ade80';x4.lineWidth=2;x4.beginPath();arr.forEach((v,i)=>{const x=X+i/(arr.length-1)*w;i?x4.lineTo(x,sy(v)):x4.moveTo(x,sy(v))});x4.stroke();
+const ph=(t*.00004)%1,cx=X+ph*w,i=Math.floor(ph*(arr.length-1)),sg=W4(50*(.5+ph*.06))>=0;x4.strokeStyle='#f59e0b';x4.beginPath();x4.moveTo(cx,top);x4.lineTo(cx,Y);x4.stroke();
+x4.fillStyle=W;x4.font='13px sans-serif';let tx=stage=='br'?(sg?'ධන අර්ධ චක්‍රය: D₁ D₂ ක්‍රියාත්මකයි':'ඍණ අර්ධ චක්‍රය: D₃ D₄ ක්‍රියාත්මකයි'):stage=='ct'?(sg?'D₁ ක්‍රියාත්මකයි':'D₂ ක්‍රියාත්මකයි'):stage=='half'?(sg?'D₁ ක්‍රියාත්මකයි':'D₁ අවහිරයි'):'AC තරංගය';
+x4.fillText(tx+'   v = '+arr[i].toFixed(1)+' V   (කාල පරාසය 60 ms)',X+8,top+16)}
+function loop(t){d1(t);d3();d3x();d4(t);d1x();requestAnimationFrame(loop)}
+calc();loop(0);
+// ---------- Sim 3 DB box ----------
+const S={I:1,R:1,L:1,K:1,E:1};const nm={I:'ප්‍රධාන ස්විචය',R:'RCCB',L:'ආලෝක MCB',K:'කෙවෙනි MCB'};
+let FS='';
+function drawDB(up){const T=(x,y,s,c='#e2e8f0',z=11,a='middle')=>`<text x="${x}" y="${y}" fill="${c}" font-size="${z}" text-anchor="${a}">${s}</text>`;
+const bx=(x,y,l)=>`<rect x="${x}" y="${y}" width="84" height="56" rx="6" fill="#1e293b" stroke="#64748b"/>`+T(x+42,y+15,l,'#e2e8f0',10);
+const br=(x,y,l,on)=>bx(x,y,l)+`<rect x="${x+30}" y="${on?y+22:y+34}" width="24" height="16" rx="3" fill="${on?'#22c55e':'#ef4444'}"/>`+T(x+42,y+52,on?'ON':'OFF',on?'#86efac':'#fca5a5',9);
+let h='<line x1="0" y1="100" x2="470" y2="100" stroke="#a0522d" stroke-width="5"/><line x1="0" y1="116" x2="470" y2="116" stroke="#3b82f6" stroke-width="5"/><line x1="0" y1="132" x2="470" y2="132" stroke="#84cc16" stroke-width="5"/><line x1="0" y1="132" x2="470" y2="132" stroke="#facc15" stroke-width="5" stroke-dasharray="8 8"/>';
+h+=T(6,88,'⚡ කණුවෙන් සේවා රැහැන →','#94a3b8',10,'start')+bx(80,72,'සේවා විලායකය 60A')+bx(175,72,'kWh මීටරය')+br(270,72,'ප්‍රධාන ස්විචය 63A',S.I)+br(365,72,'RCCB 30mA',S.R);
+h+='<path d="M470 100V68H480M470 100V198H480" stroke="#a0522d" stroke-width="4" fill="none"/>'+br(480,40,'MCB 6A ආලෝක',S.L)+br(480,170,'MCB 16A කෙවෙනි',S.K);
+const lit=up&&S.L;h+=`<line x1="564" y1="68" x2="640" y2="68" stroke="#a0522d" stroke-width="4"/><circle cx="660" cy="68" r="20" fill="${lit?'#facc15':'#334155'}" stroke="#facc15" stroke-width="3"/>`+T(660,108,lit?'බල්බය ON':'බල්බය OFF','#e2e8f0',10);
+h+=`<line x1="564" y1="198" x2="620" y2="198" stroke="#a0522d" stroke-width="4"/><rect x="620" y="180" width="50" height="36" rx="5" fill="#1e293b" stroke="#64748b"/>`+T(645,202,'13A','#e2e8f0',11)+`<rect x="690" y="170" width="64" height="56" rx="6" fill="${FS=='e'?'#7f1d1d':'#1e293b'}" stroke="${FS=='e'?'#ef4444':'#64748b'}" stroke-width="3"/>`+T(722,203,'යකඩය','#e2e8f0',11);
+if(S.E)h+='<line x1="722" y1="226" x2="722" y2="262" stroke="#84cc16" stroke-width="5"/><line x1="722" y1="226" x2="722" y2="262" stroke="#facc15" stroke-width="5" stroke-dasharray="6 6"/>'+T(722,280,'⏚ භූගත ඉලෙක්ට්‍රෝඩය','#86efac',10);
+if(FS=='s')h+=T(600,150,'⚡💥 ලඝු පරිපථය','#fde047',20);
+if(FS=='e')h+=S.E?T(660,255,'දෝෂ ධාරාව භූගතයට → RCCB ට්‍රිප්','#86efac',11):T(660,255,'🧍 ශරීරය හරහා කාන්දුව – සැර!','#fca5a5',12);
+h+=T(10,296,'සජීවී = දුඹුරු','#c2865a',11,'start')+T(130,296,'උදාසීන = නිල්','#60a5fa',11,'start')+T(250,296,'භූගත = කොළ/කහ','#bef264',11,'start');$('svgdb').innerHTML=h}
+function dbDraw(msg,why){const up=S.I&&S.R;drawDB(up);$('o6').innerHTML='💡 ආලෝක: '+(up&&S.L?'ON':'OFF')+' &nbsp; 🔌 කෙවෙනි: '+(up&&S.K?'ON':'OFF');
+['I','R','L','K'].forEach(k=>{const e=$('s'+k);e.className='sw '+(S[k]?'on':'off')});$('sE').className='sw '+(S.E?'on':'off');$('sE').textContent=S.E?'භූගත තන්තුව සම්බන්ධයි':'භූගත තන්තුව විසන්ධියි';
+$('o7').innerHTML=(msg?'<b style="color:var(--bad)">'+msg+'</b><br>'+why:'ස්විච ක්ලික් කර ON/OFF කරන්න. ට්‍රිප් වූ ස්විචය නැවත ON කිරීමට ක්ලික් කරන්න.')}
+['I','R','L','K'].forEach(k=>{const e=$('s'+k);const f=()=>{S[k]^=1;FS='';dbDraw()};e.onclick=f;e.onkeydown=ev=>{if(ev.key=='Enter'||ev.key==' ')f()}});
+$('sE').onclick=()=>{S.E^=1;FS='';dbDraw()};
+$('fO').onclick=()=>{S.K=0;FS='o';dbDraw('⚡ අධි ධාරාව – උපකරණ වැඩියෙන් සම්බන්ධ කිරීමෙන් ධාරාව 24 A (> 16 A) වූ නිසා කෙවෙනි MCB (16A) OFF වී ට්‍රිප් විය.','පරිපථයේ ධාරාව 16 A ඉක්මවූ නිසා MCB පමණක් විසන්ධි වී රැහැන් රත්වීමෙන් ආරක්ෂා විය. ආලෝක පරිපථය දිගටම ක්‍රියා කරයි.')};
+$('fS').onclick=()=>{S.K=0;FS='s';dbDraw('💥✨ ලඝු පරිපථය (L-N ගැටීම) – MCB වහාම ට්‍රිප් විය.','ප්‍රතිරෝධය ~0 නිසා ධාරාව ඉතා විශාල වේ; MCB මිලි තත්පර කිහිපයකින් විසන්ධි කරයි.')};
+$('fE').onclick=()=>{S.R=0;FS='e';dbDraw('⚠️ භූගත කාන්දුව – RCCB (30 mA) වහාම ට්‍රිප් විය.',(S.E?'භූගත තන්තුව සම්බන්ධ නිසා දෝෂ ධාරාව එය හරහා ගොස් RCCB ක්‍රියා කළේය; පුද්ගලයා ආරක්ෂිතයි.':'භූගත තන්තුව නොමැති නිසා ශරීරය හරහා කාන්දු වූ ධාරාව RCCB හඳුනාගත් නමුත් සැර වැදීමක් සිදු විය හැක – භූගත කිරීම අත්‍යවශ්‍යයි.')+' ජීවිතයට අනතුරුදායක ධාරාව ~30 mA ඉක්මවන විට RCCB තත්පර 0.03කින් විසන්ධි කරයි.')};
+dbDraw();
+// ---------- Sim 4 two-way switch ----------
+let s1=0,s2=0;
+function sw2(){const on=s1==s2,lc=on?'#a0522d':'#64748b',g=(a,b)=>`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke-width="5" stroke="`;
+const L1=[200,80],L2=[200,150],P1=[120,115],Q1=[200,s1?150:80],Q2=[500,s2?150:80];
+let h='<text x="10" y="30" fill="#e2e8f0" font-size="14">සජීවී (දුඹුරු)</text><text x="500" y="250" fill="#60a5fa" font-size="14">උදාසීන (නිල්)</text>';
+h+=g([20,115],P1)+`${on?'#a0522d':'#64748b'}"/>`+`<line x1="120" y1="115" x2="${Q1[0]}" y2="${Q1[1]}" stroke="#e2e8f0" stroke-width="4" style="cursor:pointer" id="k1"/>`;
+h+=`<line x1="200" y1="80" x2="500" y2="80" stroke="#a0522d" stroke-width="4" opacity="${(s1==0)==(s2==0)&&true?1:1}"/><line x1="200" y1="150" x2="500" y2="150" stroke="#a0522d" stroke-width="4"/>`;
+h+=`<line x1="500" y1="${Q2[1]}" x2="580" y2="115" stroke="#e2e8f0" stroke-width="4" style="cursor:pointer" id="k2"/>`;
+h+=g([580,115],[640,115])+`${lc}"/><circle cx="640" cy="115" r="26" fill="${on?'#facc15':'#334155'}" stroke="#facc15" stroke-width="3"/>`;
+h+=g([640,141],[640,235])+'#3b82f6"/>'+g([640,235],[20,235])+'#3b82f6"/>';
+h+=`<line x1="20" y1="248" x2="640" y2="248" stroke="#84cc16" stroke-width="3" stroke-dasharray="8 5"/><text x="60" y="190" fill="#e2e8f0" font-size="13">ස්විචය 1 (පහළ මාලය)</text><text x="470" y="190" fill="#e2e8f0" font-size="13">ස්විචය 2 (ඉහළ මාලය)</text>`;
+$('svg2').innerHTML=h;$('k1').onclick=()=>{s1^=1;sw2()};$('k2').onclick=()=>{s2^=1;sw2()};
+$('o8').innerHTML='ස්විචය 1 → L'+(s1+1)+', ස්විචය 2 → L'+(s2+1)+'. '+(on?'<b>සජීවී මාර්ගය සම්පූර්ණයි – බල්බය ON.</b>':'<b>මාර්ගය බිඳුණි – බල්බය OFF.</b>')+' ස්විච දෙකම එකම ස්ථානයේ නම් පමණක් බල්බය දැල්වේ. තුන්වන ස්ථානයක් සඳහා අතරමැදි ස්විචයක් (Intermediate) භාවිතා කරයි.'}
+sw2();
+const GAL=[['ස්ථාවර ප්‍රතිරෝධකය','Fixed Resistor','<polyline points="0,25 20,25 28,10 40,40 52,10 64,40 76,10 88,40 96,25 120,25"/>','පරිපථයේ ධාරාව සීමා කරයි. ඒකකය Ω.'],['විචල්‍ය ප්‍රතිරෝධකය / රියෝස්ටැටය','Variable Resistor / Potentiometer','<polyline points="0,25 20,25 28,10 40,40 52,10 64,40 76,10 88,40 96,25 120,25"/><path d="M25 46L95 4M85 4H95V14"/>','ප්‍රතිරෝධය අතින් වෙනස් කර ධාරාව/වෝල්ටීයතාව පාලනය කරයි (ශබ්ද පාලකය).'],['ස්ථාවර ධාරිත්‍රකය','Capacitor','<path d="M0 25H50M50 8V42M70 8V42M70 25H120"/>','ආරෝපණ ගබඩා කරයි; AC යවයි, DC අවහිර කරයි. ඒකකය F.'],['විදුලි විච්ඡේද්‍ය ධාරිත්‍රකය','Electrolytic Capacitor','<path d="M0 25H50M50 8V42M70 8Q62 25 70 42M70 25H120"/><path d="M32 12H40M36 8V16"/>','ධාරිතාව µF වලින් විශාලයි; ධන (+) ඍණ (−) අග්‍ර ඇත. සුමටන ධාරිත්‍රකය.'],['විචල්‍ය ධාරිත්‍රකය','Variable Capacitor','<path d="M0 25H50M50 8V42M70 8V42M70 25H120M35 46L85 4"/>','ධාරිතාව වෙනස් කරයි – රේඩියෝ සුසර කිරීම (Tuning).'],['ප්‍රේරකය / දඟරය','Inductor','<path d="M0 25H20a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0H120"/>','චුම්බක ක්ෂේත්‍රයක් ලෙස ශක්තිය ගබඩා කරයි; AC වලට බාධාව (inductive reactance).'],['හර සහිත ප්‍රේරකය','Cored Inductor','<path d="M0 25H20a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0H120M20 10H100M20 14H100"/>','මෘදු යකඩ හරයක් මත එතූ දඟරය.'],['ඩයෝඩය','Diode','<path d="M0 25H40M40 10V40L75 25ZM75 8V42M75 25H120"/>','ධාරාව එක දිශාවකට පමණක් යවයි (ඍජුකරණය). Si බැස්ම 0.7 V.'],['සේතු ඍජුකාරකය','Bridge Rectifier','<path d="M60 3L100 25L60 47L20 25ZM0 25H20M100 25H120M60 3V0M60 47V50"/><path d="M52 18L60 26L68 18ZM52 32H68"/>','ඩයෝඩ 4ක් එක අංචියක; AC → ස්පන්දන DC (100 Hz).'],['ට්‍රාන්සිස්ටරය NPN','Transistor NPN','<circle cx="65" cy="25" r="20"/><path d="M0 25H45M45 12V38M45 19L75 6V0M45 31L75 44V50M68 36L75 44L65 44"/>','විස්තාරණය සහ ස්විචය. ඊතලය පිටතට (emitter).'],['ට්‍රාන්සිස්ටරය PNP','Transistor PNP','<circle cx="65" cy="25" r="20"/><path d="M0 25H45M45 12V38M45 19L75 6V0M45 31L75 44V50M52 28L45 31L51 37"/>','NPN ට ප්‍රතිවිරුද්ධව ධාරාව; ඊතලය ඇතුළට.'],['වෝල්ටීයතා යාමක IC (7805 / 7812)','Voltage Regulator IC','<rect x="30" y="10" width="60" height="30"/><path d="M0 25H30M90 25H120M60 40V50"/>','ආදානය 14 V+ නම් නියත 5 V / 12 V DC දෙයි (IN, GND, OUT).'],['ට්‍රාන්ස්ෆෝමරය','Transformer','<path d="M20 4H40M20 46H40M80 4H100M80 46H100M40 4a7 7 0 0 1 0 14a7 7 0 0 1 0 14a7 7 0 0 1 0 14M80 4a7 7 0 0 0 0 14a7 7 0 0 0 0 14a7 7 0 0 0 0 14M58 2V48M62 2V48"/>','ආස්තරිත යකඩ හරය මත ප්‍රාථමික/ද්විතීයික දඟර; AC වෝල්ටීයතාව වෙනස් කරයි.'],['විදුලි බල්බය','Lamp','<circle cx="60" cy="25" r="16"/><path d="M49 14L71 36M71 14L49 36M0 25H44M76 25H120"/>','විදුලි ශක්තිය ආලෝකය හා තාපය බවට පත් කරන බරක් (Load).'],['සාමාන්‍ය ස්විචය','SPST Switch','<path d="M0 25H38M38 25L80 8M85 25H120"/><circle cx="38" cy="25" r="3"/><circle cx="85" cy="25" r="3"/>','පරිපථය විවෘත/සංවෘත කරයි; සැමවිට සජීවී තන්තුවට.'],['දෙමං ස්විචය','2-Way Switch (SPDT)','<path d="M0 25H38M38 25L85 8M90 8H120M90 42H120"/><circle cx="38" cy="25" r="3"/><circle cx="88" cy="8" r="3"/><circle cx="88" cy="42" r="3"/>','ස්ථාන දෙකකින් එකම බල්බය පාලනය (පඩිපෙළ).'],['විලායකය','Fuse','<rect x="30" y="15" width="60" height="20"/><path d="M0 25H120"/>','අධි ධාරාවකදී කම්බිය උණු වී පිදී පරිපථය ආරක්ෂා කරයි (එක් වරක් පමණි).'],['MCB (කුඩා පරිපථ බිඳිනය)','Miniature Circuit Breaker','<path d="M0 25H38M38 25L80 8M85 25H120M30 15L46 35M46 15L30 35"/>','අධි ධාරා සහ ලඝු පරිපථයේදී ස්වයංක්‍රීයව OFF වේ; නැවත ON කළ හැක.'],['RCCB / ට්‍රිප් ස්විචය','Residual Current Circuit Breaker','<path d="M0 25H38M38 25L80 8M85 25H120"/><circle cx="60" cy="34" r="9"/>','30 mA කාන්දුවකදී ක්ෂණිකව ට්‍රිප් වී ජීවිත ආරක්ෂාව දෙයි. TEST බොත්තම ඇත.']];
+$('gal').innerHTML=GAL.map(g=>`<div class='card'><svg viewBox='0 0 120 50' width='120' height='50' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linejoin='round'>${g[2]}</svg><div><h3>${g[0]}</h3><small>${g[1]}</small><br>${g[3]}</div></div>`).join('');
+function drawDB(up){const T=(x,y,s,c='#111827',z=11,a='middle')=>`<text x='${x}' y='${y}' fill='${c}' font-size='${z}' font-weight='600' text-anchor='${a}'>${s}</text>`;const dev=(x,w,k,on,nm,rt,col)=>`<g data-k='${k}' style='cursor:pointer'><rect x='${x}' y='52' width='${w}' height='112' rx='5' fill='#f8fafc' stroke='#6b7280' stroke-width='2'/>`+T(x+w/2,63,nm,'#111827',10)+T(x+w/2,73,on?'ON':'OFF/TRIP',on?'#15803d':'#b91c1c',8)+`<rect x='${x+w/2-14}' y='77' width='28' height='46' rx='4' fill='#1f2937'/><rect x='${x+w/2-11}' y='${on?79:101}' width='22' height='20' rx='3' fill='${on?'#f9fafb':'#fca5a5'}'/>`+T(x+w/2,147,rt,'#111827',10)+`<rect x='${x+4}' y='151' width='${w-8}' height='9' rx='2' fill='${col}'/></g>`;let h=`<rect x='30' y='8' width='700' height='180' rx='12' fill='#e5e7eb' stroke='#9ca3af' stroke-width='3'/>`+T(380,30,'පාරිභෝගික ඒකකය (Consumer Unit)','#374151',12)+`<rect x='50' y='100' width='440' height='10' fill='#9ca3af'/><line x1='100' y1='0' x2='100' y2='52' stroke='#92400e' stroke-width='5'/><line x1='140' y1='0' x2='140' y2='52' stroke='#2563eb' stroke-width='5'/>`;h+=dev(70,110,'I',S.I,'ප්‍රධාන ස්විචය','63A Double Pole','#111827')+dev(200,110,'R',S.R,'RCCB','40A • 30mA','#facc15')+`<g data-k='T' style='cursor:pointer'><rect x='236' y='126' width='38' height='13' rx='3' fill='#facc15' stroke='#a16207'/></g>`+T(255,136,'TEST','#111827',8)+dev(340,60,'L',S.L,'ආලෝක','6A MCB','#dc2626')+dev(415,60,'K',S.K,'කෙවෙනි','16A MCB','#2563eb');h+=`<rect x='40' y='42' width='450' height='128' rx='6' fill='rgba(147,197,253,.15)' stroke='#60a5fa' stroke-dasharray='6 4' pointer-events='none'/>`+T(265,184,'විනිවිද පෙනෙන ආවරණය','#6b7280',9)+`<rect x='520' y='60' width='190' height='24' fill='#2563eb'/>`+T(615,76,'N – උදාසීන','#fff')+`<rect x='520' y='96' width='190' height='24' fill='#65a30d'/><path d='M520 108H710' stroke='#facc15' stroke-width='6' stroke-dasharray='8 8'/>`+T(615,112,'E – භූගත','#111827')+`<rect x='520' y='132' width='190' height='24' fill='#92400e'/>`+T(615,148,'L – සජීවී','#fff');const lit=up&&S.L,sk=up&&S.K;h+=`<path d='M370 164V224M445 164V215' stroke='#92400e' stroke-width='4' fill='none'/><path d='M700 84V270H367V256M445 270V249' stroke='#3b82f6' stroke-width='4' fill='none'/><circle cx='367' cy='240' r='16' fill='${lit?'#facc15':'#475569'}' stroke='#facc15' stroke-width='3'/>`+T(300,244,lit?'බල්බය ON':'බල්බය OFF','#e2e8f0',11,'end')+`<rect x='420' y='215' width='50' height='34' rx='5' fill='${sk?'#bbf7d0':'#cbd5e1'}' stroke='#64748b'/>`+T(445,236,'13A','#111827')+`<path d='M470 232H560' stroke='#92400e' stroke-width='4'/><rect x='560' y='205' width='64' height='56' rx='6' fill='${FS=='e'?'#7f1d1d':'#1e293b'}' stroke='${FS=='e'?'#ef4444':'#64748b'}' stroke-width='3'/>`+T(592,238,'යකඩය','#e2e8f0');if(S.E)h+=`<path d='M660 124V285H592V261' stroke='#84cc16' stroke-width='5' fill='none'/><path d='M660 124V285H592V261' stroke='#facc15' stroke-width='5' stroke-dasharray='6 6' fill='none'/>`+T(600,298,'භූගත කම්බිය → භූගත දඬුව','#bef264',10);if(FS=='s')h+=T(515,222,'⚡💥','#fde047',26);if(FS=='o')h+=T(445,203,'24 A > 16 A ⚠','#fca5a5',13);if(FS=='e')h+=S.E?T(640,225,'දෝෂ ධාරාව භූගතයට','#86efac',11,'start'):T(634,225,'🧍 සැර වදී!','#fca5a5',13,'start');$('svgdb').innerHTML=h}
+$('svgdb').onclick=e=>{const g=e.target.closest('[data-k]');if(!g)return;const k=g.dataset.k;if(k=='T'){S.R=0;FS='';dbDraw('✔ RCCB TEST බොත්තම ඔබා ට්‍රිප් කළා.','TEST බොත්තම කාන්දුවක් අනුකරණය කරයි. RCCB ට්‍රිප් වන්නේ නම් එය නිවැරදිව ක්‍රියා කරයි; මාසිකව පරීක්ෂා කරන්න.')}else{S[k]^=1;FS='';dbDraw()}};
+function sw2(){const on=s1==s2,H='#ea580c',D='#7c4a2d',ln=(a,b,c,d,col,w=5)=>`<line x1='${a}' y1='${b}' x2='${c}' y2='${d}' stroke='${col}' stroke-width='${w}' stroke-linecap='round'/>`;const plate=(x,n,s)=>`<g data-sw='${n}' style='cursor:pointer'><rect x='${x}' y='55' width='130' height='125' rx='10' fill='rgba(255,255,255,.08)' stroke='#94a3b8' stroke-width='2'/><text x='${x+65}' y='198' fill='#e2e8f0' font-size='13' text-anchor='middle'>ස්විචය ${n} (${n==1?'පහළ':'ඉහළ'} මාලය) → L${s+1}</text></g>`;let h=plate(85,1,s1)+plate(425,2,s2)+ln(20,115,120,115,H)+ln(120,115,200,s1?150:80,'#e2e8f0',7)+ln(200,80,440,80,s1?D:H)+ln(200,150,440,150,s1?H:D)+ln(520,115,440,s2?150:80,'#e2e8f0',7)+ln(520,115,620,115,on?H:D)+`<circle cx='650' cy='115' r='${on?40:30}' fill='${on?'rgba(250,204,21,.25)':'none'}'/><circle cx='650' cy='115' r='26' fill='${on?'#facc15':'#334155'}' stroke='#facc15' stroke-width='3'/>`+ln(650,141,650,235,'#3b82f6')+ln(650,235,20,235,'#3b82f6')+`<line x1='20' y1='250' x2='650' y2='250' stroke='#84cc16' stroke-width='4'/><line x1='20' y1='250' x2='650' y2='250' stroke='#facc15' stroke-width='4' stroke-dasharray='8 8'/><text x='10' y='100' fill='#fb923c' font-size='12'>සජීවී (දුඹුරු)</text><text x='300' y='228' fill='#60a5fa' font-size='12'>උදාසීන (නිල්)</text><text x='300' y='244' fill='#bef264' font-size='12' dy='22'>භූගත (කොළ-කහ)</text><text x='205' y='72' fill='#cbd5e1' font-size='11'>L1</text><text x='205' y='168' fill='#cbd5e1' font-size='11'>L2</text>`;$('svg2').innerHTML=h;$('svg2').onclick=e=>{const g=e.target.closest('[data-sw]');if(!g)return;g.dataset.sw=='1'?s1^=1:s2^=1;sw2()};$('o8').innerHTML='ස්විචය 1 → L'+(s1+1)+', ස්විචය 2 → L'+(s2+1)+'. '+(on?'<b>සජීවී මාර්ගය සම්පූර්ණයි (දුඹුරු දීප්තිමත් රේඛාව) – බල්බය ON.</b>':'<b>සජීවී ධාරාව ස්විචය 2 හි අනෙක් strapper එකට යයි – මාර්ගය බිඳුණි, බල්බය OFF.</b>')+' ස්විච දෙකම එකම strapper එකට සම්බන්ධ නම් පමණක් බල්බය දැල්වේ. ස්ථාන තුනක් සඳහා අතරමැදි ස්විචයක් භාවිතා කරයි.'}
+function d1x(){const c=$('c6').getContext('2d');c.clearRect(0,0,720,240);const V=+$('v1').value,R=+$('r1').value,I=V/R,px=v=>50+v/230*650,py=i=>210-Math.min(i,10)/10*190;c.strokeStyle='#475569';c.lineWidth=1;c.strokeRect(50,20,650,190);c.fillStyle='#e2e8f0';c.font='12px sans-serif';[0,5,10].forEach(i=>c.fillText(i+' A',8,py(i)+4));[0,115,230].forEach(v=>c.fillText(v+' V',px(v)-12,226));[23,50,100,200,500].forEach(r=>{const vm=Math.min(230,10*r);c.strokeStyle='#475569';c.beginPath();c.moveTo(px(0),py(0));c.lineTo(px(vm),py(vm/r));c.stroke();c.fillStyle='#94a3b8';c.fillText(r+' Ω',px(vm)-34,py(vm/r)+(vm<230?-4:14))});const vm=Math.min(230,10*R);c.strokeStyle='#4ade80';c.lineWidth=3;c.beginPath();c.moveTo(px(0),py(0));c.lineTo(px(vm),py(vm/R));c.stroke();c.fillStyle='#f472b6';c.beginPath();c.arc(px(V),py(I),6,0,TAU);c.fill();c.fillStyle='#e2e8f0';c.fillText('V–I ප්‍රස්තාරය  R = V/I = '+(I?(V/I).toFixed(1):R)+' Ω   බෑවුම = 1/R = '+(1/R).toFixed(3)+' A/V   (I = '+I.toFixed(2)+' A)',60,14)}
+function d3x(){const n=burnt.filter(x=>!x).length;let f;if(!par)f=n==3?'ශ්‍රේණිගත: R<sub>eq</sub> = R₁+R₂+R₃ = 6+6+6 = 18 Ω':'ශ්‍රේණිගත: පරිපථය බිඳී ඇති නිසා ධාරාව 0 – බල්බ සියල්ලම නිවී ඇත (R<sub>eq</sub> = ∞)';else f=n?'සමාන්තරගත: 1/R<sub>eq</sub> = '+Array(n).fill('1/6').join(' + ')+' = '+n+'/6 ⇒ R<sub>eq</sub> = '+(6/n).toFixed(2)+' Ω – ඉතිරි බල්බ සම්පූර්ණ දීප්තියෙන් දැල්වේ':'සියලු බල්බ විසන්ධියි';$('o3').innerHTML+='<br><b>'+f+'</b>'}
+document.querySelectorAll('.bb').forEach((b,i)=>b.textContent='R'+(i+1)+' විසන්ධි/පිලිස්සීම');const rb=document.createElement('button');rb.textContent='නැවත සම්බන්ධ කිරීම';rb.onclick=()=>{burnt=[0,0,0];document.querySelectorAll('.bb').forEach(b=>b.classList.remove('on'))};document.querySelector('.bb[data-i="2"]').after(rb);
+$('gal').insertAdjacentHTML('beforeend',`<div class='card'><svg viewBox='0 0 120 50' width='120' height='50' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linejoin='round'><path d='M0 25H20a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0H120M25 46L95 4M85 4H95V14'/></svg><div><h3>විචල්‍ය ප්‍රේරකය</h3><small>Variable Inductor</small><br>ප්‍රේරකතාව (L) වෙනස් කළ හැකි දඟරය – සංඛ්‍යාත සුසර කිරීමට (ඊතලය = වෙනස් කළ හැකි බව).</div></div><div class='card'><svg viewBox='0 0 120 50' width='120' height='50' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linejoin='round'><path d='M0 25H40M40 10V40L75 25ZM75 8V42M75 25H120M68 8L82 2M78 14L92 8'/></svg><div><h3>LED බල්බය</h3><small>Light Emitting Diode</small><br>ඉදිරි නැඹුරුවේදී ආලෝකය විමෝචනය කරන ඩයෝඩය; අඩු ක්ෂමතාවකින් වැඩි ආලෝකයක් දෙයි.</div></div>`);
+sw2();dbDraw();
+
+
+
+// Honor a saved theme, otherwise follow the system preference.
+let savedTheme='';try{savedTheme=localStorage.getItem('el_theme')||''}catch(e){}
+if(savedTheme==='dark'||savedTheme==='light'){document.documentElement.dataset.theme=savedTheme;dk=savedTheme==='dark'}
+$('th').onclick=()=>{dk=!dk;document.documentElement.dataset.theme=dk?'dark':'light';try{localStorage.setItem('el_theme',dk?'dark':'light')}catch(e){}};
+
+// Measurement controls and circuit layout for the Ohm's-law experiment.
+$('labExtra').innerHTML=`<svg class="sv" viewBox="0 0 720 180" role="img" aria-label="විදුලි සැපයුම, ඇමීටරය, රියෝස්ටැටය සහ ප්‍රතිරෝධකය ශ්‍රේණිගතව; වෝල්ට්මීටරය ප්‍රතිරෝධකයට සමාන්තරගතව">
+<rect x="18" y="42" width="105" height="78" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/><text x="70" y="72" fill="#e2e8f0" text-anchor="middle" font-size="14">DC සැපයුම</text><text x="70" y="98" fill="#e2e8f0" text-anchor="middle" font-size="13">V</text>
+<path d="M123 80H175M215 80H280M350 80H420M490 80H650V145H70V120" fill="none" stroke="#a16207" stroke-width="4"/>
+<circle cx="195" cy="80" r="20" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/><text x="195" y="86" fill="#e2e8f0" text-anchor="middle" font-size="14">A</text><text x="195" y="35" fill="#e2e8f0" text-anchor="middle" font-size="12">ඇමීටරය (ශ්‍රේණිගත)</text>
+<path d="M280 80L294 62L308 98L322 62L336 98L350 80" fill="none" stroke="#fbbf24" stroke-width="3"/><path d="M292 112L338 55M330 55H338V63" fill="none" stroke="#fbbf24" stroke-width="2"/><text x="322" y="132" fill="#e2e8f0" text-anchor="middle" font-size="12">රියෝස්ටැටය</text>
+<rect x="420" y="63" width="70" height="34" rx="4" fill="#334155" stroke="#4cc3f0" stroke-width="2"/><text x="455" y="85" fill="#e2e8f0" text-anchor="middle" font-size="13">R</text>
+<path d="M420 80V35H455M490 80V35H455" fill="none" stroke="#4cc3f0" stroke-width="2"/><circle cx="455" cy="35" r="17" fill="#0f172a" stroke="#4cc3f0" stroke-width="2"/><text x="455" y="40" fill="#e2e8f0" text-anchor="middle" font-size="13">V</text><text x="455" y="18" fill="#e2e8f0" text-anchor="middle" font-size="11">වෝල්ට්මීටරය (සමාන්තර)</text>
+<text x="360" y="169" fill="#cbd5e1" text-anchor="middle" font-size="12">ප්‍රතිරෝධකය හරහා වෝල්ටීයතාව මනී; මිනුම් උපකරණ නිවැරදි ස්ථානවල යොදන්න.</text></svg>
+<div class="row"><label>ද්‍රව්‍ය <select id="mat"><option value="1.68e-8">තඹ (ρ = 1.68×10⁻⁸ Ω·m)</option><option value="2.82e-8">ඇලුමිනියම් (ρ = 2.82×10⁻⁸ Ω·m)</option><option value="1.10e-6">නික්‍රෝම් (ρ ≈ 1.10×10⁻⁶ Ω·m)</option></select></label>
+<label>දිග L (m) <input id="wireL" type="range" min="1" max="100" value="10"><b id="wireLo" class="m">10</b></label>
+<label>හරස්කඩ A (mm²) <input id="wireA" type="range" min="0.5" max="10" step="0.5" value="1.5"><b id="wireAo" class="m">1.5</b></label>
+<label><input type="checkbox" id="useWire"> R = ρ<span class="fr"><span>L</span><span>A</span></span> භාවිතා කරන්න</label><label><input type="checkbox" id="filament"> රත් වන තන්තුව (වක්‍ර V–I)</label></div>
+<div class="row"><button id="recordReading" class="p">පාඨාංකය වගුවට එක් කරන්න</button><button id="clearReadings">වගුව හිස් කරන්න</button><span class="sim-note">තන්තුවේ වක්‍ර ආකෘතිය ගුණාත්මක අධ්‍යාපනික ආසන්නකරණයකි; නිශ්චිත බල්බ දත්ත නොවේ.</span></div>
+<div class="table-wrap"><table id="readings"><thead><tr><th>#</th><th>V (V)</th><th>I (A)</th><th>R (Ω)</th><th>මාදිලිය</th></tr></thead><tbody></tbody></table></div>`;
+
+const labState={rows:[]};
+function labR(){
+ const base=+$('r1').value;
+ if(!$('useWire').checked)return base;
+ const area=+$('wireA').value*1e-6,length=+$('wireL').value,rho=+$('mat').value;
+ return Math.max(0.001,rho*length/area);
+}
+function labValues(v=+$('v1').value){
+ const r=labR(),effective=$('filament').checked?r*(1+0.003*Math.max(0,v)):r;
+ return {v,r,effective,i:v/effective,p:v*(v/effective)};
+}
+function updateLab(){
+ $('wireLo').textContent=$('wireL').value;$('wireAo').textContent=$('wireA').value;
+ $('r1o').textContent=labR().toFixed(labR()<10?2:1);
+ const {v,r,effective,i,p}=labValues();
+ $('o1').innerHTML=`${$('filament').checked?'<b>රත් වන තන්තුව – ගුණාත්මක ආසන්නකරණය:</b> උෂ්ණත්වය ඉහළ යාමෙන් R වැඩි වේ.':'<b>ඕම් නියමය:</b> ස්ථාවර තත්ත්වයේ V = IR.'}<br><span class="m">V = ${v.toFixed(1)} V, R₀ = ${r.toFixed(2)} Ω, R<sub>eff</sub> = ${effective.toFixed(2)} Ω, I = ${i.toFixed(3)} A, P = ${p.toFixed(2)} W</span><br>ද්‍රව්‍යයෙන් ගණනය කළ <span class="m">R = ρ<span class="fr"><span>L</span><span>A</span></span></span>. විදුලි සැපයුම් simulation අගයන් පමණි.`;
+ drawVI();
+}
+function drawVI(){
+ const canvas=$('c6'),ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad={l:58,r:18,t:24,b:38};
+ ctx.clearRect(0,0,W,H);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,W,H);
+ const current=labValues().i,maxI=Math.max(current*1.2,0.1),maxV=Math.max(+$('v1').value*1.1,10);
+ const px=i=>pad.l+(i/maxI)*(W-pad.l-pad.r),py=v=>H-pad.b-(v/maxV)*(H-pad.t-pad.b);
+ ctx.strokeStyle='#64748b';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
+ ctx.fillStyle='#e2e8f0';ctx.font='12px sans-serif';ctx.fillText('V (V)',8,18);ctx.fillText('I (A)',W-48,H-8);
+ for(let n=0;n<=4;n++){const v=maxV*n/4;ctx.fillText(v.toFixed(0),22,py(v)+4);ctx.strokeStyle='#334155';ctx.beginPath();ctx.moveTo(pad.l,py(v));ctx.lineTo(W-pad.r,py(v));ctx.stroke()}
+ ctx.strokeStyle=$('filament').checked?'#f59e0b':'#4ade80';ctx.lineWidth=3;ctx.beginPath();
+ for(let n=0;n<=100;n++){const v=maxV*n/100,{i}=labValues(v);n?ctx.lineTo(px(i),py(v)):ctx.moveTo(px(i),py(v))}ctx.stroke();
+ const now=labValues();ctx.fillStyle='#f472b6';ctx.beginPath();ctx.arc(px(now.i),py(now.v),6,0,TAU);ctx.fill();
+ ctx.fillStyle='#e2e8f0';ctx.fillText(`V–I ප්‍රස්තාරය: X = I, Y = V; ඕම් සන්නායකයේ බෑවුම (ΔV over ΔI) = R (${now.effective.toFixed(2)} Ω)`,pad.l,pad.t-7);
+}
+['v1','r1','wireL','wireA','mat','useWire','filament'].forEach(id=>$(id).addEventListener(id==='mat'||id==='useWire'||id==='filament'?'change':'input',updateLab));
+$('recordReading').onclick=()=>{const {v,r,i}=labValues();labState.rows.push({v,i,r});$('readings').tBodies[0].innerHTML=labState.rows.map((x,n)=>`<tr><td>${n+1}</td><td>${x.v.toFixed(2)}</td><td>${x.i.toFixed(4)}</td><td>${x.i? (x.v/x.i).toFixed(2):'—'}</td><td>${$('filament').checked?'තන්තුව (ආසන්න)':'Ohmic'}</td></tr>`).join('')};
+$('clearReadings').onclick=()=>{labState.rows=[];$('readings').tBodies[0].replaceChildren()};
+off=0;
+d1=function(t){
+ const {v,r,effective,i,p}=labValues(),ctx=$('c1').getContext('2d'),c=$('c1'),phase=(t*.001*Math.max(1,+$('f1').value))%TAU;
+ ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#0f172a';ctx.fillRect(0,0,c.width,c.height);
+ ctx.strokeStyle='#94a3b8';ctx.lineWidth=3;ctx.strokeRect(45,55,230,105);
+ ctx.fillStyle='#e2e8f0';ctx.font='13px sans-serif';ctx.fillText('සැපයුම',52,42);ctx.fillText('Rheostat + R',118,48);ctx.fillText('බල්බය',220,177);
+ ctx.beginPath();ctx.moveTo(45,108);ctx.lineTo(45,75);ctx.lineTo(98,75);ctx.moveTo(45,135);ctx.lineTo(45,160);ctx.lineTo(275,160);ctx.lineTo(275,108);ctx.stroke();
+ ctx.beginPath();ctx.moveTo(45,108);ctx.lineTo(45,135);ctx.stroke();ctx.fillStyle='#e2e8f0';ctx.font='20px sans-serif';ctx.fillText('+',36,104);ctx.fillText('−',36,143);
+ ctx.beginPath();ctx.moveTo(98,75);ctx.lineTo(118,75);ctx.lineTo(128,62);ctx.lineTo(140,88);ctx.lineTo(152,62);ctx.lineTo(164,88);ctx.lineTo(176,75);ctx.lineTo(214,75);ctx.stroke();
+ const glow=Math.min(1,p/300);ctx.shadowColor='#facc15';ctx.shadowBlur=35*glow;ctx.fillStyle=`rgba(250,204,21,${Math.min(.95,.08+glow*.85)})`;ctx.beginPath();ctx.arc(245,75,18,0,TAU);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#facc15';ctx.stroke();
+ ctx.fillStyle='#38bdf8'; const travel=mode==='DC'?(t*i*.012)%1:.5+Math.min(.48,i*.02)*Math.sin(phase);
+ for(let n=0;n<12;n++){const q=(n/12+travel)%1,x=45+q*230,y=q<.5?75:160;ctx.beginPath();ctx.arc(x,y,3.5,0,TAU);ctx.fill()}
+ const X=365,Y=135,w=325,h=205,peak=mode==='AC'?v*Math.SQRT2:v;
+ ctx.strokeStyle='#475569';ctx.lineWidth=1;ctx.strokeRect(X,20,w,h);ctx.beginPath();ctx.moveTo(X,Y);ctx.lineTo(X+w,Y);ctx.stroke();
+ ctx.strokeStyle='#4ade80';ctx.lineWidth=2;ctx.beginPath();for(let k=0;k<=w;k++){const z=mode==='AC'?peak*Math.sin(TAU*k/w-phase):v,yy=Y-z/Math.max(1,peak)*85;k?ctx.lineTo(X+k,yy):ctx.moveTo(X+k,yy)}ctx.stroke();
+ ctx.fillStyle='#e2e8f0';ctx.font='12px sans-serif';ctx.fillText(mode==='AC'?`AC ${$('f1').value} Hz · peak ${peak.toFixed(1)} V`:`DC · ${v.toFixed(1)} V`,X+8,16);
+ $('o1').innerHTML=`<b>${mode==='AC'?'AC':'DC'} · Ohm’s law</b><br><span class="m">V = ${v.toFixed(1)} V, R = ${effective.toFixed(2)} Ω, I = ${i.toFixed(3)} A, P = ${p.toFixed(2)} W</span> · <span class="sim-note">Electron-dot animation speed follows current; brightness follows dissipated power.</span>`;
+};
+updateLab();
+d1x=function(){drawVI()};
+
+const chain=document.createElement('svg');chain.className='sv';chain.setAttribute('viewBox','0 0 840 128');chain.setAttribute('role','img');chain.setAttribute('aria-label','වීදි සැපයුමෙන් සේවා විලායකය, kWh මීටරය, ද්විධ්‍රැව ප්‍රධාන ස්විචය, RCCB සහ MCB වෙත ගමන් කරන සැපයුම් අනුපිළිවෙල');
+chain.innerHTML=`<path d="M18 62H822" stroke="#a16207" stroke-width="5"/>${[['වීදි සැපයුම',18],['සේවා විලායකය',152],['kWh මීටරය',286],['ප්‍රධාන ස්විචය',420],['RCCB',554],['MCB',688]].map(([label,x],n)=>`<rect x="${x}" y="34" width="112" height="56" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="${x+56}" y="55" fill="#111827" text-anchor="middle" font-size="12">${label}</text><text x="${x+56}" y="75" fill="#1e293b" text-anchor="middle" font-size="10">${['230/400 V','cut-out','meter','63 A DP','40 A / 30 mA','6 A / 16 A'][n]}</text>`).join('')}<text x="840" y="110" fill="#e2e8f0" text-anchor="end" font-size="11">සංකල්පීය සැපයුම් අනුපිළිවෙල – සැබෑ සැලසුම දේශීය නීති අනුව විය යුතුය.</text>`;
+$('svgdb').parentElement.insertBefore(chain,$('svgdb').parentElement.querySelector('.row'));
+
+// Make component cards show both a standard symbol and a robust, locally-rendered product illustration.
+function productSvg(label,index){
+ const k=label.toLowerCase();
+ let body=`<rect x="34" y="20" width="82" height="32" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="2"/><text x="75" y="40" fill="#e2e8f0" text-anchor="middle" font-size="10">COMPONENT</text>`;
+ if(k.includes('resistor'))body=`<path d="M0 36H34M116 36H150" stroke="#cbd5e1" stroke-width="3"/><rect x="34" y="20" width="82" height="32" rx="14" fill="#d6b47c" stroke="#8b5e34" stroke-width="2"/><path d="M53 21V51M72 21V51M91 21V51" stroke="#9f1239" stroke-width="6"/>`;
+ else if(k.includes('capacitor'))body=`<path d="M0 36H55M95 36H150" stroke="#cbd5e1" stroke-width="3"/><rect x="56" y="13" width="38" height="48" rx="15" fill="#2563eb" stroke="#bfdbfe" stroke-width="2"/><path d="M81 15V59" stroke="#cbd5e1" stroke-width="4"/><text x="64" y="39" fill="white" font-size="11">−</text>`;
+ else if(k.includes('inductor')||k.includes('transformer'))body=`<rect x="24" y="18" width="102" height="40" rx="6" fill="#374151" stroke="#94a3b8" stroke-width="2"/><path d="M0 38H24M126 38H150M38 24V52M48 24V52M58 24V52M68 24V52M78 24V52M88 24V52M98 24V52M108 24V52" stroke="#d97706" stroke-width="3"/>`;
+ else if(k.includes('diode')||k.includes('led'))body=`<path d="M0 36H48M105 36H150" stroke="#cbd5e1" stroke-width="3"/><rect x="48" y="23" width="57" height="26" rx="12" fill="#111827" stroke="#94a3b8" stroke-width="2"/><path d="M91 24V48" stroke="#e5e7eb" stroke-width="4"/>`;
+ else if(k.includes('transistor')||k.includes('regulator')||k.includes('ic'))body=`<path d="M46 12H104V52H46Z" fill="#111827" stroke="#94a3b8" stroke-width="2"/><path d="M58 52V68M75 52V68M92 52V68" stroke="#d1d5db" stroke-width="4"/><text x="75" y="36" fill="#e2e8f0" text-anchor="middle" font-size="10">78XX</text>`;
+ else if(k.includes('mcb')||k.includes('rccb')||k.includes('switch'))body=`<rect x="42" y="9" width="66" height="58" rx="7" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="65" y="24" width="20" height="30" rx="4" fill="#1f2937"/><rect x="68" y="27" width="14" height="12" rx="2" fill="#ef4444"/><circle cx="96" cy="20" r="4" fill="#2563eb"/>`;
+ else if(k.includes('fuse'))body=`<path d="M0 36H38M112 36H150" stroke="#cbd5e1" stroke-width="3"/><rect x="38" y="21" width="74" height="30" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/><path d="M48 36H102" stroke="#d97706" stroke-width="3"/>`;
+ else if(k.includes('lamp')||k.includes('බල්බ'))body=`<path d="M0 36H51M99 36H150" stroke="#cbd5e1" stroke-width="3"/><path d="M56 51Q44 31 53 19Q62 5 75 8Q94 9 98 25Q101 39 90 51Z" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/><path d="M60 55H88M63 61H85" stroke="#94a3b8" stroke-width="4"/>`;
+ return `<svg viewBox="0 0 150 74" role="img" aria-label="${label} – රූපමය නිදර්ශනය">${body}</svg>`;
+}
+const extraComponents=[
+ ['Zener ඩයෝඩය','Zener Diode','<path d="M0 25H40M40 10V40L75 25ZM75 8L70 13V37L75 42M75 25H120"/>','ප්‍රතිලෝම බිඳවැටීමේ කලාපයේ නියමිත වෝල්ටීයතාවයක් පවත්වා ගැනීමට භාවිතා කරයි.'],
+ ['LED ඩයෝඩය','Light Emitting Diode','<path d="M0 25H40M40 10V40L75 25ZM75 8V42M75 25H120M82 12L96 1M91 2H96V7M91 24L105 13M100 14H105V19"/>','ඉදිරි නැඹුරුවේදී ආලෝකය විමෝචනය කරයි; ධාරා සීමාකාරී ප්‍රතිරෝධයක් අවශ්‍ය වේ.']
+];
+extraComponents.forEach((g,i)=>{
+ const card=document.createElement('div');card.className='card';card.innerHTML=`<div><h3>${g[0]}</h3><small>${g[1]}</small><br>${g[3]}</div>`;
+ const symbol=document.createElementNS('http://www.w3.org/2000/svg','svg');symbol.setAttribute('viewBox','0 0 120 50');symbol.setAttribute('aria-label',g[1]+' circuit symbol');symbol.setAttribute('fill','none');symbol.setAttribute('stroke','currentColor');symbol.setAttribute('stroke-width','2.5');symbol.innerHTML=g[2];
+ const pair=document.createElement('div');pair.className='visual-pair';const a=document.createElement('div');a.className='visual-box';a.innerHTML='<small>පරිපථ සංකේතය</small>';a.append(symbol);const b=document.createElement('div');b.className='visual-box';b.innerHTML='<small>සැබෑ උපාංගයේ රූපමය නිදර්ශනය</small>'+productSvg(g[1],i);pair.append(a,b);card.insertBefore(pair,card.firstChild);$('gal').append(card);
+});
+Array.from($('gal').children).forEach((card,index)=>{
+ const oldSymbol=card.querySelector('svg');if(!oldSymbol||card.querySelector('.visual-pair'))return;
+ const name=card.querySelector('small')?.textContent||card.querySelector('h3')?.textContent||'Electrical component';
+ const pair=document.createElement('div');pair.className='visual-pair';
+ const left=document.createElement('div');left.className='visual-box';left.innerHTML='<small>පරිපථ සංකේතය</small>';left.append(oldSymbol);
+ const right=document.createElement('div');right.className='visual-box';right.innerHTML='<small>සැබෑ උපාංගයේ රූපමය නිදර්ශනය</small>'+productSvg(name,index);
+ pair.append(left,right);card.insertBefore(pair,card.firstChild);
+});
+
+// Prevent animation-frame DOM growth and show correct equivalent resistance and circuit behavior.
+d3x=function(){
+ const n=burnt.filter(x=>!x).length;
+ let text='';
+ if(!par)text=n===3?'ශ්‍රේණිගත: R<sub>eq</sub> = R₁+R₂+R₃ = 18 Ω; I<sub>total</sub> = I₁ = I₂ = I₃ = <span class="fr"><span>12 V</span><span>18 Ω</span></span> = 0.667 A; එක් බල්බයකට 4 V.':'ශ්‍රේණිගත: බල්බයක් විසන්ධි වූ නිසා මාර්ගය විවෘතයි; I = 0 A, බල්බ තුනම OFF.';
+ else text=n?`සමාන්තරගත: R<sub>eq</sub> = <span class="fr"><span>6 Ω</span><span>${n}</span></span> = ${(6/n).toFixed(2)} Ω; එක් එක් ක්‍රියාකාරී ශාඛාවට 12 V; I<sub>මුළු</sub> = ${(2*n).toFixed(2)} A; ඉතිරි බල්බ දැල්වේ.`:'සමාන්තරගත: සියලු ශාඛා විවෘතයි; I<sub>මුළු</sub> = 0 A.';
+ $('o3').innerHTML=`<span class="m">R<sub>eq</sub> = ${!par?(n===3?'18.00 Ω':'∞ (විවෘත)'):(n?(6/n).toFixed(2)+' Ω':'∞ (විවෘත)')}</span><br>${text}`;
+};
+
+// RCCB detects imbalance, not simply a person touching a wire; earthing is additional protection.
+$('fO').onclick=()=>{S.K=0;FS='o';dbDraw('⚠ අධි ධාරාව: 24 A > කෙවෙනි MCB 16 A; MCB OFF වී ඇත.','මෙම අනුකරණයේදී අධි ධාරාව කෙවෙනි ශාඛාවේ MCB එක ට්‍රිප් කරයි. එය RCCB කාර්යයෙන් වෙනස්ය.')};
+$('fS').onclick=()=>{S.K=0;FS='s';dbDraw('⚡ ලඝු පරිපථය: Live–Neutral සම්බන්ධතාවය; MCB OFF වී ඇත.','අඩු ප්‍රතිරෝධය නිසා ඉතා විශාල ධාරාවක් ඇති විය හැකි බැවින් අධි ධාරා ආරක්ෂකය ක්‍රියා කරයි. මෙම දර්ශනය ආරක්ෂිත animation එකක් පමණි.')};
+$('fE').onclick=()=>{S.R=0;FS='e';dbDraw('⚠ භූගත කාන්දුව: 30 mA RCCB හි rated residual operating current ඉක්මවන දෝෂය හඳුනාගෙන RCCB OFF වේ.','RCCB සජීවී සහ උදාසීන ධාරා අතර වෙනස හඳුනාගනී. සම්බන්ධිත ආරක්ෂක භූගතය දෝෂ ධාරාවට අඩු-ප්‍රතිරෝධ මාර්ගයක් සපයයි; RCCB සහ earthing එකිනෙකට අමතර ආරක්ෂක ක්‍රම වේ. 30 mA යනු උපකරණයේ නාමික සංවේදීතාවයි—සෑම තත්ත්වයකදීම පුද්ගලයාට ආරක්ෂාව සහතික නොකරයි.')};
+
+
+</script>
+<script>
+// ---- Resistor colour code calculator ----
+const CC=[['කළු',0,'#111'],['දුඹුරු',1,'#7c3f00'],['රතු',2,'#dc2626'],['තැඹිලි',3,'#f97316'],['කහ',4,'#facc15'],['කොළ',5,'#16a34a'],['නිල්',6,'#2563eb'],['දම්',7,'#7e22ce'],['අළු',8,'#9ca3af'],['සුදු',9,'#f8fafc']];
+const MUL=[...CC.map(c=>[c[0],Math.pow(10,c[1]),c[2]]),['රන්වන්',0.1,'#d4a017'],['රිදී',0.01,'#c0c0c0']];
+const TOL=[['දුඹුරු ±1%',1,'#7c3f00'],['රතු ±2%',2,'#dc2626'],['කොළ ±0.5%',0.5,'#16a34a'],['නිල් ±0.25%',0.25,'#2563eb'],['දම් ±0.1%',0.1,'#7e22ce'],['අළු ±0.05%',0.05,'#9ca3af'],['රන්වන් ±5%',5,'#d4a017'],['රිදී ±10%',10,'#c0c0c0'],['පටියක් නැත ±20%',20,'none']];
+let rcN=4;
+const fR=r=>{const [v,u]=r>=1e6?[r/1e6,'MΩ']:r>=1e3?[r/1e3,'kΩ']:[r,'Ω'];return (+v.toPrecision(4))+' '+u};
+function rcBuild(){const B=rcN==4?[['1 වන ඉලක්කම',CC,'d1'],['2 වන ඉලක්කම',CC,'d2'],['ගුණකය',MUL,'m'],['ඉවසීම',TOL,'t']]:[['1 වන ඉලක්කම',CC,'d1'],['2 වන ඉලක්කම',CC,'d2'],['3 වන ඉලක්කම',CC,'d3'],['ගුණකය',MUL,'m'],['ඉවසීම',TOL,'t']];
+$('rcSel').innerHTML=B.map(b=>`<label>${b[0]} <select data-k="${b[2]}">${b[1].map((c,i)=>`<option value="${i}">${c[0]}</option>`).join('')}</select></label>`).join('');
+const dv={d1:1,d2:0,d3:0,m:rcN==4?2:1,t:6};$('rcSel').querySelectorAll('select').forEach(s=>{s.value=dv[s.dataset.k];s.onchange=rcCalc});rcCalc()}
+function rcCalc(){const g=k=>{const e=$('rcSel').querySelector(`[data-k="${k}"]`);return e?+e.value:0};
+const dg=rcN==4?CC[g('d1')][1]*10+CC[g('d2')][1]:CC[g('d1')][1]*100+CC[g('d2')][1]*10+CC[g('d3')][1];
+const R=dg*MUL[g('m')][1],tl=TOL[g('t')][1],lo=R*(1-tl/100),hi=R*(1+tl/100);
+const cols=rcN==4?[CC[g('d1')][2],CC[g('d2')][2],MUL[g('m')][2],TOL[g('t')][2]]:[CC[g('d1')][2],CC[g('d2')][2],CC[g('d3')][2],MUL[g('m')][2],TOL[g('t')][2]];
+const gap=rcN==4?34:28;let s='<path d="M0 35H60M240 35H300" stroke="#cbd5e1" stroke-width="4"/><rect x="60" y="14" width="180" height="42" rx="18" fill="#d6b47c" stroke="#8b5e34" stroke-width="2"/>';
+cols.forEach((c,i)=>{const x=82+i*gap+(i==cols.length-1?14:0);if(c!='none')s+=`<rect x="${x}" y="14" width="12" height="42" fill="${c}" stroke="#0006"/>`});
+$('rcSvg').innerHTML=s;
+$('rcOut').innerHTML=`<b class="m">R = ${dg} × ${MUL[g('m')][1]} = ${fR(R)} ±${tl}%</b><br>පරාසය: ${fR(lo)} – ${fR(hi)}`}
+$('b4').onclick=()=>{rcN=4;sel($('b4'),$('b5'),true);rcBuild()};$('b5').onclick=()=>{rcN=5;sel($('b4'),$('b5'),false);rcBuild()};rcBuild();
+
+// ---- Correct component symbols + real-device illustrations, placed in the lessons that teach them ----
+(function(){
+const T=(x,y,t,z=9,a='middle')=>`<text x='${x}' y='${y}' font-size='${z}' text-anchor='${a}' fill='currentColor' stroke='none' font-family='sans-serif'>${t}</text>`;
+const AR=(x1,y1,x2,y2,s=7)=>{const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,bx=x2-ux*s,by=y2-uy*s,px=-uy*s*.45,py=ux*s*.45;return `<path d='M${x1} ${y1}L${x2} ${y2}'/><path d='M${(bx+px).toFixed(1)} ${(by+py).toFixed(1)}L${x2} ${y2}L${(bx-px).toFixed(1)} ${(by-py).toFixed(1)}Z' fill='currentColor'/>`};
+const dio=(ax,ay,cx,cy)=>{const a=Math.atan2(cy-ay,cx-ax)*180/Math.PI;return `<g transform='translate(${(ax+cx)/2} ${(ay+cy)/2}) rotate(${a.toFixed(1)})'><path d='M-4.5 -4.5V4.5L4 0Z'/><path d='M4.5 -4.5V4.5'/></g>`};
+const COIL='M0 25H20a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0a10 10 0 0 1 20 0H120';
+const RES="<path d='M0 25H30M90 25H120'/><rect x='30' y='15' width='60' height='20'/>";
+const SW="<circle cx='34' cy='25' r='3'/><circle cx='86' cy='25' r='3'/>";
+const lead=(d)=>`<path d='${d}' stroke='#94a3b8' stroke-width='3' fill='none'/>`;
+const coil=(n,x0,dx,cy,rx,ry,col='#d97706')=>{let s='';for(let i=0;i<n;i++)s+=`<ellipse cx='${x0+i*dx}' cy='${cy}' rx='${rx}' ry='${ry}' fill='none' stroke='${col}' stroke-width='4'/>`;return s};
+let rad='';for(let a=0;a<360;a+=15){const r=a*Math.PI/180;rad+=`<line x1='${(75+17*Math.cos(r)).toFixed(1)}' y1='${(36+17*Math.sin(r)).toFixed(1)}' x2='${(75+31*Math.cos(r)).toFixed(1)}' y2='${(36+31*Math.sin(r)).toFixed(1)}' stroke='#d97706' stroke-width='3'/>`}
+let wind='';for(let y=12;y<62;y+=4)wind+=`<line x1='30' y1='${y}' x2='120' y2='${y}' stroke='#00000033'/>`;
+let rl='';for(let x=26;x<126;x+=5)rl+=`<line x1='${x}' y1='30' x2='${x}' y2='58' stroke='#7c2d12' stroke-width='1.5'/>`;
+const hx=(x0,p,n,rx,ry)=>{let d='';for(let t=0;t<=2*Math.PI*n+.01;t+=.12){d+=(d?'L':'M')+(x0+p*t/6.2832+rx*Math.cos(t)).toFixed(1)+' '+(36+ry*Math.sin(t)).toFixed(1)}return `<path d='${d}' fill='none' stroke='#d97706' stroke-width='3' stroke-linejoin='round'/>`};
+const I=[
+// ---------- resistors ----------
+{k:'r',n:'ස්ථාවර ප්‍රතිරෝධකය',e:'Fixed Resistor',d:'පරිපථයේ ධාරාව සීමා කරයි; වෝල්ටීයතාව බෙදයි. ඒකකය Ω.',
+ s:RES,v:lead('M5 36H32M118 36H145')+"<rect x='30' y='22' width='90' height='28' rx='12' fill='#d9b98a' stroke='#8b5e34' stroke-width='2'/><rect x='46' y='22' width='7' height='28' fill='#7c3f00'/><rect x='60' y='22' width='7' height='28' fill='#111'/><rect x='74' y='22' width='7' height='28' fill='#dc2626'/><rect x='100' y='22' width='7' height='28' fill='#d4a017'/>"},
+{k:'r',n:'විචල්‍ය ප්‍රතිරෝධකය (රියෝස්ටැටය)',e:'Variable Resistor / Rheostat',d:'සර්පණ අග්‍රයෙන් R වෙනස් කර ධාරාව පාලනය කරයි (අග්‍ර 2ක්).',
+ s:RES+AR(24,44,98,6),v:`<rect x='18' y='30' width='114' height='30' rx='3' fill='#c2703d' stroke='#7c2d12' stroke-width='2'/>${rl}<rect x='14' y='14' width='122' height='5' fill='#94a3b8'/><rect x='22' y='17' width='4' height='13' fill='#94a3b8'/><rect x='124' y='17' width='4' height='13' fill='#94a3b8'/><rect x='66' y='18' width='18' height='14' rx='2' fill='#1f2937'/><circle cx='10' cy='46' r='4' fill='#94a3b8'/><circle cx='140' cy='46' r='4' fill='#94a3b8'/>`},
+{k:'r',n:'පොටෙන්ශියෝමීටරය',e:'Potentiometer (3 terminals)',d:'අග්‍ර 3ක් ඇත; වෝල්ටීයතා බෙදුමක් ලෙස ක්‍රියා කරයි (ශබ්ද පාලකය).',
+ s:RES+AR(60,49,60,36,6),v:`<circle cx='75' cy='34' r='26' fill='#94a3b8' stroke='#64748b' stroke-width='2'/><circle cx='75' cy='34' r='17' fill='#1f2937'/><line x1='75' y1='34' x2='75' y2='19' stroke='#f43f5e' stroke-width='3'/><rect x='55' y='60' width='3' height='12' fill='#94a3b8'/><rect x='73.5' y='60' width='3' height='12' fill='#94a3b8'/><rect x='92' y='60' width='3' height='12' fill='#94a3b8'/>`},
+{k:'r',n:'ආලෝක සංවේදී ප්‍රතිරෝධකය (LDR)',e:'Light Dependent Resistor',d:'ආලෝකය වැඩි වන විට ප්‍රතිරෝධය අඩු වේ.',
+ s:"<path d='M0 25H38M82 25H120'/><circle cx='60' cy='25' r='22'/><rect x='41' y='18' width='38' height='14'/>"+AR(24,1,42,9,6)+AR(10,10,28,19,6),
+ v:lead('M63 54V72M87 54V72')+"<circle cx='75' cy='32' r='26' fill='#92400e' stroke='#451a03' stroke-width='2'/><path d='M56 20H94V27H56V34H94V41H56V48H94' fill='none' stroke='#fde68a' stroke-width='3'/>"},
+{k:'r',n:'තර්මිස්ටරය (NTC)',e:'Thermistor',d:'උෂ්ණත්වය සමඟ ප්‍රතිරෝධය වෙනස් වේ. NTC: උෂ්ණත්වය වැඩි → R අඩු; PTC: වැඩි → වැඩි.',
+ s:RES+"<path d='M22 43H36L84 7H98'/>"+T(60,11,'−t°'),v:lead('M66 44V72M84 44V72')+"<circle cx='75' cy='30' r='20' fill='#ea580c' stroke='#7c2d12' stroke-width='2'/><ellipse cx='68' cy='22' rx='6' ry='4' fill='#fff' opacity='.35'/>"+"<text x='75' y='36' font-size='10' text-anchor='middle' fill='#fff' font-family='sans-serif' font-weight='bold'>NTC</text>"},
+// ---------- capacitors ----------
+{k:'c',n:'ස්ථාවර ධාරිත්‍රකය (ධ්‍රැවීය නොවන)',e:'Fixed Capacitor',d:'තහඩු දෙකක් අතර ආරෝපණ ගබඩා කරයි; ඒකකය F. සෙරමික්/ෆිල්ම් වර්ග.',
+ s:"<path d='M0 25H52M52 8V42M68 8V42M68 25H120'/>",v:lead('M64 50V72M86 50V72')+"<circle cx='75' cy='28' r='24' fill='#e0a458' stroke='#92602a' stroke-width='2'/><text x='75' y='34' font-size='16' font-weight='bold' text-anchor='middle' fill='#3b2410' font-family='sans-serif'>104</text>"},
+{k:'c',n:'විද්‍යුත් විච්ඡේද්‍ය ධාරිත්‍රකය (ධ්‍රැවීය)',e:'Electrolytic Capacitor',d:'විශාල ධාරණාව (µF–mF); + / − අග්‍ර නිවැරදිව සම්බන්ධ කළ යුතුයි. සුමටන ධාරිත්‍රකය.',
+ s:"<path d='M0 25H50M50 8V42M70 8Q84 25 70 42M77 25H120M36 12H44M40 8V16'/>",v:`<path d='M63 54V68' stroke='#94a3b8' stroke-width='3'/><path d='M88 54V72' stroke='#94a3b8' stroke-width='3'/><rect x='50' y='8' width='50' height='46' rx='5' fill='#1d4ed8' stroke='#1e3a8a' stroke-width='2'/><rect x='50' y='8' width='14' height='46' fill='#e5e7eb'/><rect x='50' y='8' width='50' height='6' rx='3' fill='#94a3b8'/><text x='57' y='26' font-size='11' text-anchor='middle' fill='#111' font-family='sans-serif'>−</text><text x='57' y='40' font-size='11' text-anchor='middle' fill='#111' font-family='sans-serif'>−</text><text x='83' y='32' font-size='8' text-anchor='middle' fill='#fff' font-family='sans-serif'>470µF</text><text x='83' y='43' font-size='8' text-anchor='middle' fill='#fff' font-family='sans-serif'>25V</text>`},
+{k:'c',n:'විචල්‍ය ධාරිත්‍රකය',e:'Variable Capacitor',d:'ධාරණාව වෙනස් කළ හැක; රේඩියෝ සුසර කිරීමට (Tuning).',
+ s:"<path d='M0 25H52M52 8V42M68 8V42M68 25H120'/>"+AR(30,45,90,6),v:(()=>{let s='';for(let i=0;i<5;i++)s+=`<rect x='${38+i*14}' y='10' width='3' height='36' fill='#94a3b8'/>`;for(let i=0;i<5;i++)s+=`<rect x='${45+i*14}' y='20' width='3' height='36' fill='#e2e8f0' stroke='#64748b' stroke-width='.5'/>`;return `<rect x='28' y='6' width='88' height='6' fill='#64748b'/><path d='M40 62H130' stroke='#64748b' stroke-width='4'/><rect x='128' y='56' width='16' height='12' rx='3' fill='#1f2937'/>`+s})()},
+// ---------- inductors ----------
+{k:'l',n:'ප්‍රේරකය (වායු හර)',e:'Air-core Inductor',d:'සිහින් තඹ කම්බිය සර්පිලාකාරව (helix) එතූ දඟරයකි; හරයක් නැත. චුම්බක ක්ෂේත්‍රයේ ශක්තිය ගබඩා කරයි; ඒකකය H (හෙන්රි).',
+ s:`<path d='${COIL}'/>`,v:`<path d='M6 36H43M127 36H146' stroke='#d97706' stroke-width='3'/>`+hx(36,12,7,7,18)},
+{k:'l',n:'යකඩ හර සහිත ප්‍රේරකය',e:'Iron-cored Inductor',d:'ෆෙරයිට්/ලැමිනේටඩ් යකඩ හරය දඟරය මැදින් යන නිසා μ වැඩි වී L විශාල වේ (සංකේතයේ සමාන්තර රේඛා = හරය).',
+ s:`<path d='${COIL}'/><path d='M20 7H100M20 11H100'/>`,v:`<rect x='26' y='28' width='98' height='16' rx='2' fill='#64748b' stroke='#334155' stroke-width='1.5'/><path d='M26 33H124M26 39H124' stroke='#94a3b8' stroke-width='.8'/>`+`<path d='M6 36H43M127 36H146' stroke='#d97706' stroke-width='3'/>`+hx(36,12,7,7,22)},
+{k:'l',n:'විචල්‍ය ප්‍රේරකය',e:'Variable Inductor',d:'ෆෙරයිට් ස්ලග් (හරය) දඟරය තුළට/ඉන් පිටතට ඇද L වෙනස් කරයි; ස්ලගය ඇතුළට යන තරමට L වැඩිය.',
+ s:`<path d='${COIL}'/>`+AR(26,46,94,4),v:`<path d='M6 36H43M127 36H146' stroke='#d97706' stroke-width='3'/>`+hx(36,12,7,7,16)+`<rect x='34' y='30' width='72' height='12' rx='2' fill='#6b7280' stroke='#374151' stroke-width='1.5' opacity='.92'/><rect x='106' y='27' width='14' height='18' rx='3' fill='#374151'/><path d='M110 36H116' stroke='#e5e7eb' stroke-width='2'/>`+T(75,70,'ෆෙරයිට් ස්ලගය',8)},
+// ---------- transformer ----------
+{k:'t',n:'ට්‍රාන්ස්ෆෝමරය',e:'Transformer',d:'ආස්තරිත යකඩ හරය මත ප්‍රාථමික (Nₚ) සහ ද්විතීයික (Nₛ) දඟර; AC වෝල්ටීයතාව වෙනස් කරයි.',
+ s:"<path d='M46 3a5.5 5.5 0 0 0 0 11a5.5 5.5 0 0 0 0 11a5.5 5.5 0 0 0 0 11a5.5 5.5 0 0 0 0 11M46 3H26M46 47H26M74 3a5.5 5.5 0 0 1 0 11a5.5 5.5 0 0 1 0 11a5.5 5.5 0 0 1 0 11a5.5 5.5 0 0 1 0 11M74 3H94M74 47H94M56 3V47M64 3V47'/>"+T(14,28,'P')+T(106,28,'S'),
+ v:`<rect x='28' y='8' width='94' height='54' rx='3' fill='#64748b' stroke='#334155' stroke-width='2'/>${wind.replace(/y1='(\d+)' x2='120' y2='\d+'/g,"y1='$1' x2='120' y2='$1'")}<rect x='36' y='16' width='24' height='38' fill='#b45309' stroke='#78350f'/><rect x='90' y='16' width='24' height='38' fill='#b45309' stroke='#78350f'/><rect x='60' y='16' width='30' height='38' fill='#94a3b8'/><rect x='36' y='62' width='4' height='8' fill='#94a3b8'/><rect x='54' y='62' width='4' height='8' fill='#94a3b8'/><rect x='92' y='62' width='4' height='8' fill='#94a3b8'/><rect x='110' y='62' width='4' height='8' fill='#94a3b8'/>`+T(48,38,'Nₚ',9)+T(102,38,'Nₛ',9)},
+// ---------- diodes etc ----------
+{k:'d',n:'ඩයෝඩය',e:'Diode',d:'ධාරාව ඇනෝඩයේ (A) සිට කැතෝඩයට (K) එක දිශාවකට පමණක් යවයි. Si බැස්ම ≈ 0.7 V.',
+ s:"<path d='M0 25H38M38 10V40L72 25ZM72 10V40M72 25H120'/>"+T(20,18,'A')+T(102,18,'K'),v:lead('M8 36H48M102 36H142')+"<rect x='46' y='25' width='58' height='22' rx='5' fill='#111827' stroke='#374151'/><rect x='90' y='25' width='9' height='22' fill='#e5e7eb'/><text x='66' y='40' font-size='8' fill='#9ca3af' text-anchor='middle' font-family='sans-serif'>1N4007</text>"},
+{k:'d',n:'සෙනර් ඩයෝඩය',e:'Zener Diode',d:'ප්‍රතිලෝම බිඳවැටීමේ කලාපයේ නියත වෝල්ටීයතාවක් (V_Z) පවත්වයි.',
+ s:"<path d='M0 25H38M38 10V40L72 25ZM66 14L72 10V40L78 36M72 25H120'/>",v:lead('M8 36H50M100 36H142')+"<rect x='48' y='28' width='54' height='16' rx='7' fill='#f97316' opacity='.85' stroke='#9a3412'/><rect x='88' y='28' width='6' height='16' fill='#111'/>"},
+{k:'d',n:'ආලෝක විමෝචක ඩයෝඩය (LED)',e:'Light Emitting Diode',d:'ඉදිරි නැඹුරුවේදී ආලෝකය විමෝචනය කරයි. දිගු කකුල = ඇනෝඩය (+). ධාරා සීමාකාරී R අවශ්‍යයි.',
+ s:"<path d='M0 30H38M38 16V44L72 30ZM72 16V44M72 30H120'/>"+AR(50,18,64,4,6)+AR(64,18,78,4,6),v:`<path d='M63 56V72' stroke='#94a3b8' stroke-width='3'/><path d='M87 56V66' stroke='#94a3b8' stroke-width='3'/><path d='M52 54V30a23 23 0 0 1 46 0V54Z' fill='#ef4444' opacity='.9' stroke='#991b1b' stroke-width='2'/><rect x='48' y='54' width='54' height='4' rx='1' fill='#b91c1c'/><path d='M63 54V40H87V54' fill='none' stroke='#fecaca' stroke-width='2'/><ellipse cx='64' cy='20' rx='5' ry='8' fill='#fff' opacity='.4'/>`},
+{k:'d',n:'සේතු ඍජුකාරකය',e:'Bridge Rectifier',d:'ඩයෝඩ 4ක්; AC (~ ~) ආදානය → ස්පන්දන DC (+ / −) ප්‍රතිදානය (100 Hz).',
+ s:"<path d='M24 25L60 3L96 25L60 47ZM0 25H24M96 25H120'/>"+dio(24,25,60,3)+dio(96,25,60,3)+dio(60,47,24,25)+dio(60,47,96,25)+T(70,9,'+')+T(70,49,'−')+T(8,20,'~')+T(112,20,'~'),
+ v:`<rect x='45' y='8' width='60' height='44' rx='4' fill='#111827' stroke='#374151' stroke-width='2'/><text x='75' y='26' font-size='9' text-anchor='middle' fill='#9ca3af' font-family='sans-serif'>DB107</text><text x='57' y='46' font-size='11' text-anchor='middle' fill='#e2e8f0' font-family='sans-serif'>~</text><text x='71' y='46' font-size='11' text-anchor='middle' fill='#e2e8f0' font-family='sans-serif'>+</text><text x='85' y='46' font-size='11' text-anchor='middle' fill='#e2e8f0' font-family='sans-serif'>−</text><text x='99' y='46' font-size='11' text-anchor='middle' fill='#e2e8f0' font-family='sans-serif'>~</text><rect x='55.5' y='52' width='3' height='18' fill='#94a3b8'/><rect x='69.5' y='52' width='3' height='18' fill='#94a3b8'/><rect x='83.5' y='52' width='3' height='18' fill='#94a3b8'/><rect x='97.5' y='52' width='3' height='18' fill='#94a3b8'/>`},
+{k:'d',n:'වෝල්ටීයතා යාමක IC (7805 / 7812)',e:'Voltage Regulator IC',d:'ආදානය (IN) ≥ 14 V නම් නියත 5 V / 12 V DC ප්‍රතිදානයක් (OUT) දෙයි. GND = පොදු.',
+ s:"<rect x='28' y='8' width='64' height='34'/><path d='M0 18H28M92 18H120M60 42V50'/>"+T(38,22,'IN',8)+T(82,22,'OUT',8)+T(60,37,'GND',8)+T(60,17,'78XX',8),
+ v:`<rect x='48' y='6' width='54' height='18' fill='#94a3b8' stroke='#64748b' stroke-width='2'/><circle cx='75' cy='14' r='4' fill='#0f172a'/><rect x='48' y='24' width='54' height='32' fill='#111827' stroke='#374151' stroke-width='2'/><text x='75' y='44' font-size='11' text-anchor='middle' fill='#e5e7eb' font-family='sans-serif'>7812</text><rect x='57' y='56' width='3' height='16' fill='#94a3b8'/><rect x='73.5' y='56' width='3' height='16' fill='#94a3b8'/><rect x='90' y='56' width='3' height='16' fill='#94a3b8'/>`},
+{k:'d',n:'ට්‍රාන්සිස්ටරය NPN',e:'NPN Transistor',d:'විස්තාරණය සහ ස්විචය. ධාරාව C → E; ඊතලය (emitter) පිටතට. B = පාදම.',
+ s:"<circle cx='62' cy='25' r='20'/><path d='M0 25H44M44 12V38M44 19L70 8V0M44 31L70 42V50'/>"+`<path d='M66 40.3L58.1 40.8L60.9 34.4Z' fill='currentColor'/>`+T(6,21,'B',8)+T(80,8,'C',8)+T(80,48,'E',8),
+ v:`<path d='M54 56V30A21 21 0 0 1 96 30V56Z' fill='#111827' stroke='#374151' stroke-width='2'/><text x='75' y='44' font-size='9' text-anchor='middle' fill='#e5e7eb' font-family='sans-serif'>BC547</text><rect x='58.5' y='56' width='3' height='16' fill='#94a3b8'/><rect x='73.5' y='56' width='3' height='16' fill='#94a3b8'/><rect x='88.5' y='56' width='3' height='16' fill='#94a3b8'/>`+T(60,70,'',6)},
+{k:'d',n:'ට්‍රාන්සිස්ටරය PNP',e:'PNP Transistor',d:'NPN ට ප්‍රතිවිරුද්ධයි; ඊතලය (emitter) පාදම දෙසට (ඇතුළට).',
+ s:"<circle cx='62' cy='25' r='20'/><path d='M0 25H44M44 12V38M44 19L70 8V0M44 31L70 42V50'/>"+`<path d='M48 17.3L55.9 17.8L53.1 11.4Z' fill='currentColor'/>`+T(6,21,'B',8)+T(80,8,'E',8)+T(80,48,'C',8),
+ v:`<path d='M54 56V30A21 21 0 0 1 96 30V56Z' fill='#111827' stroke='#374151' stroke-width='2'/><text x='75' y='44' font-size='9' text-anchor='middle' fill='#e5e7eb' font-family='sans-serif'>BC557</text><rect x='58.5' y='56' width='3' height='16' fill='#94a3b8'/><rect x='73.5' y='56' width='3' height='16' fill='#94a3b8'/><rect x='88.5' y='56' width='3' height='16' fill='#94a3b8'/>`},
+// ---------- cells ----------
+{k:'b',n:'කෝෂය',e:'Cell',d:'දිග තුනී තහඩුව ධන (+), කෙටි ඝන තහඩුව ඍණ (−). E = වි.ගා.බ., r = අභ්‍යන්තර ප්‍රතිරෝධය.',
+ s:"<path d='M0 25H50M50 8V42M60 25H120'/><path d='M60 15V35' stroke-width='6'/>"+T(40,13,'+',10),
+ v:`<rect x='36' y='18' width='76' height='38' rx='5' fill='#16a34a' stroke='#14532d' stroke-width='2'/><rect x='112' y='30' width='9' height='14' rx='2' fill='#94a3b8' stroke='#64748b'/><rect x='36' y='18' width='14' height='38' fill='#facc15'/><text x='82' y='42' font-size='12' font-weight='bold' text-anchor='middle' fill='#fff' font-family='sans-serif'>AA 1.5V</text><text x='128' y='28' font-size='11' fill='#e2e8f0' font-family='sans-serif'>+</text>`},
+{k:'b',n:'බැටරිය',e:'Battery (cells in series)',d:'කෝෂ ශ්‍රේණිගතව සම්බන්ධ කළ සමුදාය; වෝල්ටීයතා එකතු වේ (උදා: 2 V × 6 = 12 V).',
+ s:"<path d='M0 25H24M24 8V42M33 25H51M51 8V42M60 25H120'/><path d='M33 15V35M60 15V35' stroke-width='6'/><path d='M60 25H120'/>"+T(14,13,'+',10),
+ v:`<rect x='24' y='24' width='102' height='42' rx='4' fill='#1e293b' stroke='#0f172a' stroke-width='2'/><rect x='24' y='24' width='102' height='10' fill='#475569'/><rect x='36' y='14' width='12' height='10' fill='#94a3b8'/><rect x='102' y='14' width='12' height='10' fill='#94a3b8'/><text x='42' y='12' font-size='11' fill='#ef4444' text-anchor='middle' font-family='sans-serif'>+</text><text x='108' y='12' font-size='11' fill='#60a5fa' text-anchor='middle' font-family='sans-serif'>−</text><text x='75' y='54' font-size='14' font-weight='bold' text-anchor='middle' fill='#fff' font-family='sans-serif'>12 V</text>`},
+// ---------- wiring ----------
+{k:'w',n:'විදුලි බල්බය',e:'Lamp',d:'විදුලි ශක්තිය ආලෝකය හා තාපය බවට පත් කරන බරක් (Load).',
+ s:"<circle cx='60' cy='25' r='16'/><path d='M49 14L71 36M71 14L49 36M0 25H44M76 25H120'/>",v:`<circle cx='75' cy='26' r='21' fill='#fef3c7' stroke='#f59e0b' stroke-width='2'/><path d='M64 42L66 56H84L86 42Z' fill='#fef3c7' stroke='#f59e0b' stroke-width='2'/><path d='M69 56V34M81 56V34M69 34Q75 20 81 34' fill='none' stroke='#d97706' stroke-width='1.5'/><rect x='64' y='56' width='22' height='14' rx='2' fill='#94a3b8' stroke='#64748b'/><path d='M64 61H86M64 66H86' stroke='#64748b'/>`},
+{k:'w',n:'තනි මං ස්විචය (SPST / 1-Way)',e:'SPST Switch',d:'පරිපථය විවෘත/සංවෘත කරයි; සැමවිට සජීවී (L) තන්තුවට සම්බන්ධ කරයි.',
+ s:"<path d='M0 25H34M86 25H120'/>"+SW+"<path d='M34 25L80 6'/>",v:`<rect x='50' y='4' width='50' height='64' rx='6' fill='#f1f5f9' stroke='#94a3b8' stroke-width='2'/><rect x='60' y='14' width='30' height='44' rx='3' fill='#e2e8f0' stroke='#94a3b8'/><rect x='60' y='14' width='30' height='22' rx='3' fill='#94a3b8'/><circle cx='75' cy='9' r='2' fill='#64748b'/><circle cx='75' cy='63' r='2' fill='#64748b'/>`},
+{k:'w',n:'දෙමං ස්විචය (SPDT / 2-Way)',e:'SPDT Switch',d:'ස්ථාන දෙකකින් එකම බල්බය පාලනය (පඩිපෙළ). COM, L1, L2 අග්‍ර.',
+ s:"<path d='M0 25H31M89 10H120M89 40H120'/><circle cx='34' cy='25' r='3'/><circle cx='86' cy='10' r='3'/><circle cx='86' cy='40' r='3'/><path d='M34 25L82 12'/>"+T(12,19,'COM',7)+T(104,7,'L1',7)+T(104,37,'L2',7),v:`<rect x='38' y='6' width='74' height='60' rx='5' fill='#f1f5f9' stroke='#94a3b8' stroke-width='2'/><rect x='54' y='12' width='42' height='20' rx='3' fill='#94a3b8' stroke='#94a3b8'/><circle cx='54' cy='54' r='5' fill='#94a3b8' stroke='#64748b'/><circle cx='75' cy='54' r='5' fill='#94a3b8' stroke='#64748b'/><circle cx='96' cy='54' r='5' fill='#94a3b8' stroke='#64748b'/><text x='54' y='44' font-size='8' text-anchor='middle' fill='#334155' font-family='sans-serif'>L1</text><text x='75' y='44' font-size='8' text-anchor='middle' fill='#334155' font-family='sans-serif'>COM</text><text x='96' y='44' font-size='8' text-anchor='middle' fill='#334155' font-family='sans-serif'>L2</text>`},
+{k:'w',n:'දිවි ධ්‍රැව තනි මං ස්විචය (DPST)',e:'Double-Pole Single-Throw Switch',d:'එකවර සජීවී (L) සහ උදාසීන (N) තන්තු දෙකම විසන්ධි කරයි (අග්‍ර 4). ජල තාපක, A/C, ප්‍රධාන වෙන්කරණ ස්විචය (Isolator); කඩ ඉරෙන් දැක්වෙන්නේ දෙපැත්ත එකට චලනය වන බවයි.',
+ s:"<path d='M0 12H34M86 12H120M0 38H34M86 38H120'/><circle cx='34' cy='12' r='3'/><circle cx='86' cy='12' r='3'/><circle cx='34' cy='38' r='3'/><circle cx='86' cy='38' r='3'/><path d='M34 12L82 2M34 38L82 28'/><path d='M58 7V33' stroke-dasharray='3 3'/>"+T(104,26,'DP',7),
+ v:`<rect x='34' y='4' width='82' height='64' rx='6' fill='#f1f5f9' stroke='#94a3b8' stroke-width='2'/><rect x='46' y='12' width='58' height='26' rx='4' fill='#dc2626' stroke='#7f1d1d'/><text x='75' y='30' font-size='12' font-weight='bold' text-anchor='middle' fill='#fff' font-family='sans-serif'>DP  I/O</text><text x='75' y='60' font-size='7' text-anchor='middle' fill='#475569' font-family='sans-serif'>32 A  L1 L2 / N N</text>`+"<circle cx='48' cy='48' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='64' cy='48' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='86' cy='48' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='102' cy='48' r='4' fill='#94a3b8' stroke='#64748b'/>"},
+{k:'w',n:'දිවි ධ්‍රැව දෙමං ස්විචය (DPDT)',e:'Double-Pole Double-Throw Switch',d:'එකවර පරිපථ දෙකක් (ධ්‍රැව 2) සඳහා දෙමං ක්‍රියාව (අග්‍ර 6). මෝටර් භ්‍රමණ දිශාව මාරු කිරීම, ජාලය ⇄ ජනක යන්ත්‍රය මාරු කිරීම (Change-over).',
+ s:"<path d='M0 12H31M89 4H120M89 20H120M0 38H31M89 30H120M89 46H120'/><circle cx='34' cy='12' r='3'/><circle cx='86' cy='4' r='3'/><circle cx='86' cy='20' r='3'/><circle cx='34' cy='38' r='3'/><circle cx='86' cy='30' r='3'/><circle cx='86' cy='46' r='3'/><path d='M34 12L82 5M34 38L82 31'/><path d='M58 9V35' stroke-dasharray='3 3'/>",
+ v:`<circle cx='75' cy='30' r='20' fill='#94a3b8' stroke='#475569' stroke-width='2'/><circle cx='75' cy='30' r='11' fill='#64748b'/><path d='M75 30L90 8' stroke='#e5e7eb' stroke-width='6' stroke-linecap='round'/><circle cx='90' cy='8' r='4' fill='#e5e7eb'/><rect x='46' y='50' width='58' height='12' rx='2' fill='#334155'/>`+"<circle cx='52' cy='66' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='63' cy='66' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='75' cy='66' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='87' cy='66' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='98' cy='66' r='4' fill='#94a3b8' stroke='#64748b'/>"},
+{k:'w',n:'බහුමං ස්විචය (Intermediate / 4 අග්‍ර)',e:'Intermediate (Multi-way) Switch',d:'දෙමං ස්විච දෙකක් අතර තබා ස්ථාන 3ක් හෝ වැඩි ගණනකින් එකම බල්බය පාලනය කරයි. අග්‍ර 4: ඇතුළු 2 (L1,L2) සහ පිටත 2; ක්‍රියාවෙන් සම්බන්ධතා ඉදිරියට නැතිනම් හරස්ව මාරු වේ.',
+ s:"<path d='M0 12H34M86 12H120M0 38H34M86 38H120'/><circle cx='34' cy='12' r='3'/><circle cx='86' cy='12' r='3'/><circle cx='34' cy='38' r='3'/><circle cx='86' cy='38' r='3'/><path d='M34 12L86 38M34 38L86 12'/>"+T(60,48,'Intermediate',7),
+ v:`<rect x='38' y='4' width='74' height='64' rx='5' fill='#f1f5f9' stroke='#94a3b8' stroke-width='2'/><rect x='54' y='10' width='42' height='20' rx='3' fill='#94a3b8'/><text x='75' y='41' font-size='7' text-anchor='middle' fill='#334155' font-family='sans-serif'>IN L1 L2  |  OUT L1 L2</text>`+"<circle cx='48' cy='54' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='62' cy='54' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='88' cy='54' r='4' fill='#94a3b8' stroke='#64748b'/><circle cx='102' cy='54' r='4' fill='#94a3b8' stroke='#64748b'/>"},
+{k:'w',n:'එබුම් බොත්තම් ස්විචය (Push Button)',e:'Push-button Switch (Momentary, N/O)',d:'එබූ විට පමණක් පරිපථය සම්පූර්ණ වේ; අත ඉවත් කළ විට නැවත විවෘත (Normally Open). දොරබෙල්, පඩිපෙළ ටයිමර්, ස්ටාර්ට් බොත්තම්. N/C වර්ගයේ සමීපව ඇත්තේ දිගුවක්.',
+ s:"<path d='M0 25H34M86 25H120M36 17H84M60 17V6M48 6H72'/><circle cx='34' cy='25' r='3'/><circle cx='86' cy='25' r='3'/>",
+ v:`<rect x='40' y='40' width='70' height='22' rx='4' fill='#64748b' stroke='#334155' stroke-width='2'/><rect x='48' y='28' width='54' height='14' rx='3' fill='#94a3b8'/><ellipse cx='75' cy='24' rx='24' ry='12' fill='#dc2626' stroke='#7f1d1d' stroke-width='2'/><ellipse cx='75' cy='21' rx='18' ry='7' fill='#ef4444'/><rect x='54' y='62' width='5' height='8' fill='#94a3b8'/><rect x='91' y='62' width='5' height='8' fill='#94a3b8'/>`},
+{k:'w',n:'විලායකය',e:'Fuse',d:'අධි ධාරාවකදී කම්බිය උණු වී පිළිස්සී පරිපථය ආරක්ෂා කරයි (එක් වරක් පමණි).',
+ s:"<rect x='30' y='16' width='60' height='18'/><path d='M0 25H120'/>",v:lead('M4 36H34M116 36H146')+"<rect x='38' y='26' width='74' height='20' fill='#e0f2fe' opacity='.8' stroke='#94a3b8' stroke-width='2'/><rect x='30' y='24' width='14' height='24' rx='2' fill='#b45309'/><rect x='106' y='24' width='14' height='24' rx='2' fill='#b45309'/><path d='M44 36H106' stroke='#6b7280' stroke-width='1.5'/>"},
+{k:'w',n:'MCB (කුඩා පරිපථ බිඳිනය)',e:'Miniature Circuit Breaker',d:'අධි ධාරා සහ ලඝු පරිපථයේදී ස්වයංක්‍රීයව ට්‍රිප් වේ; නැවත ON කළ හැක.',
+ s:"<path d='M0 25H34M86 25H120'/>"+SW+"<path d='M34 25L80 6M17 20L25 30M25 20L17 30'/>"+T(60,47,'MCB',9),v:`<rect x='50' y='4' width='50' height='64' rx='4' fill='#f8fafc' stroke='#94a3b8' stroke-width='2'/><rect x='62' y='12' width='26' height='24' rx='2' fill='#94a3b8'/><rect x='68' y='14' width='14' height='10' rx='2' fill='#111827'/><text x='75' y='52' font-size='13' font-weight='bold' text-anchor='middle' fill='#111827' font-family='sans-serif'>C16</text><text x='75' y='62' font-size='7' text-anchor='middle' fill='#475569' font-family='sans-serif'>16 A  MCB</text><rect x='58' y='4' width='10' height='4' fill='#64748b'/><rect x='82' y='4' width='10' height='4' fill='#64748b'/><rect x='58' y='64' width='10' height='4' fill='#64748b'/><rect x='82' y='64' width='10' height='4' fill='#64748b'/>`},
+{k:'w',n:'RCCB / RCD (කාන්දු ධාරා ආරක්ෂකය)',e:'Residual Current Circuit Breaker',d:'30 mA කාන්දුවකදී ක්ෂණිකව ට්‍රිප් වී ජීවිත ආරක්ෂාව දෙයි. TEST බොත්තම මාසිකව පරීක්ෂා කරන්න.',
+ s:"<path d='M0 25H34M86 25H120'/>"+SW+"<path d='M34 25L80 6M17 20L25 30M25 20L17 30'/><circle cx='104' cy='25' r='7'/>"+T(60,47,'RCCB 30 mA',9),v:`<rect x='36' y='4' width='78' height='64' rx='4' fill='#f8fafc' stroke='#94a3b8' stroke-width='2'/><rect x='44' y='12' width='24' height='24' rx='2' fill='#94a3b8'/><rect x='49' y='14' width='14' height='10' rx='2' fill='#111827'/><circle cx='96' cy='22' r='7' fill='#facc15' stroke='#a16207'/><text x='96' y='25' font-size='7' text-anchor='middle' fill='#422006' font-family='sans-serif'>T</text><text x='96' y='36' font-size='6' text-anchor='middle' fill='#475569' font-family='sans-serif'>TEST</text><text x='75' y='52' font-size='10' font-weight='bold' text-anchor='middle' fill='#111827' font-family='sans-serif'>40A 30mA</text><text x='75' y='62' font-size='7' text-anchor='middle' fill='#475569' font-family='sans-serif'>2P  RCCB</text>`}
+];
+const card=it=>`<div class='card'><div class='visual-pair'><div class='visual-box'><small>පරිපථ සංකේතය</small><svg viewBox='0 0 120 50' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round' role='img' aria-label='${it.e} සංකේතය'>${it.s}</svg></div><div class='visual-box'><small>සැබෑ උපාංගයේ රූපය</small><svg viewBox='0 0 150 72' role='img' aria-label='${it.e} සැබෑ උපාංගය'>${it.v}</svg></div></div><div><h3>${it.n}</h3><small>${it.e}</small><br>${it.d}</div></div>`;
+$('gal').remove();
+I.forEach(it=>{const c=document.querySelector('[data-sym="'+it.k+'"]');if(c)c.insertAdjacentHTML('beforeend',card(it))});
+})();
+
+// ---- Sim 5: AC waveform lab ----
+let wvT='sine';
+const WF={sine:p=>Math.sin(TAU*p),square:p=>(p%1)<.5?1:-1,tri:p=>{p%=1;return p<.25?4*p:p<.75?2-4*p:4*p-4},saw:p=>2*(p%1)-1};
+const WK={sine:[Math.SQRT1_2,'V_p/√2 ≈ 0.707 V_p',2/Math.PI],square:[1,'V_p',1],tri:[1/Math.sqrt(3),'V_p/√3 ≈ 0.577 V_p',.5],saw:[1/Math.sqrt(3),'V_p/√3 ≈ 0.577 V_p',.5]};
+const WN={sine:'සයිනාකාර',square:'හතරැස්',tri:'ත්‍රිකෝණාකාර',saw:'කියත්දැති'};
+function drawW(){const Vp=+$('wvP').value,f=+$('wvF').value,T=1/f;$('wvPo').textContent=Vp;$('wvFo').textContent=f;
+const c=$('wvC'),x=c.getContext('2d'),L=60,Wd=580,M=175,A=105,cw=Wd/3;x.clearRect(0,0,720,320);x.fillStyle='#0f172a';x.fillRect(0,0,720,320);
+x.strokeStyle='#475569';x.lineWidth=1;x.beginPath();x.moveTo(L,M);x.lineTo(L+Wd,M);x.moveTo(L,M-A-15);x.lineTo(L,M+A+15);x.stroke();
+x.setLineDash([5,4]);x.strokeStyle='#f59e0b';[M-A,M+A].forEach(y=>{x.beginPath();x.moveTo(L,y);x.lineTo(L+Wd,y);x.stroke()});
+const r=WK[wvT][0];x.strokeStyle='#38bdf8';[M-A*r,M+A*r].forEach(y=>{x.beginPath();x.moveTo(L,y);x.lineTo(L+Wd,y);x.stroke()});x.setLineDash([]);
+x.strokeStyle='#4ade80';x.lineWidth=3;x.beginPath();for(let i=0;i<=1800;i++){const p=i/600,px=L+p*cw,py=M-A*WF[wvT](p>=3?2.9999:p);i?x.lineTo(px,py):x.moveTo(px,py)}x.stroke();
+x.font='13px sans-serif';x.fillStyle='#f59e0b';x.fillText('+V_p = '+Vp+' V',L+4,M-A-5);x.fillText('−V_p = −'+Vp+' V',L+4,M+A+16);x.fillStyle='#38bdf8';x.fillText('V_rms = '+(Vp*r).toFixed(1)+' V',L+Wd-120,M-A*r-5);
+x.strokeStyle='#f472b6';x.fillStyle='#f472b6';x.lineWidth=2;x.beginPath();x.moveTo(L,24);x.lineTo(L+cw,24);x.moveTo(L,18);x.lineTo(L,30);x.moveTo(L+cw,18);x.lineTo(L+cw,30);x.stroke();x.fillText('T = '+(T*1000).toFixed(2)+' ms',L+cw/2-40,16);
+x.beginPath();x.moveTo(L+Wd+22,M-A);x.lineTo(L+Wd+22,M+A);x.moveTo(L+Wd+16,M-A);x.lineTo(L+Wd+28,M-A);x.moveTo(L+Wd+16,M+A);x.lineTo(L+Wd+28,M+A);x.stroke();
+x.save();x.translate(L+Wd+14,M+60);x.rotate(-Math.PI/2);x.fillText('V_pp = '+2*Vp+' V',0,0);x.restore();x.fillStyle='#94a3b8';x.fillText('කාලය t →',L+Wd-60,M+16);
+$('wvOut').innerHTML='<b>'+WN[wvT]+' තරංගය</b><br><span class="m">V<sub>p</sub> = '+Vp+' V, V<sub>pp</sub> = 2V<sub>p</sub> = '+2*Vp+' V, T = 1/f = '+(T*1000).toFixed(2)+' ms, f = '+f+' Hz</span><br><span class="m">V<sub>rms</sub> = '+WK[wvT][1]+' = '+(Vp*r).toFixed(1)+' V; අර්ධ-චක්‍ර මධ්‍යන්‍යය ≈ '+(Vp*WK[wvT][2]).toFixed(1)+' V</span>'}
+document.querySelectorAll('#wvBtns button').forEach(b=>b.onclick=()=>{wvT=b.dataset.w;document.querySelectorAll('#wvBtns button').forEach(z=>z.classList.toggle('on',z==b));drawW()});
+['wvP','wvF'].forEach(i=>$(i).oninput=drawW);drawW();
+</script>
+<script>
+(function(){try{
+const th=document.querySelector('main');if(!th)return;
+const secs=[...th.querySelectorAll(':scope>section')],N=secs.length;
+const clean=t=>(t||'').replace(/\s+/g,' ').trim();
+const norm=t=>clean(t).replace(/[\u200d\u200c]/g,'').toLowerCase();
+const h=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+const ZW='\u200d';
+const KIND={sym:['🔣','සංකේත'],sim:['🎛️','සිමියුලේෂන්'],law:['🔥','නියම සහ සූත්'+ZW+'ර'],warn:['⚠️','අවවාද'],quiz:['✍️','ප්'+ZW+'රශ්න'],ext:['➕','අමතර කරුණු'],grp:['📂','උප කොටස'],learn:['📘','සංකල්පය']};
+const GROUPS=[['කොටස A · මූලික රාශි සහ උපාංග',0,4],['කොටස B · AC ධාරා සහ විද්'+ZW+'යුත් චුම්බක නියම',4,6],['කොටස C · ට්'+ZW+'රාන්ස්ෆෝමර්, ඍජුකරණය සහ කෝෂ',6,9],['කොටස D · ගෘහස්ථ රැහැන්, විභාග සහ සූත්'+ZW+'ර',9,12]];
+const links=secs.map(s=>document.getElementById('l'+s.id));
+const titles=[],tdata=[];
+function collect(sec){
+ const list=[];
+ [...sec.children].forEach(el=>{
+  const c=el.classList;if(/^(H2|HEADER|BUTTON)$/.test(el.tagName))return;
+  const hd=el.querySelector('h3,b.t');let kind,title;
+  if(c.contains('law-section-label')){kind='grp';title=clean(el.textContent)}
+  else if(c.contains('law-intro')||c.contains('law-grid')||c.contains('reference-notice'))return;
+  else if(c.contains('mq')){kind='quiz';title='ප්'+ZW+'රශ්න පරීක්ෂාව'}
+  else if(c.contains('warn')){kind='warn';title='අමතක නොකළ යුතු දේ සහ වැරදි'}
+  else if(c.contains('law')){kind='law';title=hd?clean(hd.textContent):'නියම සහ සූත්'+ZW+'ර'}
+  else if(c.contains('card')){
+   title=hd?clean(hd.textContent):'';
+   if(el.querySelector('#quiz')){kind='quiz';title='බහුවරණ ප්'+ZW+'රශ්න පත්'+ZW+'රය'}
+   else if(c.contains('ext'))kind='ext';
+   else if(/^🔣/.test(title))kind='sym';
+   else if(/ප්\u200d?රශ්න/.test(title))kind='quiz';
+   else if(el.querySelector('canvas,input[type=range],select')||/^(සිමියුලේෂන්|ගණකය)/.test(title.replace(/^[^\p{L}]+/u,'')))kind='sim';
+   else kind='learn';
+   if(!title)title=kind==='sim'?'සිමියුලේෂන්':'විස්තරය';
+  }else return;
+  list.push({el,kind,title});
+ });
+ const real=list.some(t=>t.kind!=='grp');let n=0;
+ list.forEach(t=>{t.num=(t.kind!=='grp'||!real)?++n:null});
+ return list;
+}
+secs.forEach((sec,i)=>{
+ const h2=sec.querySelector(':scope>h2');
+ const t=clean(h2.textContent).replace(/^පියවර\s*\d+\s*[–-]\s*/,'');h2.textContent=t;titles[i]=t;
+ const list=collect(sec);
+ list.forEach(tp=>{
+  const bar=h('div','tbar k-'+tp.kind);
+  if(tp.num)bar.append(h('span','tn',(i+1)+'.'+tp.num));
+  bar.append(h('span','tk',KIND[tp.kind][0]+' '+KIND[tp.kind][1]));
+  tp.el.before(bar);tp.bar=bar;
+ });
+ const shown=list.filter(x=>x.num);tdata[i]=list;
+ const sims=list.filter(x=>x.kind==='sim').length,qz=list.some(x=>x.kind==='quiz');
+ const head=h('header','lhead'),badge=h('div','lbadge');
+ badge.innerHTML='<small>පාඩම</small><b>'+(i+1)+'</b><small>/ '+N+'</small>';
+ const main=h('div','lmain');
+ main.append(h2,h('div','lmeta','📘 කොටස් '+shown.length+(sims?' · 🎛️ සිමියුලේෂන් '+sims:'')+(qz?' · ✍️ ප්'+ZW+'රශ්න සහිතයි':'')));
+ const chips=h('div','chips');chips.append(h('div','lbl','මෙම පාඩමේ කොටස් (ක්ලික් කර කෙලින්ම යන්න):'));
+ shown.forEach(tp=>{const b=h('button','chip');b.type='button';b.append(h('b',null,(i+1)+'.'+tp.num),h('span',null,tp.title));b.onclick=()=>tp.bar.scrollIntoView({behavior:'smooth',block:'start'});chips.append(b)});
+ head.append(badge,main,chips);sec.prepend(head);
+ const nv=h('div','lnav');
+ const mk=(j,cls,lbl)=>{const a=document.createElement('a');a.className=cls;if(j<0||j>=N){a.style.visibility='hidden';a.href='#home';return a}a.href='#'+secs[j].id;a.append(h('small',null,lbl),document.createTextNode((j+1)+'. '+titles[j]));return a};
+ // titles of later lessons are set in a second pass below
+ sec._nv=nv;sec.append(nv);
+ // sidebar sub-list
+ const sub=h('div','sub');sub.id='sub-'+sec.id;
+ shown.forEach(tp=>{const b=h('button');b.type='button';b.append(h('b',null,(i+1)+'.'+tp.num),document.createTextNode(tp.title.length>38?tp.title.slice(0,36)+'…':tp.title));b.onclick=()=>tp.bar.scrollIntoView({behavior:'smooth',block:'start'});sub.append(b)});
+ links[i].after(sub);
+});
+secs.forEach((sec,i)=>{
+ const nv=sec._nv;
+ const mk=(j,cls,lbl)=>{const a=document.createElement('a');a.className=cls;if(j<0||j>=N){a.style.visibility='hidden';return a}a.href='#'+secs[j].id;a.append(h('small',null,lbl),document.createTextNode((j+1)+'. '+titles[j]));return a};
+ const mid=h('div','mid');const ha=h('a',null,'🏠 පාඩම් සිතියම');ha.href='#home';mid.append(ha);
+ nv.append(mk(i-1,'pv','← පෙර පාඩම'),mid,mk(i+1,'nx','ඊළඟ පාඩම →'));
+});
+// ---- පාඩම් සිතියම ----
+const intro=th.querySelector(':scope>p');if(intro)intro.classList.add('intro');
+const home=h('div','homeMap');
+home.append(h('h2','hm-t','📚 පාඩම් සිතියම'));
+home.append(h('p',null,'පාඩම් '+N+'ක් තිබේ. එකවර එක් පාඩමක් පමණක් පෙන්වයි. පාඩමක් තෝරන්න; ඇතුළේ අංක සහිත කොටස් (1.1, 1.2 …) වෙන වෙනම බෙදා පෙන්වයි. වම් පැත්තේ ඇති සෙවුම් කොටුවෙන් ඕනෑම වචනයක් සොයන්නත් පුළුවන්.'));
+const start=document.createElement('a');start.className='hm-start';start.href='#'+secs[0].id;home.append(start);
+const cards=[];
+GROUPS.forEach(g=>{
+ home.append(h('h3','hm-g',g[0]));const grid=h('div','hm-grid');
+ for(let i=g[1];i<Math.min(g[2],N);i++){
+  const a=document.createElement('a');a.className='hm-card';a.href='#'+secs[i].id;
+  const real=tdata[i].filter(x=>x.num),sims=tdata[i].filter(x=>x.kind==='sim').length;
+  a.append(h('span','hn',String(i+1)),h('span','ht',titles[i]),h('span','hc','📘 '+real.length+' කොටස්'+(sims?' · 🎛️ '+sims+' සිමියුලේෂන්':'')+(tdata[i].some(x=>x.kind==='quiz')?' · ✍️ ප්'+ZW+'රශ්න':'')));
+  grid.append(a);cards[i]=a;
+ }
+ home.append(grid);
+});
+th.insertBefore(home,secs[0]);
+function isDone(i){try{return !!done[secs[i].id]}catch(e){return false}}
+function refresh(){
+ let first=-1;
+ secs.forEach((s,i)=>{const d=isDone(i);cards[i]&&cards[i].classList.toggle('done',d);if(!d&&first<0)first=i});
+ const n=secs.filter((s,i)=>isDone(i)).length;
+ if(first<0){start.textContent='🎉 සියලු පාඩම් සම්පූර්ණයි – නැවත බලන්න';start.href='#'+secs[0].id}
+ else{start.textContent=(n?'▶ ඉදිරියට යන්න – පාඩම '+(first+1)+': ':'▶ පටන් ගන්න – පාඩම '+(first+1)+': ')+titles[first];start.href='#'+secs[first].id}
+}
+const lk=document.getElementById('links');
+new MutationObserver(refresh).observe(lk,{attributes:true,subtree:true,attributeFilter:['class']});
+// ---- සෙවුම ----
+const nav=document.querySelector('nav'),bar=nav.querySelector('.bar');
+const hl=document.createElement('a');hl.href='#home';hl.id='lhome';hl.textContent='🏠 පාඩම් සිතියම';
+const sr=h('div','srch'),q=document.createElement('input');q.type='search';q.id='q';q.placeholder='🔎 පාඩම් තුළ සොයන්න…';q.setAttribute('aria-label','පාඩම් තුළ සොයන්න');
+const res=h('div');res.id='sres';sr.append(q,res);bar.after(sr);lk.before(hl);
+const index=[];
+secs.forEach((s,i)=>{
+ tdata[i].forEach(t=>{if(t.num||t.kind==='grp')index.push({i,node:t.bar,title:t.title,tn:norm(t.title),hay:norm(t.el.textContent),no:t.num?(i+1)+'.'+t.num:''})});
+ s.querySelectorAll('.law-card').forEach(c=>{const hd=c.querySelector('h3');if(hd)index.push({i,node:c,title:clean(hd.textContent),tn:norm(hd.textContent),hay:norm(c.textContent),no:''})});
+});
+let pending=null;
+function go(i,node){pending=node;if(secs[i].classList.contains('cur')){pending=null;node.scrollIntoView({behavior:'smooth',block:'start'})}else location.hash=secs[i].id}
+q.addEventListener('input',()=>{
+ res.textContent='';const v=norm(q.value);if(!v)return;
+ const hits=[];index.forEach(e=>{const s=e.tn.includes(v)?2:(e.hay.includes(v)?1:0);if(s)hits.push([s,e])});
+ hits.sort((a,b)=>b[0]-a[0]);
+ if(!hits.length){res.append(h('div','none','ගැළපෙන කොටසක් නැත'));return}
+ hits.slice(0,14).forEach(([s,e])=>{const b=h('button');b.type='button';b.append(document.createTextNode((e.no?e.no+' ':'')+e.title),h('small',null,'පාඩම '+(e.i+1)+' · '+titles[e.i]+(s===1?' (පෙළ තුළ)':'')));b.onclick=()=>go(e.i,e.node);res.append(b)});
+});
+// ---- මාර්ගගත කිරීම ----
+function show(i){
+ th.classList.toggle('is-home',i<0);th.classList.toggle('is-lesson',i>=0);
+ secs.forEach((s,k)=>s.classList.toggle('cur',k===i));
+ links.forEach((a,k)=>a.classList.toggle('on',k===i));hl.classList.toggle('on',i<0);
+}
+function route(){
+ const id=decodeURIComponent(location.hash.slice(1));
+ show(secs.findIndex(s=>s.id===id));
+ if(pending){const n=pending;pending=null;requestAnimationFrame(()=>n.scrollIntoView({block:'start'}))}
+ else window.scrollTo({top:0,behavior:'auto'});
+}
+addEventListener('hashchange',route);
+document.addEventListener('keydown',e=>{
+ if(e.altKey||e.ctrlKey||e.metaKey||document.activeElement!==document.body||false)return;
+ const cur=secs.findIndex(s=>s.classList.contains('cur'));if(cur<0)return;
+ if(e.key==='ArrowRight'&&cur<N-1)location.hash=secs[cur+1].id;
+ if(e.key==='ArrowLeft'&&cur>0)location.hash=secs[cur-1].id;
+});
+refresh();route();
+}catch(err){console.error('lesson layout',err)}})();
+</script>
+</body></html>

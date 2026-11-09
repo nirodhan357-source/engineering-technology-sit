@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNI-T UTD2102E Plus සහ DDS Signal Generator සිමියුලේටරය</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 30% 0,#16213a,#05080f 75%) fixed;color:#d6e2ff;font-family:'Noto Sans Sinhala','Iskoola Pota',system-ui,sans-serif;line-height:1.55}
+h1{margin:0;padding:12px 18px 2px;font-size:1.15rem}.sub{margin:0;padding:0 18px 8px;color:#8fa3cf;font-size:.84rem}
+.wrap{max-width:1250px;margin:auto;padding:8px 14px 14px;display:flex;flex-direction:column;gap:20px}
+.dev{border-radius:12px;box-shadow:0 18px 38px #000c,inset 0 2px 0 #fff9,inset 0 -5px 10px #0004;border:1px solid #7b8088;color:#222}
+.scope{display:flex;gap:14px;padding:14px;background:linear-gradient(#e9ebed,#b9bdc3)}
+.left{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:0 4px}
+.logo{font-weight:800;font-size:1.25rem;color:#0b5db0;letter-spacing:.03em}.mod{font-size:.78rem;color:#444}
+.bezel{background:#0f1114;border-radius:8px;padding:10px;display:flex;gap:8px;box-shadow:inset 0 3px 8px #000,0 1px 0 #fff}
+canvas{flex:1;min-width:0;width:100%;height:auto;display:block;cursor:help;border-radius:3px}
+.fk{display:flex;flex-direction:column;justify-content:space-around;width:26px}
+.fk button{height:30px;border-radius:4px;border:1px solid #333;background:linear-gradient(#5a5f66,#2e3237);cursor:pointer;color:#ccc;font-size:.65rem;box-shadow:0 2px 0 #000}
+.fk button:active{transform:translateY(2px);box-shadow:none}
+.ctl{width:290px;display:flex;flex-direction:column;gap:8px}
+.sec{border:1px solid #8c9199;border-radius:8px;padding:6px 8px 8px;background:linear-gradient(#d6d9dd,#c2c6cb);box-shadow:inset 0 1px 0 #fff8}
+.sec h5{margin:0 0 5px;font-size:.66rem;color:#333;letter-spacing:.06em}
+.row{display:flex;gap:8px;justify-content:space-around;align-items:flex-end;flex-wrap:wrap}
+.kw{text-align:center;font-size:.62rem;color:#333;font-weight:600}
+.knob{--s:58px;--c:#333;width:var(--s);height:var(--s);border-radius:50%;margin:0 auto 2px;position:relative;cursor:grab;touch-action:none;user-select:none;background:repeating-conic-gradient(#8f949b 0 6deg,#6a6f76 6deg 12deg);border:2px solid var(--c);box-shadow:0 5px 8px #0008,inset 0 2px 2px #fff7}
+.knob:active{cursor:grabbing}.knob:focus-visible,.sb:focus-visible,.bb:focus-visible,.pwr:focus-visible{outline:3px solid #ff9d00;outline-offset:2px}
+.knob i{position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0f2f4,#9a9fa7 78%);box-shadow:inset 0 -3px 5px #0005}
+.knob i::after{content:"";position:absolute;left:50%;top:4%;width:13%;height:24%;margin-left:-6.5%;background:var(--c);border-radius:2px}
+.knob.sm{--s:44px}.knob.lg{--s:68px}
+.sb{font:inherit;font-size:.68rem;font-weight:600;color:#222;padding:6px 8px;border-radius:5px;border:1px solid #6c7178;cursor:pointer;background:linear-gradient(#f4f5f6,#b8bcc2);box-shadow:0 3px 0 #70757c,0 5px 6px #0005;transition:transform .05s}
+.sb:active{transform:translateY(3px);box-shadow:0 0 0 #70757c}.sb.on{background:linear-gradient(#c9f0d1,#7fcf92);border-color:#2f7a42}
+.sb.c1{border-bottom:4px solid #e6c800}.sb.c2{border-bottom:4px solid #00b8d4}.sb.m{border-bottom:4px solid #d63de0}
+.pwr{width:30px;height:30px;border-radius:50%;border:2px solid #555;background:radial-gradient(#e9eaec,#9ca0a7);cursor:pointer;box-shadow:0 3px 0 #555;font-size:.9rem;color:#333}.pwr.on{color:#1a9b3a;border-color:#1a9b3a}
+.gen{display:flex;gap:18px;padding:16px;background:linear-gradient(#fbfbfb,#d4d7db);flex-wrap:wrap}
+.gl{flex:1;min-width:300px}.gr{width:340px;max-width:100%}
+.gtop{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:6px;align-items:center}.gtop b{font-size:1rem;letter-spacing:.03em}
+.lcd{background:linear-gradient(#cfe15a,#b6c943);border:4px solid #4a4f55;border-radius:6px;padding:8px 12px;height:152px;font-family:ui-monospace,Consolas,monospace;font-weight:700;font-size:1.02rem;color:#1b2308;box-shadow:inset 0 3px 8px #0006;cursor:help}
+.lcd div{white-space:pre}.lcd .sel{background:#27300c;color:#d7e86a}.lcd u{text-decoration:none;border-bottom:3px solid currentColor;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{border-color:transparent}}
+.ports{display:flex;gap:26px;margin-top:14px;align-items:flex-end}
+.port{text-align:center;font-size:.72rem;font-weight:700;cursor:help}
+.bnc{width:46px;height:46px;border-radius:50%;margin:0 auto 3px;background:radial-gradient(circle,#111 0 5px,#d5d8de 6px,#9096a0 15px,#2b2e33 17px,#bcc1c9 19px 21px,#555 22px)}
+.leds{display:flex;gap:16px;margin:10px 0 0 4px;cursor:help}.ld{text-align:center;font-size:.66rem;font-weight:700}
+.ld i{display:block;width:12px;height:12px;margin:0 auto 2px;border-radius:50%;background:#442;border:1px solid #222}.ld i.on{background:#3f3;box-shadow:0 0 8px #3f3}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 12px;margin-bottom:12px}
+.bb{font:inherit;font-weight:700;color:#fff;padding:9px 4px;border-radius:6px;border:1px solid #0b3a78;cursor:pointer;background:linear-gradient(#4a9af0,#1b5fb5);box-shadow:0 4px 0 #0d3c78,0 6px 6px #0006;transition:transform .05s}
+.bb:active{transform:translateY(3px);box-shadow:0 1px 0 #0d3c78}
+.kbig{display:flex;flex-direction:column;align-items:center}.kbig .knob{--s:104px;--c:#1b5fb5}
+#itg{position:fixed;top:10px;right:12px;z-index:20;background:linear-gradient(#fff,#c9ccd1)}
+.lcd [data-r]{cursor:pointer}.lcd span[data-d]:hover{background:#27300c;color:#d7e86a}.lcd span[data-r]:hover{text-decoration:underline}
+#info{position:sticky;bottom:8px;z-index:5;background:#0c1426ee;border:1px solid #2f4a86;border-radius:10px;padding:10px 16px;max-height:44vh;overflow:auto;box-shadow:0 -6px 20px #000b}
+#info h3{margin:0 0 4px;color:#ffb347;font-size:1rem}#info p{margin:0 0 6px;font-size:.9rem}
+#info .e{border-left:3px solid #39ff7a;background:#0b1220;padding:5px 10px;font-size:.88rem;margin-bottom:6px}#info .v{font-family:ui-monospace,Consolas,monospace;color:#39ff7a;margin-bottom:4px}
+@media(max-width:1000px){.scope{flex-direction:column}.ctl{width:100%}}
+@media(prefers-reduced-motion:reduce){.lcd u{animation:none}.sb,.bb{transition:none}}
+</style>
+</head>
+<body>
+<a href="units-measurements.html" style="display:inline-block;margin:12px 18px 0;color:#8fa3cf;font-size:.84rem;text-decoration:none">← 07 පාඩම තෝරන්න</a>
+<h1>UNI-T UTD2102E Plus දෝලනේක්ෂය සහ Dual Channel DDS Signal Generator</h1>
+<p class="sub">Knob කරකවන්න (ඇද, රෝදය හෝ ඊතල යතුරු) සහ බොත්තම් එබීමෙන් පාලනය කරන්න. කාර්ය විස්තර පහළ තොරතුරු පුවරුවේ දිස්වේ (ඉහළ දකුණේ 📖 බොත්තමෙන් එය සඟවා/නැවත පෙන්විය හැක). දෝලනේක්ෂ තිරයේ තරංගය, මැනුම් අගයන්, ඉහළ/පහළ තීරු සහ ජනකයේ LCD හි පේළි/ඉලක්කම් මත ක්ලික් කළ විට ද ඒවා ගැන විස්තර දිස්වේ. පළමුව ජනකය ON කර OUT එබීමෙන් නාලිකා ප්‍රතිදානය ක්‍රියාත්මක කරන්න.</p>
+<div class="wrap">
+<button class="sb" id="itg" aria-pressed="true" title="විස්තර පුවරුව ඉවත් කිරීමට/නැවත පෙන්වීමට">📖 විස්තර සඟවන්න</button>
+<div class="dev scope">
+  <div class="left">
+    <div class="top"><span class="logo">UNI-T</span><span class="mod">UTD2102E Plus • 100 MHz • 1 GSa/s • දෝලනේක්ෂය</span><button class="pwr" id="sp" data-k="sPower" title="Power">⏻</button></div>
+    <div class="bezel"><canvas id="scr" width="860" height="540"></canvas>
+      <div class="fk" data-k="fkeys"><button>F1</button><button>F2</button><button>F3</button><button>F4</button><button>F5</button></div></div>
+  </div>
+  <div class="ctl">
+    <div class="sec"><h5>RUN CONTROL</h5><div class="row">
+      <button class="sb" data-k="runstop">RUN/STOP</button><button class="sb" data-k="auto">AUTO</button><button class="sb" data-k="single">SINGLE</button><button class="sb on" data-k="measure">MEASURE</button></div></div>
+    <div class="sec"><h5>HORIZONTAL</h5><div class="row" id="rH"></div></div>
+    <div class="sec"><h5>TRIGGER</h5><div class="row" id="rT"><button class="sb" data-k="tmenu">MENU</button><button class="sb" data-k="t50">50%</button><button class="sb" data-k="force">FORCE</button></div></div>
+    <div class="sec"><h5>VERTICAL</h5><div class="row" id="rV"></div>
+      <div class="row" style="margin-top:8px"><button class="sb c1 on" data-k="ch1" id="b1">CH1</button><button class="sb m" data-k="math" id="bm">MATH</button><button class="sb c2 on" data-k="ch2" id="b2">CH2</button></div></div>
+  </div>
+</div>
+
+<div class="dev gen">
+  <div class="gl">
+    <div class="gtop"><b>Dual Channel DDS SIGNAL GENERATOR / COUNTER</b><button class="pwr" id="gp" data-k="gPower" title="Power">⏻</button></div>
+    <div class="lcd" id="lcd" data-k="lcd"></div>
+    <div class="ports" data-k="bnc"><div class="port"><div class="bnc"></div>Ext.IN</div><div class="port"><div class="bnc"></div>CH1</div><div class="port"><div class="bnc"></div>CH2</div>
+      <div class="leds" data-k="leds"><div class="ld"><i id="l1"></i>CH1</div><div class="ld"><i id="l2"></i>CH2</div><div class="ld"><i id="l3"></i>OUT</div></div></div>
+  </div>
+  <div class="gr">
+    <div class="grid4">
+      <button class="bb" data-k="left">◀</button><button class="bb" data-k="right">▶</button>
+      <button class="bb" data-k="wave">WAVE</button><button class="bb" data-k="ampl">AMPL</button>
+      <button class="bb" data-k="pgup">PgUp</button><button class="bb" data-k="pgdn">PgDn</button>
+      <button class="bb" data-k="out">OUT</button><button class="bb" data-k="ok">OK</button></div>
+    <div class="kbig" id="kA"></div>
+  </div>
+</div>
+<div id="info" aria-live="polite"><h3>තොරතුරු පුවරුව</h3><p>ඕනෑම බොත්තමක්/Knob එකක් ස්පර්ශ කළ විට එහි කාර්යය සහ සැබෑ උපකරණයේ බලපෑම මෙහි දිස්වේ.</p></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const VD=[.01,.02,.05,.1,.2,.5,1,2,5,10],TD=[1e-5,2e-5,5e-5,1e-4,2e-4,5e-4,1e-3,2e-3,5e-3,1e-2,2e-2,5e-2,.1,.2,.5];
+const S={help:1,on:0,run:1,show:[1,1],math:0,mes:1,vi:[6,6],pos:[0,0],ti:6,hp:0,tl:0,tsrc:0,slope:1,mch:0,single:0,snap:null,want:0};
+const WN=['Sine','Square','Triangle','Sawtooth'];
+const G={on:0,act:0,mode:'freq',cur:{freq:4,amp:1,off:1,duty:1},ch:[0,1].map(()=>({wave:0,freq:500,amp:4,off:0,duty:50,out:0}))};
+const P={freq:{k:'freq',n:'FREQ',u:'Hz',pl:[1e4,1e3,100,10,1,.1,.01],min:.01,max:1e5,f:v=>v.toFixed(2).padStart(8,'0')},
+ amp:{k:'amp',n:'AMPL',u:'Vpp',pl:[10,1,.1,.01],min:0,max:20,f:v=>v.toFixed(2).padStart(5,'0')},
+ off:{k:'off',n:'OFFS',u:'V',pl:[10,1,.1,.01],min:-10,max:10,f:v=>(v<0?'-':'+')+Math.abs(v).toFixed(2).padStart(5,'0')},
+ duty:{k:'duty',n:'DUTY',u:'%',pl:[10,1,.1],min:1,max:99,f:v=>v.toFixed(1).padStart(4,'0')}};
+const fV=v=>v<1?+(v*1000).toFixed(0)+' mV':v+' V',fT=t=>t<1e-3?+(t*1e6).toFixed(1)+' µs':t<1?+(t*1e3).toFixed(2)+' ms':t.toFixed(2)+' s';
+const fF=f=>f>=1e3?(f/1e3).toFixed(3)+' kHz':f.toFixed(2)+' Hz';
+
+/* ---------- info ---------- */
+const WS=['සයිනාකාර','සමචතුරස්‍රාකාර','ත්‍රිකෝණාකාර','කියත් දැති'];
+/* [මාතෘකාව, කාර්යය, භාවිත කරන ආකාරය, සැබෑ ලෝකයේදී] */
+const I={
+screen:[`දෝලනේක්ෂ තිරය`,`තිරය තිරස් කොටු 12ක් සහ සිරස් කොටු 8කින් යුක්තය. සිරස් අක්ෂයෙන් වෝල්ටීයතාවත්, තිරස් අක්ෂයෙන් කාලයත් කියවේ. කහ රේඛාව පළමු නාලිකාවත් (CH1), නිල් රේඛාව දෙවන නාලිකාවත් (CH2), රෝස රේඛාව ගණිත රේඛාවත් වේ.`,`රේඛාවේ උච්චයේ සිට උච්චයට කොටු ගණන් කර, කොටුවකට වෝල්ට් අගයෙන් ගුණ කළ විට වෝල්ටීයතාව ලැබේ. දකුණු පස පුවරුවෙන් උච්ච වෝල්ටීයතාව, උච්ච-උච්ච වෝල්ටීයතාව, සංඛ්‍යාතය සහ ආවර්ත කාලය අංක ලෙස කියවිය හැක.`,`සැබෑ UNI-T උපකරණයේ ද තරංග රේඛා සහ මැනුම් එකවරම තිරයේ දැක ගත හැක.`],
+sPower:[`ක්‍රියාත්මක කිරීමේ බොත්තම (POWER)`,`දෝලනේක්ෂයට විදුලි බලය සපයා තිරය දැල්වීමට සහ නැවත නිවා දැමීමට භාවිත කරයි. ක්‍රියාත්මක වූ විට බොත්තමේ වර්ණය කොළ වේ.`,`එක් වරක් එබූ විට තිරය දැල්වේ; නැවත එබූ විට නිවී යයි. තිරය නිවී ඇති විට වෙනත් ගැටය හෝ බොත්තම් කුමක් කළත් රූපයක් නොපෙනේ.`,`සැබෑ උපකරණයේ මෙය එබූ පසු උපකරණය තමන්ම පරීක්ෂා කර තත්පර කිහිපයකින් තිරය පෙන්වයි. පරීක්ෂණයෙන් පසු නිවා දැමීම උපකරණයේ ආයුෂට හොඳය.`],
+math:[`ගණිත බොත්තම (MATH)`,`පළමු සහ දෙවන නාලිකාවල වෝල්ටීයතා එකතුවෙන් ලැබෙන රෝස පැහැති නව තරංගයක් තිරයේ පෙන්වයි. නැවත එබූ විට සැඟවේ.`,`නාලිකා දෙකටම වෙනස් සංඥා ලබා දී මෙම බොත්තම එබූ විට, ඒ දෙක එකතු වූ රූපය දකිමින් තරංග එකතු වන ආකාරය ඉගෙන ගන්න.`,`සැබෑ දෝලනේක්ෂයක ගණිත මෙහෙයුම මගින් එකතුව, අඩු කිරීම, ගුණ කිරීම සහ සංඛ්‍යාත වර්ණාවලිය (FFT) පවා පෙන්විය හැක.`],
+runstop:[`ධාවනය / නැවතුම බොත්තම (RUN/STOP)`,`තිරයේ පෙනෙන රූපය එම මොහොතේම නවතා තබයි. නැවත එබූ විට රූපය නැවත සජීවීව යාවත්කාලීන වේ. නැවතී ඇති විට තිරයේ ඉහළ "Stop" යන්න රතු පැහැයෙන් පෙනේ.`,`වේගයෙන් වෙනස් වන සංඥාවක් නතර කර, කොටු ගණන් කරමින් සන්සුන්ව මැනීමට භාවිත කරන්න. නැවතී ඇති විට ගැටය කරකැවූවත් රූපය එලෙසම පවතී.`,`සැබෑ දෝලනේක්ෂයේ නැවතූ රූපය ස්මරණයේ ගබඩා වූ තරංග දත්තයකි; එය පසුව ලිපිගොනුවක් ලෙස සුරැකිය හැක.`],
+auto:[`ස්වයං සැකසුම් බොත්තම (AUTO)`,`සංඥාවට ගැළපෙන කොටුවකට වෝල්ට් අගය, කොටුවකට කාල අගය සහ ප්‍රේරක මට්ටම ස්වයංක්‍රීයව තෝරා, රූපය තිරයේ මැදට ගෙන චක්‍ර 3ක් පමණ පෙනෙන සේ ස්ථාවර කරයි.`,`නොදන්නා සංඥාවක් දුටු විට හෝ ගැටය වැරදි ලෙස කරකැවී රූපය නැති වූ විට මෙය එබූ විට නැවත පැහැදිලි රූපයක් ලැබේ. ඉන්පසු අවශ්‍ය නම් ගැටය කරකවා සියුම්ව සකසන්න.`,`සැබෑ උපකරණයේ ද මෙය නවකයන්ට ඉතා ප්‍රයෝජනවත් බොත්තමකි. නමුත් සංකීර්ණ සංඥාවලදී ස්වයං සැකසුම වැරදිය හැකි බැවින් අතින් සැකසීමද දැන සිටිය යුතුය.`],
+single:[`තනි ග්‍රහණ බොත්තම (SINGLE)`,`ප්‍රේරක තත්ත්වය සපුරන තරංගයක් එක් වරක් හමු වූ විට රූපය ග්‍රහණය කර ස්වයංක්‍රීයව නවතයි. ඊට පෙර තිරයේ "Ready" (සූදානම්) යනුවෙන් දිස්වේ.`,`බොත්තම එබූ පසු ජනකය හෝ පරිපථය ක්‍රියාත්මක කර, එක් තරංගයක් අල්ලා ගන්න. නැවත ග්‍රහණයට බොත්තම නැවත එබිය යුතුය.`,`එක් වරක් පමණක් සිදුවන සිදුවීම් (උදා: ස්විචයක් එබූ මොහොතේ වෝල්ටීයතාව, ස්පන්දනයක්) අල්ලා ගැනීමට භාවිත වේ.`],
+measure:[`මැනුම් බොත්තම (MEASURE)`,`තිරයේ දකුණු පස ඇති මැනුම් පුවරුව පෙන්වයි/සඟවයි. එහි තෝරාගත් නාලිකාවේ සංඛ්‍යාතය, ආවර්ත කාලය, උච්ච-උච්ච වෝල්ටීයතාව (Vpp) සහ උච්ච වෝල්ටීයතාව (Vp) අංක ලෙස පෙන්වයි.`,`CH1 හෝ CH2 බොත්තම එබීමෙන් මැනුම් නාලිකාව මාරු කරන්න. ඔබ කොටු ගණන් කර ගත් අගය මැනුම් පුවරුවේ අගයට සමානදැයි සසඳා පරීක්ෂා කරන්න.`,`සැබෑ උපකරණවල මෙම ස්වයංක්‍රීය මැනුම් මගින් අතින් කොටු ගණන් කිරීමේ අවශ්‍යතාව ඉවත් වී වේගයෙන් හා නිවැරදිව මැනිය හැක.`],
+tmenu:[`ප්‍රේරක මෙනු බොත්තම (TRIGGER MENU)`,`රූපය ස්ථාවර කිරීමට යොදා ගන්නා ප්‍රේරක මූලාශ්‍රය (CH1 හෝ CH2) සහ දාරය (නැගීමේ දාරය ↑ හෝ වැටීමේ දාරය ↓) එකින් එක මාරු කරයි. වත්මන් තත්ත්වය තිරයේ ඉහළ දකුණේ පෙනේ.`,`එබෙන සෑම වාරයකම CH1↑ → CH1↓ → CH2↑ → CH2↓ ලෙස මාරු වේ. තරංගය ඉහළ යන තැනින් රූපය ආරම්භ කිරීමට නැගීමේ දාරයත්, පහළ යන තැනින් ආරම්භයට වැටීමේ දාරයත් තෝරන්න.`,`එකම තරංගය දාර දෙකෙන් දුටු විට රූපය අඩ චක්‍රයකින් වෙනස් වී පෙනේ. සංඥා දෙකක කාල සම්බන්ධතාව පරීක්ෂා කිරීමේදී මූලාශ්‍ර නාලිකාව තීරණාත්මකය.`],
+t50:[`ප්‍රේරකය 50% බොත්තම`,`ප්‍රේරක මට්ටම, සංඥාවේ උපරිම සහ අවම අගයන්ගේ මැද අගයට ස්වයංක්‍රීයව සකසයි.`,`රූපය චලනය වෙමින් අස්ථාවරව ඇති විට මෙය එබූ විට බොහෝ විට වහාම ස්ථාවර වේ, මන්ද මැද මට්ටම සෑම විටම තරංගය තුළ පිහිටන බැවිනි.`,`සැබෑ උපකරණවල මෙය ප්‍රේරණය වේගයෙන් නිවැරදි කිරීමට භාවිත වේ.`],
+force:[`බලෙන් ප්‍රේරණ බොත්තම (FORCE)`,`ප්‍රේරක තත්ත්වයක් නොමැතිවුවද, කාල පරිමාණ ගමනක් (sweep) බලෙන් ආරම්භ කර රූපය නැවුම් කරයි.`,`ප්‍රේරණය වැරදී හෝ සංඥාවක් නැතිව තිරය හිස්ව ඇති විට මෙය එබූ විට ශුන්‍ය මට්ටමේ රේඛාව පවා පෙන්වයි.`,`තිරයේ කිසිවක් නොපෙනෙන විට සංඥාව නැද්ද, නැතිනම් ප්‍රේරක සැකසුම වැරදිද යන්න තීරණය කිරීමට මෙය උපකාරී වේ.`],
+fkeys:[`මෙනු බොත්තම් (F1 – F5)`,`තිරයේ දකුණු පස පිහිටි මෙනු අයිතම තෝරන බොත්තම් පහකි. ඒවා තිරයේ දැනට පෙනෙන මෙනුවේ ඉහළ සිට පහළට අයිතම 5ට අනුරූප වේ.`,`මෙම සිමියුලේටරයේ මෙම බොත්තම් දර්ශනීය පමණි; ක්‍රියාකාරී නොවේ.`,`සැබෑ උපකරණයේ මෙනු අයිතම (උදා: ප්‍රේරක ආකාරය, මැනුම් වර්ග) තෝරා ගැනීමට මේවා භාවිත වේ.`],
+tdiv:[`කොටුවකට කාල ගැටය (SEC/DIV)`,`තිරස් අක්ෂයේ එක් කොටුවක් නියෝජනය කරන කාලය තෝරයි (කාල පරිමාණය). අගය කුඩා කළ විට තරංගය තිරස්ව ඇදී චක්‍ර අඩුවෙන් පෙනේ; අගය විශාල කළ විට චක්‍ර බොහෝ ගණනක් එකවර පෙනේ.`,`තිරයේ චක්‍ර 2ක් හෝ 3ක් පෙනෙන තෙක් ගැටය කරකවන්න. එවිට එක් චක්‍රයක් කොටු කීයක් පුරා පැතිරී ඇත්දැයි පහසුවෙන් ගණන් කළ හැක.`,`ආවර්ත කාලය T = (චක්‍රයක කොටු ගණන) × (කොටුවකට කාලය); සංඛ්‍යාතය f = 1 ÷ T. උදා: චක්‍රයක් කොටු 2ක් සහ 1 ms/කොටුව නම් T = 2 ms, f = 500 Hz.`],
+hpos:[`තිරස් පිහිටීම ගැටය (HORIZONTAL POSITION)`,`රූපය තිරස් අතට වමට හෝ දකුණට ගෙන යයි. ප්‍රේරණය වූ ලක්ෂ්‍යය සාමාන්‍යයෙන් තිරයේ මැද සිරස් රේඛාව මත පිහිටයි.`,`චක්‍රයක ආරම්භය කොටු රේඛාවක් මත තබා කාලය නිවැරදිව කියවීමට හෝ ප්‍රේරණයට පෙර/පසු සංඥා කොටස් බැලීමට භාවිත කරන්න.`,`සැබෑ උපකරණයේ මෙම ගැටයෙන් ප්‍රේරණයට පෙර සිදු වූ දේ ද බැලිය හැක.`],
+tlevel:[`ප්‍රේරක මට්ටම ගැටය (TRIGGER LEVEL)`,`තරංග රූපය ආරම්භ වීමට අවශ්‍ය වෝල්ටීයතා මට්ටම තීරණය කරයි. තිරයේ දකුණු කෙළවරේ තැඹිලි ◂T ලකුණෙන් සහ තිත් රේඛාවකින් එය පෙන්වයි.`,`මට්ටම තරංගයේ උපරිම හා අවම අතර තැබූ විට රූපය ස්ථාවර වී "Trig'd" ලෙස පෙනේ. එම පරාසයෙන් පිටත තැබූ විට රූපය ඇවිදිමින් අස්ථාවර වී "Auto" ලෙස පෙනේ.`,`සෑම ආරම්භයක්ම එකම වෝල්ටීයතා ලක්ෂ්‍යයෙන් සිදු වීම නිසා තරංගයේ චක්‍ර එකිනෙක මත සමපාත වී රූපය නිශ්චලව පෙනේ. මෙයම ප්‍රේරණයේ මූලික මූලධර්මයයි.`],
+gPower:[`ජනකයේ ක්‍රියාත්මක කිරීමේ බොත්තම`,`සංඥා ජනකයට විදුලි බලය සපයා LCD තිරය දැල්වීමට/නිවීමට භාවිත කරයි. (සැබෑ උපකරණයේ මෙය පසුපස ඇති ස්විචයකි.)`,`ක්‍රියාත්මක කළ පසු ප්‍රතිදාන බොත්තම (OUT) එබූ තෙක් කිසිදු සංඥාවක් පිටතට නොයයි.`,`ජනකය නිවා ඇති විට දෝලනේක්ෂයට ලැබෙන්නේ 0 V රේඛාව පමණි.`],
+wave:[`තරංග වර්ග බොත්තම (WAVE)`,`ජනකයේ තරංග වර්ගය තේරීමේ ප්‍රකාරයට ඇතුල් වේ (LCD හි පළමු පේළිය ඉස්මතු වේ). එම ප්‍රකාරයේදී නැවත එබූ විට, ◀ ▶ බොත්තම් හෝ සීරුමාරු ගැටය කරකැවූ විට තරංග වර්ග මාරු වේ: සයිනාකාර, සමචතුරස්‍රාකාර, ත්‍රිකෝණාකාර, කියත් දැති.`,`තරංග වර්ග හතරම එකින් එක තෝරා දෝලනේක්ෂ තිරයේ හැඩය බලන්න. සමාන විස්තාරයේදී පවා තරංග වර්ග අනුව උච්ච-උච්ච අගය සහ හැඩය වෙනස් වන බව නිරීක්ෂණය කරන්න.`,`සයිනාකාර = ප්‍රත්‍යාවර්ත ධාරා ප්‍රභවය, ශ්‍රව්‍ය පරීක්ෂා. සමචතුරස්‍රාකාර = ඩිජිටල් පරිපථයේ ඔරලෝසු සංඥාව. ත්‍රිකෝණාකාර = රේඛීයතාව සහ අනුකලන පරිපථ පරීක්ෂා. කියත් දැති = කාල පරිමාණ ජනනය.`],
+ampl:[`විස්තාර බොත්තම (AMPL)`,`ජනකය විස්තාර සකසන ප්‍රකාරයට මාරු කරයි (LCD හි AMPL පේළිය ඉස්මතු වේ). සීරුමාරු ගැටය කරකැවීමෙන් උච්ච-උච්ච වෝල්ටීයතාව (0 – 20 V) වෙනස් වේ.`,`◀ ▶ බොත්තම්වලින් වෙනස් කරන ඉලක්කම (යට ඉරි දර්ශකය) තෝරා ගැටය කරකවන්න. විස්තාරය වැඩි කළ විට දෝලනේක්ෂ තිරයේ තරංගයේ උස වැඩි වේ.`,`ජනකයේ විස්තාරයත් දෝලනේක්ෂයේ මැනුමත් සමාන විය යුතුය. එසේ නොවේ නම් කොටුවකට වෝල්ට් අගය හෝ සම්බන්ධතා කේබලය පරීක්ෂා කරන්න.`],
+pgup:[`ඉදිරි පිටු බොත්තම (PgUp) – ද්විතීයික කාර්යය`,`පරාමිති ලැයිස්තුවේ ඉදිරියට යයි: සංඛ්‍යාතය (FREQ) → විස්තාරය (AMPL) → සරල ධාරා මට්ටම් විස්ථාපනය (OFFS) → කාර්ය චක්‍රය (DUTY). එක් බොත්තමකින් අමතර කාර්ය කිහිපයකට ළඟා වීමේ ද්විතීයික කාර්ය ක්‍රමයයි.`,`OFFS මත ගැටය කරකැවූ විට තරංගය සම්පූර්ණයෙන් ඉහළට/පහළට ගමන් කරයි (-10 V සිට +10 V). DUTY මත සමචතුරස්‍ර තරංගයේ "ඉහළ" කාලයේ ප්‍රතිශතය (කාර්ය චක්‍රය) සහ ත්‍රිකෝණ තරංගයේ නැගීමේ කාලයේ සමමිතිය වෙනස් වේ.`,`කාර්ය චක්‍රය 50% ට වඩා වෙනස් කළ විට ස්පන්ද පළල මොඩියුලනය (PWM) වැනි සංඥා සෑදේ; මෝටර් වේගය සහ LED දීප්තිය පාලනයට මෙය භාවිත වේ.`],
+pgdn:[`පසු පිටු බොත්තම (PgDn) – ද්විතීයික කාර්යය`,`පරාමිති ලැයිස්තුවේ ආපසු යයි: කාර්ය චක්‍රය (DUTY) → සරල ධාරා මට්ටම් විස්ථාපනය (OFFS) → විස්තාරය (AMPL) → සංඛ්‍යාතය (FREQ).`,`ඉදිරි පිටු බොත්තම සමඟ එකතු වී පරාමිති අතර ඉක්මනින් එහා මෙහා වීමට භාවිත කරන්න.`,`සැබෑ ජනකයේ මෙනු ගැඹුරට ගොස් අතිරේක පරාමිති ළඟා කර ගන්නා ක්‍රමයකි.`],
+out:[`ප්‍රතිදාන බොත්තම (OUT)`,`තෝරාගෙන ඇති නාලිකාවේ ප්‍රතිදානය ක්‍රියාත්මක/අක්‍රිය කරයි. ක්‍රියාත්මක වූ විට LCD හි [OUT ON] සහ අදාළ දීප දර්ශකය (CH1/CH2) දැල්වේ.`,`නාලිකාව මාරු කිරීමට OK බොත්තම භාවිත කර, එක් එක් නාලිකාවේ ප්‍රතිදානය වෙන වෙනම ක්‍රියාත්මක කරන්න.`,`සැබෑ ජනකයේ ප්‍රතිදානය අක්‍රිය කර තබා පරිපථය සම්බන්ධ කිරීම, පරිපථයට හානි වීම වළක්වා ගන්නා ආරක්ෂිත ක්‍රමයකි.`],
+ok:[`තහවුරු බොත්තම (OK)`,`මෙම සිමියුලේටරයේ OK බොත්තමෙන් සංස්කරණය කරන නාලිකාව CH1 ↔ CH2 අතර මාරු කරයි. වත්මන් නාලිකාව LCD හි ඉහළම පේළියේ පෙනේ.`,`එක් නාලිකාවක් සකස් කර අවසන් වූ පසු OK එබූ විට අනෙක් නාලිකාවේ සැකසුම් වෙනස් කළ හැක. එවිට නාලිකා දෙකටම වෙනස් සංඥා දිය හැක.`,`සැබෑ උපකරණවල OK බොත්තම සාමාන්‍යයෙන් තේරීමක් තහවුරු කිරීමට භාවිත වේ; නාලිකා මාරුව එහි වෙනත් ක්‍රමයකින් සිදු වේ.`],
+left:[`වම් ඊතලය (◀)`,`LCD හි යට ඉරි ඉලක්කම (දර්ශකය) වමට, එනම් විශාල අගයක් වෙත, ගෙන යයි. උදා: සංඛ්‍යාතයේ 1 Hz සිට 10 Hz, 100 Hz, 1000 Hz ලෙස. තරංග වර්ග ප්‍රකාරයේදී පෙර තරංගය තෝරයි.`,`ගැටය කරකවන විට වෙනස් වන්නේ දර්ශකය පිහිටි ඉලක්කමයි. විශාල වෙනසක් අවශ්‍ය නම් වමට, සියුම් වෙනසක් අවශ්‍ය නම් දකුණට දර්ශකය ගෙන යන්න.`,`මෙම ක්‍රමයෙන් එක් ගැටයක් පමණක් භාවිතා කර ඉතා පුළුල් පරාසයක (0.01 Hz – 100 kHz) අගයන් නිවැරදිව සැකසිය හැක.`],
+right:[`දකුණු ඊතලය (▶)`,`දර්ශකය දකුණට, එනම් කුඩා අගයක් වෙත, ගෙන යයි (උදා: 1 Hz සිට 0.1 Hz, 0.01 Hz). තරංග වර්ග ප්‍රකාරයේදී ඊළඟ තරංගය තෝරයි.`,`සංඛ්‍යාතය දශම ස්ථානවලට සියුම්ව ගැළපීමට, හෝ විස්තාරය 0.01 V වැනි කුඩා පියවරින් වෙනස් කිරීමට භාවිත කරන්න.`,`සියුම් සංඛ්‍යාත සැකසීම, අනුනාද සංඛ්‍යාතය සොයා ගැනීම වැනි පරීක්ෂණවලදී අත්‍යවශ්‍යයි.`],
+adjust:[`සීරුමාරු ගැටය (ADJUST)`,`LCD හි තෝරාගත් පරාමිතිය (සංඛ්‍යාතය, විස්තාරය, සරල ධාරා මට්ටම, කාර්ය චක්‍රය) දර්ශකය පිහිටි ඉලක්කමෙන් වැඩි/අඩු කරයි. තරංග වර්ග ප්‍රකාරයේදී තරංග වර්ගය මාරු කරයි.`,`ඔරලෝසු කටු දිශාවට කරකැවූ විට අගය වැඩි වේ; ප්‍රතිවිරුද්ධ දිශාවට කරකැවූ විට අඩු වේ. වේගයෙන් කරකැවූ විට පියවර වැඩි ගණනක් සිදු වේ.`,`වෙනස සිදු වන මොහොතේම දෝලනේක්ෂ තිරයේ තරංගය වෙනස් වේ. එය නිරීක්ෂණය කිරීම මෙම සිමියුලේටරයේ ප්‍රධාන අරමුණයි.`],
+bnc:[`සම්බන්ධක තුන (Ext.IN, CH1, CH2)`,`CH1 සහ CH2 යනු සංඥා ප්‍රතිදාන සම්බන්ධක (BNC) වේ. Ext.IN යනු පිටතින් ලැබෙන සංඥාවක සංඛ්‍යාතය ගණන් කරන ගණක ආදානයයි.`,`මෙම සිමියුලේටරයේ CH1 සහ CH2 සම්බන්ධක දෝලනේක්ෂයේ CH1 සහ CH2 වලට ස්වයංක්‍රීයව සම්බන්ධ කර ඇත. Ext.IN දර්ශනීය පමණි.`,`සැබෑ ලෝකයේදී BNC කේබලයකින් ජනකයේ ප්‍රතිදානය දෝලනේක්ෂ ආදානයට සම්බන්ධ කළ යුතුය. සම්බන්ධ නොකළහොත් දෝලනේක්ෂයට සංඥාවක් නොලැබේ.`],
+lcd:[`ජනකයේ LCD තිරය`,`දැනට තෝරාගෙන ඇති නාලිකාවේ තරංග වර්ගය, සංඛ්‍යාතය, විස්තාරය, සරල ධාරා මට්ටම් විස්ථාපනය සහ කාර්ය චක්‍රය පෙන්වයි. ▶ ලකුණ දැනට සංස්කරණය වන පරාමිතිය වන අතර, යට ඉරි ඉලක්කම දර්ශකයයි (එය නිවී නිවී දැල්වේ).`,`ජනකයේ සියලු සැකසුම් එකවර බැලීමට මෙම තිරය බලන්න.`,`සැබෑ උපකරණයේ LCD තිරයෙන් සැකසුම් වෙනස් කිරීමේ පියවරත් ප්‍රතිඵලයත් වහාම දැක ගත හැක.`],
+leds:[`දීප දර්ශක (CH1, CH2, OUT)`,`CH1 / CH2 දීපය = අදාළ නාලිකාවේ ප්‍රතිදානය ක්‍රියාත්මක බව. OUT දීපය = යම් ප්‍රතිදානයක් ක්‍රියාත්මක බව.`,`ප්‍රතිදානය ක්‍රියාත්මකදැයි බැලීමට LCD තිරය පමණක් නොව, මෙම දීප ද බලන්න.`,`සංඥාවක් සැබැවින්ම පිටතට යන්නේදැයි ඉක්මනින් තහවුරු කර ගැනීමට මෙම දීප උපකාරී වේ.`]};
+[1,2].forEach(n=>{
+ I['ch'+n]=[`නාලිකා ${n} බොත්තම (CH${n})`,`නාලිකා ${n} හි තරංගය තිරයේ පෙන්වීමට හෝ සැඟවීමට භාවිත කරයි. මෙය එබූ විට දකුණු පස මැනුම් පුවරුව ද එම නාලිකාවට මාරු වේ.`,`බොත්තම කොළ පැහැයෙන් දැල්වී ඇති විට නාලිකාව පෙනේ. නාලිකා දෙකම පෙන්වා සංඥා දෙකක් එකවර සංසන්දනය කළ හැක.`,`සැබෑ උපකරණයේ නාලිකාවකට සම්බන්ධ පරීක්ෂණ කේබලයෙන් ලැබෙන සංඥාව මෙයින් පෙන්වයි. මෙහි ජනකයේ CH${n} ප්‍රතිදානය දෝලනේක්ෂයේ CH${n} ට සම්බන්ධයි. නාලිකා දෙක අතර කාල වෙනස (අවධි වෙනස) මැනීමට මෙය ප්‍රයෝජනවත්.`];
+ I['vdiv'+n]=[`කොටුවකට වෝල්ට් ගැටය (VOLTS/DIV - CH${n})`,`සිරස් පරිමාණය තෝරයි; එනම් තිරයේ සිරස් කොටුවක් නියෝජනය කරන වෝල්ටීයතාව. අගය කුඩා කළ විට තරංගය සිරස් අතට විශාල වී පෙනේ; අගය විශාල කළ විට කුඩා වී පෙනේ.`,`ගැටය ඔරලෝසු කටු දිශාවට කරකැවූ විට අගය විශාල වේ. තරංගය කොටු 4–6ක් පමණ උසට පෙනෙන සේ සකසන්න. තරංගය තිරයෙන් පිටතට යන්නේ නම් අගය වැඩි කරන්න.`,`උච්ච-උච්ච වෝල්ටීයතාව = (උච්චයේ සිට උච්චයට සිරස් කොටු ගණන) × (කොටුවකට වෝල්ට් අගය). උදා: කොටු 4ක් සහ 1 V/කොටුව නම් 4 V.`];
+ I['pos'+n]=[`සිරස් පිහිටීම ගැටය (VERTICAL POSITION - CH${n})`,`නාලිකාවේ තරංග රේඛාව තිරයේ ඉහළට හෝ පහළට ගෙන යයි. තරංගයේ හැඩයට හෝ අගයට වෙනසක් නොවේ. ශුන්‍ය වෝල්ට් මට්ටම තිරයේ වම් කෙළවරේ ▸${n} ලකුණෙන් පෙන්වයි.`,`තරංගයේ පහළම ලක්ෂ්‍යය පහසුවෙන් කියවිය හැකි කොටු රේඛාවක් මත තබන්න. නාලිකා දෙක එකිනෙක මත වැටී ඇත්නම් එකක් ඉහළටත් අනෙක පහළටත් ගෙන වෙන් කර බලන්න.`,`ශුන්‍ය මට්ටමේ ලකුණ දැන සිටීම වැදගත්ය; මන්ද සරල ධාරා මට්ටම මැනීමේදී ඒ ලකුණේ සිට තරංගයට ඇති දුර කියවිය යුතුය.`]});
+function show(k,x){if(!S.help)return;const d=Array.isArray(k)?k:I[k];if(!d)return;
+ $('info').innerHTML=`<h3>${d[0]}</h3>${x?`<div class="v">${x}</div>`:''}<p><b>කාර්යය:</b> ${d[1]}</p>${d[2]?`<div class="e"><b>භාවිත කරන ආකාරය:</b> ${d[2]}</div>`:''}${d[3]?`<div class="e"><b>සැබෑ ලෝකයේදී:</b> ${d[3]}</div>`:''}`}
+
+/* ---------- knob ---------- */
+function knob(host,id,label,cls,col,tick,cb){
+ const w=document.createElement('div');w.className='kw';
+ w.innerHTML=`<div class="knob ${cls}" tabindex="0" role="slider" aria-label="${label}" style="--c:${col}"><i></i></div>${label}`;
+ const el=w.firstChild,cap=el.firstChild;if(I[id])el.title=I[id][0];let rot=0,last=0,acc=0;
+ const ang=e=>{const r=el.getBoundingClientRect();return Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)*180/Math.PI};
+ const spin=d=>{rot+=d;cap.style.transform=`rotate(${rot}deg)`;acc+=d;while(acc>=tick){acc-=tick;cb(1)}while(acc<=-tick){acc+=tick;cb(-1)}};
+ el.addEventListener('pointerdown',e=>{el.setPointerCapture(e.pointerId);last=ang(e);show(id);e.preventDefault()});
+ el.addEventListener('pointermove',e=>{if(!el.hasPointerCapture(e.pointerId))return;const a=ang(e);let d=a-last;if(d>180)d-=360;if(d<-180)d+=360;last=a;spin(d)});
+ el.addEventListener('wheel',e=>{e.preventDefault();spin(e.deltaY<0?tick:-tick)},{passive:false});
+ el.addEventListener('keydown',e=>{const s=/Right|Up/.test(e.key)?1:/Left|Down/.test(e.key)?-1:0;if(s){e.preventDefault();spin(s*tick)}});
+ host.appendChild(w);
+}
+const cl=(v,a,b)=>Math.min(b,Math.max(a,v)),r2=v=>Math.round(v*1e4)/1e4;
+const vdS=i=>fV(VD[S.vi[i]])+' / කොටුව';
+knob($('rH'),'hpos','H-POS','sm','#444',6,d=>{S.hp=cl(r2(S.hp+d*.1),-6,6);show('hpos',S.hp.toFixed(1)+' කොටු')});
+knob($('rH'),'tdiv','SEC/DIV','lg','#0b5db0',15,d=>{S.ti=cl(S.ti+d,0,TD.length-1);show('tdiv',fT(TD[S.ti])+' / කොටුව')});
+knob($('rT'),'tlevel','LEVEL','sm','#e8730c',6,d=>{const v=VD[S.vi[S.tsrc]];S.tl=cl(r2(S.tl+d*v/20),-5*v,5*v);show('tlevel',S.tl.toFixed(3)+' V')});
+[0,1].forEach(i=>{const c=i?'#00a8c0':'#c9a800',n=i+1;
+ knob($('rV'),'pos'+n,'POS CH'+n,'sm',c,6,d=>{S.pos[i]=cl(r2(S.pos[i]+d*.1),-4,4);show('pos'+n,S.pos[i].toFixed(1)+' කොටු')});
+ knob($('rV'),'vdiv'+n,'V/DIV CH'+n,'',c,15,d=>{S.vi[i]=cl(S.vi[i]+d,0,9);show('vdiv'+n,vdS(i))});});
+
+/* ---------- scope buttons ---------- */
+const tg=(id,on)=>$(id).classList.toggle('on',!!on);
+const meas=i=>{const c=G.ch[i];if(!G.on||!c.out)return null;return{vpp:c.amp,vp:c.amp/2,f:c.freq,T:1/c.freq,mx:c.off+c.amp/2,mn:c.off-c.amp/2}};
+function autoset(){const i=[0,1].find(k=>meas(k));if(i===undefined)return;const m=meas(i);
+ let t=TD.findIndex(x=>x*12>=m.T*3);S.ti=t<0?TD.length-1:t;
+ [0,1].forEach(k=>{const q=meas(k);if(q){const j=VD.findIndex(v=>v*6>=q.vpp);S.vi[k]=j<0?9:j;S.pos[k]=cl(r2(-(q.mx+q.mn)/2/VD[S.vi[k]]),-4,4)}});
+ S.tsrc=i;S.tl=r2((m.mx+m.mn)/2);S.hp=0}
+const SA={
+ sPower:()=>{S.on^=1;tg('sp',S.on);S.snap=null;S.run=1},
+ ch1:()=>{S.show[0]^=1;S.mch=0;tg('b1',S.show[0])},ch2:()=>{S.show[1]^=1;S.mch=1;tg('b2',S.show[1])},
+ math:()=>{S.math^=1;tg('bm',S.math)},
+ runstop:()=>{if(S.run){S.run=0;S.want=1}else{S.run=1;S.snap=null}},
+ auto:()=>{S.snap=null;S.run=1;autoset()},single:()=>{S.snap=null;S.run=1;S.single=1},
+ measure:()=>{S.mes^=1;document.querySelector('[data-k=measure]').classList.toggle('on',!!S.mes)},
+ tmenu:()=>{if(S.slope===1&&S.tsrc===0)S.slope=0;else if(S.slope===0&&S.tsrc===0)S.tsrc=1,S.slope=1;else if(S.slope===1)S.slope=0;else S.tsrc=0,S.slope=1},
+ t50:()=>{const m=meas(S.tsrc);S.tl=m?r2((m.mx+m.mn)/2):0},force:()=>{S.snap=null}};
+document.querySelectorAll('.scope [data-k]').forEach(b=>{if(b.tagName==='BUTTON'&&SA[b.dataset.k])b.addEventListener('click',()=>{SA[b.dataset.k]();
+ const k=b.dataset.k;show(k,k==='tmenu'?`ප්‍රේරණය: නාලිකා ${S.tsrc+1} • ${S.slope?'↑ නැගීමේ දාරය':'↓ වැටීමේ දාරය'}`:k==='sPower'?(S.on?'ක්‍රියාත්මකයි':'අක්‍රියයි'):k==='runstop'?(S.run?'ධාවනය වෙමින්':'නැවතී ඇත'):'')})});
+document.querySelectorAll('.fk button').forEach(b=>b.addEventListener('click',()=>show('fkeys')));
+
+
+/* ---------- generator ---------- */
+function lcd(){const el=$('lcd');
+ $('l1').classList.toggle('on',!!(G.on&&G.ch[0].out));$('l2').classList.toggle('on',!!(G.on&&G.ch[1].out));$('l3').classList.toggle('on',!!(G.on&&(G.ch[0].out||G.ch[1].out)));
+ if(!G.on){el.innerHTML='';return}
+ const c=G.ch[G.act],m=G.mode;
+ const row=k=>{const p=P[k],s=p.f(c[p.k]);let h='',d=0;for(const ch of s){if(/\d/.test(ch)){const cu=m===k&&d===G.cur[k];h+=`<span data-r="${k}" data-d="${d}">${cu?'<u>'+ch+'</u>':ch}</span>`;d++}else h+=ch}
+  return `<div class="${m===k?'sel':''}" data-r="${k}">${m===k?'▶':' '}${p.n} ${h} ${p.u}</div>`};
+ el.innerHTML=`<div class="${m==='wave'?'sel':''}">${m==='wave'?'▶':' '}<span data-r="lch">CH${G.act+1}</span>  <span data-r="wave">${WN[c.wave]}</span>  <span data-r="lout">${c.out?'[OUT ON]':'[OUT OFF]'}</span></div>`+row('freq')+row('amp')+row('off')+row('duty')}
+const gv=()=>{const c=G.ch[G.act];return `නාලිකාව ${G.act+1}: ${WS[c.wave]} | සංඛ්‍යාතය ${fF(c.freq)} | විස්තාරය ${c.amp.toFixed(2)} Vpp | මට්ටම ${c.off.toFixed(2)} V | කාර්ය චක්‍රය ${c.duty.toFixed(1)}%`};
+function adj(d){if(!G.on)return;const c=G.ch[G.act];
+ if(G.mode==='wave')c.wave=(c.wave+d+4)%4;
+ else{const p=P[G.mode];c[p.k]=cl(Math.round((c[p.k]+d*p.pl[G.cur[G.mode]])*100)/100,p.min,p.max)}
+ lcd()}
+knob($('kA'),'adjust','ADJUST','','#1b5fb5',15,d=>{adj(d);show('adjust',gv())});
+const ORD=['freq','amp','off','duty'];
+const GA={
+ gPower:()=>{G.on^=1;tg('gp',G.on)},
+ wave:()=>{if(G.mode==='wave')adj(1);else G.mode='wave'},ampl:()=>{G.mode='amp'},
+ pgup:()=>{G.mode=ORD[(ORD.indexOf(G.mode)+1)%4]},pgdn:()=>{G.mode=ORD[(ORD.indexOf(G.mode)+3)%4]},
+ out:()=>{if(G.on)G.ch[G.act].out^=1},ok:()=>{if(G.on)G.act^=1},
+ left:()=>{G.mode==='wave'?adj(-1):G.cur[G.mode]=Math.max(0,G.cur[G.mode]-1)},
+ right:()=>{G.mode==='wave'?adj(1):G.cur[G.mode]=Math.min(P[G.mode].pl.length-1,G.cur[G.mode]+1)}};
+document.querySelectorAll('.gen [data-k]').forEach(b=>{const k=b.dataset.k;
+ if(b.tagName==='BUTTON')b.addEventListener('click',()=>{GA[k]();lcd();show(k,G.on?gv():'')});else b.addEventListener('pointerdown',()=>show(k))});
+lcd();
+document.querySelectorAll('button[data-k]').forEach(b=>{const d=I[b.dataset.k];if(d)b.title=d[0]});
+
+/* ---------- waveforms ---------- */
+function sig(i,t){const c=G.ch[i];if(!G.on||!c.out)return 0;
+ let p=c.freq*t;p-=Math.floor(p);const d=c.duty/100;let w;
+ switch(c.wave){case 0:w=Math.sin(2*Math.PI*p);break;case 1:w=p<d?1:-1;break;
+  case 2:w=p<d?-1+2*p/d:1-2*(p-d)/(1-d);break;default:w=-1+2*p}
+ return c.off+c.amp/2*w}
+function findTrig(i,L,up){const m=meas(i);if(!m||L<=m.mn||L>=m.mx)return null;
+ const n=1000,dt=m.T/n;let pv=sig(i,-dt);
+ for(let k=0;k<=n;k++){const v=sig(i,k*dt);if(up?(pv<L&&v>=L):(pv>L&&v<=L))return k*dt-dt+(L-pv)/(v-pv)*dt;pv=v}
+ return null}
+
+/* ---------- screen ---------- */
+const cv=$('scr'),ctx=cv.getContext('2d'),W=860,H=540,GX=14,GY=34,D=60,GW=720,GH=480,COL=['#ffe600','#00e5ff'];
+function grid(){
+ ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.strokeStyle='#5a5f66';ctx.lineWidth=1;ctx.setLineDash([1,3]);ctx.beginPath();
+ for(let i=0;i<=12;i++){ctx.moveTo(GX+i*D+.5,GY);ctx.lineTo(GX+i*D+.5,GY+GH)}
+ for(let j=0;j<=8;j++){ctx.moveTo(GX,GY+j*D+.5);ctx.lineTo(GX+GW,GY+j*D+.5)}
+ ctx.stroke();ctx.setLineDash([]);ctx.strokeStyle='#9aa0a8';ctx.strokeRect(GX+.5,GY+.5,GW,GH);
+ ctx.beginPath();ctx.moveTo(GX+GW/2+.5,GY);ctx.lineTo(GX+GW/2+.5,GY+GH);ctx.moveTo(GX,GY+GH/2+.5);ctx.lineTo(GX+GW,GY+GH/2+.5);
+ for(let i=0;i<60;i++){const x=GX+i*D/5;ctx.moveTo(x,GY+GH/2-3);ctx.lineTo(x,GY+GH/2+3)}
+ for(let j=0;j<40;j++){const y=GY+j*D/5;ctx.moveTo(GX+GW/2-3,y);ctx.lineTo(GX+GW/2+3,y)}
+ ctx.stroke()}
+function frame(now){
+ requestAnimationFrame(frame);
+ if(S.snap){ctx.putImageData(S.snap,0,0);return}
+ grid();
+ if(!S.on){ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);return}
+ const td=TD[S.ti],tr=findTrig(S.tsrc,S.tl,S.slope);
+ if(S.single&&tr!==null){S.run=0;S.want=1;S.single=0}
+ const t0=S.t0=tr!==null?tr:now/1000*td*.9,yOf=(i,v)=>GY+GH/2-(v/VD[S.vi[i]]+S.pos[i])*D;
+ // markers
+ ctx.font='bold 12px monospace';
+ [0,1].forEach(i=>{if(S.show[i]){ctx.fillStyle=COL[i];ctx.fillText('▸'+(i+1),GX-12,yOf(i,0)+4)}});
+ const yT=yOf(S.tsrc,S.tl);ctx.fillStyle='#ff8a00';ctx.fillText('◂T',GX+GW+1,yT+4);
+ ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(255,138,0,.35)';ctx.beginPath();ctx.moveTo(GX,yT);ctx.lineTo(GX+GW,yT);ctx.stroke();ctx.setLineDash([]);
+ // traces
+ ctx.save();ctx.beginPath();ctx.rect(GX,GY,GW,GH);ctx.clip();ctx.lineWidth=1.8;ctx.lineJoin='round';
+ const tr1=(col,f)=>{ctx.strokeStyle=col;ctx.beginPath();for(let k=0;k<=GW*2;k++){const x=k/2,t=t0+(x/D-6-S.hp)*td,y=f(t);k?ctx.lineTo(GX+x,y):ctx.moveTo(GX+x,y)}ctx.stroke()};
+ [0,1].forEach(i=>{if(S.show[i])tr1(COL[i],t=>yOf(i,sig(i,t)))});
+ if(S.math)tr1('#ff4dff',t=>yOf(0,sig(0,t)+sig(1,t)));
+ ctx.restore();
+ // top & bottom bars
+ ctx.font='bold 15px sans-serif';ctx.fillStyle='#4aa3ff';ctx.fillText('UNI-T',10,22);
+ const st=!S.run?['Stop','#ff4040']:tr!==null?["Trig'd",'#39ff7a']:[S.single?'Ready':'Auto','#ffe600'];
+ S.st=st[0];ctx.fillStyle=st[1];ctx.fillText(st[0],90,22);ctx.fillStyle='#ff8a00';ctx.fillText('▼',GX+GW/2-5+S.hp*D*-0,28);
+ ctx.fillStyle='#ddd';ctx.font='13px monospace';ctx.fillText(`Trig CH${S.tsrc+1} ${S.slope?'↑':'↓'}  ${S.tl.toFixed(2)}V`,GX+GW-190,22);
+ ctx.font='bold 13px monospace';
+ [0,1].forEach(i=>{ctx.fillStyle=S.show[i]?COL[i]:'#555';ctx.fillRect(GX+i*130,GY+GH+10,120,20);ctx.fillStyle='#000';ctx.fillText((i+1)+' ~ '+fV(VD[S.vi[i]]),GX+6+i*130,GY+GH+25)});
+ ctx.fillStyle='#ddd';ctx.fillText('M '+fT(td)+'   H '+S.hp.toFixed(1)+'div',GX+270,GY+GH+25);
+ // measurements
+ if(S.mes){const i=S.mch,m=meas(i),x=GX+GW+22,v=m?[['Freq',fF(m.f)],['Period',fT(m.T)],['Vpp',m.vpp.toFixed(2)+' V'],['Vp',m.vp.toFixed(2)+' V']]:[['Freq','---'],['Period','---'],['Vpp','---'],['Vp','---']];
+  ctx.fillStyle=COL[i];ctx.font='bold 13px sans-serif';ctx.fillText('CH'+(i+1),x,GY+14);ctx.font='11px monospace';
+  v.forEach((r,j)=>{ctx.fillStyle='#9aa0a8';ctx.fillText(r[0],x,GY+46+j*52);ctx.fillStyle='#fff';ctx.font='bold 12px monospace';ctx.fillText(r[1],x,GY+62+j*52);ctx.font='11px monospace'})}
+ if(S.want){S.snap=ctx.getImageData(0,0,W,H);S.want=0}
+}
+/* ---------- අමතර විස්තර: තිරය සහ LCD මත ක්ලික් කිරීම ---------- */
+Object.assign(I,{
+mhead:[`මැනුම් පුවරුව`,`තිරයේ දකුණු පස ඇති මෙම පුවරුවෙන් දැනට තෝරා ඇති නාලිකාවේ (ශීර්ෂයේ වර්ණයෙන් හඳුනාගත හැක: කහ = CH1, නිල් = CH2) සංඛ්‍යාතය, ආවර්ත කාලය, උච්ච-උච්ච වෝල්ටීයතාව සහ උච්ච වෝල්ටීයතාව ස්වයංක්‍රීයව පෙන්වයි.`,`වෙනත් නාලිකාවේ මැනුම් බැලීමට CH1 හෝ CH2 බොත්තම එබන්න. පුවරුව සැඟවීමට MEASURE බොත්තම භාවිත කරන්න. ඕනෑම අගයක් මත ක්ලික් කළ විට එය ගණනය වන ආකාරය දැක ගත හැක.`,`සැබෑ උපකරණයේ ස්වයංක්‍රීය මැනුම් මගින් අතින් කොටු ගණන් කිරීමේදී වන වැරදි අඩු වේ.`],
+mFreq:[`මැනුම: සංඛ්‍යාතය (Freq)`,`සංඥාව තත්පරයක් තුළ චක්‍ර කීයක් සම්පූර්ණ කරයිද යන්න හර්ට්ස් (Hz) වලින් දක්වයි. එය ආවර්ත කාලයේ ප්‍රතිලෝමයයි: f = 1 ÷ T.`,`තිරයේ එක් චක්‍රයක කොටු ගණන × කොටුවකට කාලය = T; ඉන්පසු 1 ÷ T මගින් f ලැබේ. මෙම අගය ජනකයේ LCD හි සංඛ්‍යාතයට සමාන විය යුතුය.`,`ශ්‍රී ලංකාවේ ප්‍රධාන විදුලි සැපයුමේ සංඛ්‍යාතය 50 Hz වේ; දෝලනේක්ෂයකින් එය මැන බැලිය හැක.`],
+mPer:[`මැනුම: ආවර්ත කාලය (Period)`,`එක් සම්පූර්ණ චක්‍රයක් සඳහා ගත වන කාලය (T). ඒකක: තත්පර (s), මිලි තත්පර (ms), මයික්‍රො තත්පර (µs).`,`තිරයේ එක් චක්‍රයක් තිරස් කොටු කීයක් පුරා පැතිරී ඇත්දැයි ගණන් කර, කොටුවකට කාල අගයෙන් ගුණ කරන්න.`,`ඩිජිටල් පරිපථයක ඔරලෝසු සංඥාවේ ආවර්ත කාලය එම පරිපථයේ වේගය තීරණය කරයි.`],
+mVpp:[`මැනුම: උච්ච-උච්ච වෝල්ටීයතාව (Vpp)`,`තරංගයේ ඉහළම ලක්ෂ්‍යයේ සිට පහළම ලක්ෂ්‍යය දක්වා වෝල්ටීයතා වෙනස. සරල ධාරා මට්ටම් විස්ථාපනය මෙයට බලපාන්නේ නැත.`,`සිරස් කොටු ගණන × කොටුවකට වෝල්ට් අගය = Vpp. ජනකයේ LCD හි විස්තාරය (AMPL) සමඟ සසඳා බලන්න.`,`ඇම්ප්ලිෆයරයක ආදාන සහ ප්‍රතිදාන Vpp මැන, ඒවායේ අනුපාතයෙන් වර්ධනය (gain) සොයා ගත හැක.`],
+mVp:[`මැනුම: උච්ච වෝල්ටීයතාව (Vp)`,`ශුන්‍ය මට්ටමේ සිට තරංගයේ උච්චය දක්වා වෝල්ටීයතාව. සමමිතික තරංගයක Vp = Vpp ÷ 2.`,`Vpp අගය 2 න් බෙදන්න. උදා: Vpp = 4 V නම් Vp = 2 V.`,`ප්‍රත්‍යාවර්ත ධාරා ගණනයන්හි (උදා: සයිනාකාර තරංගයක RMS = Vp ÷ √2) Vp භාවිත වේ.`],
+mtrace:[`ගණිත රේඛාව (MATH = CH1 + CH2)`,`රෝස පැහැති මෙම රේඛාව නාලිකා 1 සහ නාලිකා 2 හි වෝල්ටීයතා ක්ෂණයෙන් ක්ෂණයට එකතු කර ලැබෙන තරංගයයි.`,`සංඥා දෙක එකම සංඛ්‍යාතයෙන් ඇති විට විස්තාර එකතු වී උස වැඩි වේ; සංඛ්‍යාත වෙනස් නම් සංකීර්ණ හැඩයක් ඇති වේ.`,`ශබ්ද තරංග දෙකක් එකතු වීම, සංඥාවකට අනවශ්‍ය රැව් (noise) එකතු වීම වැනි දේ මෙයින් තේරුම් ගත හැක.`],
+logo:[`UNI-T සන්නාම ලාංඡනය`,`උපකරණය නිපදවන සමාගමේ සන්නාමයයි. මෙම සිමියුලේටරයේ ආකෘතිය UTD2102E Plus ලෙස නම් කර ඇත: නාලිකා දෙකක් සහිත ඩිජිටල් දෝලනේක්ෂයකි.`,`ඩිජිටල් දෝලනේක්ෂයක් සංඥාව නියැදි ලෙස ගබඩා කර තිරයේ ඇඳ පෙන්වයි.`,``],
+status:[`තත්ත්ව දර්ශකය`,`Auto (කහ) = ප්‍රේරණය නොවී රූපය ස්වයංක්‍රීයව පෙන්වීම (අස්ථාවර විය හැක). Trig'd (කොළ) = ප්‍රේරණය වී රූපය ස්ථාවරයි. Stop (රතු) = රූපය නවතා ඇත. Ready = තනි ග්‍රහණයට සූදානම්.`,`රූපය චලනය වෙමින් Auto පෙන්වන්නේ නම් ප්‍රේරක මට්ටම ගැටය තරංගය තුළට ගෙන Trig'd බවට පත් කරන්න.`,`ප්‍රේරණය ගැන දැනගැනීමට මෙය සැබෑ උපකරණයේද ප්‍රධාන දර්ශකයකි.`],
+tinfo:[`ප්‍රේරක තොරතුරු`,`වත්මන් ප්‍රේරක මූලාශ්‍ර නාලිකාව, දාරය (↑ නැගීම / ↓ වැටීම) සහ ප්‍රේරක මට්ටම (වෝල්ට්) මෙහි පෙන්වයි.`,`මෙය වෙනස් කිරීමට ප්‍රේරක මෙනු බොත්තම (MENU), ප්‍රේරක මට්ටම ගැටය (LEVEL) හෝ 50% බොත්තම භාවිත කරන්න.`,`ප්‍රේරක සැකසුම වැරදි නම් රූපය ස්ථාවර නොවේ; ඒ නිසා සෑම මැනුමකටම පෙර මෙය පරීක්ෂා කරන්න.`],
+tmark:[`ප්‍රේරක ලක්ෂ්‍ය ලකුණ (▼)`,`ප්‍රේරණය වූ ලක්ෂ්‍යය තිරයේ මැද තිරස් ස්ථානයේ පිහිටන බව මෙම ලකුණින් පෙන්වයි.`,`තිරස් පිහිටීම ගැටය (H-POS) කරකැවූ විට රූපය මෙම ලකුණට සාපේක්ෂව වමට/දකුණට ගමන් කරයි.`,`ප්‍රේරණයට පෙර සහ පසු සංඥා කොටස් බැලීමට මෙය ප්‍රයෝජනවත්.`],
+grid:[`තිරයේ කොටු දැල`,`තිරස් කොටු 12ක් සහ සිරස් කොටු 8කින් යුතු දැලකි. මැද තිරස්/සිරස් රේඛාවල කුඩා ඉරි ඇත; ඒවායින් එක් කොටුවක් කොටස් 5කට බෙදා ඇත.`,`තරංගය මැනීමට මෙම කොටු ගණන් කර, සිරස් කොටු × (කොටුවකට වෝල්ට්) සහ තිරස් කොටු × (කොටුවකට කාලය) ලෙස ගුණ කරන්න.`,`සැබෑ දෝලනේක්ෂයේ දැල ඉතා නිවැරදිව මුද්‍රණය කර ඇත; අතින් කියවීම්වලදී ඒවා පදනම් වේ.`],
+lfreq:[`LCD: සංඛ්‍යාතය (FREQ)`,`තත්පරයකදී තරංගය චක්‍ර කීයක් සම්පූර්ණ කරයිද යන්න හර්ට්ස් (Hz) වලින් දක්වයි. උදා: 00500.00 Hz යනු තත්පරයට චක්‍ර 500කි.`,`සංඛ්‍යාතය වැඩි කළ විට දෝලනේක්ෂ තිරයේ චක්‍ර වැඩි ගණනක් පෙනේ. එක් චක්‍රයක කාලය T = 1 ÷ f. ඉලක්කමක් මත ක්ලික් කර එහි දර්ශකය තබා සීරුමාරු ගැටය කරකවන්න.`,`ශ්‍රව්‍ය සංඥා 20 Hz – 20 kHz පමණ; ශ්‍රී ලංකාවේ ප්‍රධාන විදුලි සැපයුම 50 Hz; ඩිජිටල් පරිපථ ඔරලෝසු kHz – MHz.`],
+lamp:[`LCD: විස්තාරය (AMPL)`,`තරංගයේ උච්චයේ සිට උච්චයට වෝල්ටීයතාව (Vpp) වෝල්ට් වලින් දක්වයි. උදා: 04.00 Vpp යනු උච්ච වෝල්ටීයතාව (Vp) 2 V වේ (Vpp = 2 × Vp).`,`විස්තාරය වැඩි කළ විට දෝලනේක්ෂ තිරයේ තරංගයේ උස වැඩි වේ. තරංගය තිරයෙන් පිට වන්නේ නම් කොටුවකට වෝල්ට් ගැටය වැඩි කරන්න.`,`පරිපථයකට ලබා දෙන ආදාන සංඥා මට්ටම පාලනය කිරීමට විස්තාරය යොදා ගනී.`],
+loff:[`LCD: සරල ධාරා මට්ටම් විස්ථාපනය (OFFS)`,`තරංගයේ මැද රේඛාව ශුන්‍යයෙන් ඉහළට (+) හෝ පහළට (−) ගෙන යන වෝල්ට් ප්‍රමාණය දක්වයි (−10 V සිට +10 V). Vpp වෙනස් නොවේ.`,`අගය වෙනස් කළ විට දෝලනේක්ෂ තිරයේ තරංගය සම්පූර්ණයෙන් ඉහළට/පහළට ගමන් කරයි. ශුන්‍ය ලකුණ (▸) සමඟ සසඳා සරල ධාරා මට්ටම කියවන්න.`,`ට්‍රාන්සිස්ටරයක පක්ෂග්‍රාහී (bias) වෝල්ටීයතාවක් මත ප්‍රත්‍යාවර්ත සංඥාවක් එකතු කිරීමේ අවස්ථාවලදී භාවිත වේ.`],
+lduty:[`LCD: කාර්ය චක්‍රය (DUTY)`,`සමචතුරස්‍රාකාර තරංගයක එක් චක්‍රයක් තුළ තරංගය "ඉහළ" මට්ටමේ තිබෙන කාලයේ ප්‍රතිශතය. ත්‍රිකෝණාකාර තරංගයේ නම් නැගීමේ කොටසේ කාල ප්‍රතිශතය (සමමිතිය) වේ. සයිනාකාර සහ කියත් දැති තරංගවලට බලපෑමක් නැත.`,`PgUp/PgDn එබීමෙන් හෝ මෙම පේළිය ක්ලික් කිරීමෙන් තෝරා, ගැටය කරකවන්න. 50% = සමමිතික; 10% = ඉතා කෙටි ස්පන්ද.`,`මෝටර් වේගය, LED දීප්තිය පාලනය කරන ස්පන්ද පළල මොඩියුලන (PWM) සංඥාවල කාර්ය චක්‍රය වැදගත් වේ.`],
+lwave:[`LCD: තරංග වර්ගය`,`දැනට තෝරා ඇති නාලිකාවේ තරංග හැඩය: Sine (සයිනාකාර), Square (සමචතුරස්‍රාකාර), Triangle (ත්‍රිකෝණාකාර), Sawtooth (කියත් දැති).`,`මෙම පේළිය ක්ලික් කළ විට තරංග වර්ග ප්‍රකාරයට ඇතුල් වේ. ඉන්පසු WAVE බොත්තම, ◀ ▶ හෝ සීරුමාරු ගැටය මගින් තරංගය මාරු කරන්න.`,`පරිපථයක් පරීක්ෂා කිරීමට සුදුසු තරංගය තෝරා ගැනීම වැදගත් වේ (උදා: ඩිජිටල් පරීක්ෂාවට සමචතුරස්‍රාකාර).`],
+llch:[`LCD: නාලිකා දර්ශකය`,`දැනට සංස්කරණය කරන ජනක නාලිකාව (CH1 හෝ CH2) පෙන්වයි. සියලු සැකසුම් එම නාලිකාවට අදාළ වේ.`,`නාලිකාව මාරු කිරීමට OK බොත්තම එබන්න.`,`CH1 සහ CH2 වලට වෙනස් සංඥා දී දෝලනේක්ෂයේ නාලිකා දෙකෙන් සසඳා බැලිය හැක.`],
+llout:[`LCD: ප්‍රතිදාන තත්ත්වය`,`[OUT ON] = මෙම නාලිකාවේ ප්‍රතිදානය ක්‍රියාත්මකයි; [OUT OFF] = අක්‍රියයි (සංඥාවක් පිටතට නොයයි).`,`ප්‍රතිදානය ක්‍රියාත්මක කිරීමට හෝ අක්‍රිය කිරීමට OUT බොත්තම එබන්න.`,`පරිපථයට සංඥාව දීමට පෙර ප්‍රතිදානය අක්‍රිය කර සම්බන්ධ කිරීම ආරක්ෂිතයි.`]});
+const PN={freq:'සංඛ්‍යාතය',amp:'විස්තාරය',off:'සරල ධාරා මට්ටම',duty:'කාර්ය චක්‍රය'};
+function digitInfo(r,d){const p=P[r],pl=p.pl[d];
+ return[[`ඉලක්කම් ස්ථානය: ${pl} ${p.u}`,`LCD හි ඔබ ක්ලික් කළ ${PN[r]} ඉලක්කම දැන් යට ඉරි දර්ශකයෙන් සලකුණු වී ඇත. මෙම ඉලක්කමේ ස්ථාන අගය ${pl} ${p.u} වේ.`,`සීරුමාරු ගැටය එක් පියවරක් කරකැවූ විට ${PN[r]} ${pl} ${p.u} කින් වැඩි/අඩු වේ. විශාල ස්ථාන අගයක් නම් ඉක්මන් විශාල වෙනසක්; කුඩා ස්ථාන අගයක් නම් සියුම් වෙනසක් සිදු වේ. ◀ ▶ බොත්තම්වලින් ද දර්ශකය ගෙන යා හැක.`,`සැබෑ ජනකයේ ද දර්ශකය ඉලක්කමක් මත තබා ගැටයෙන් නිවැරදි අගයක් ඉක්මනින් සැකසීමේ ක්‍රමය මෙයයි.`],gv()]}
+const WD=[`සයිනාකාර (Sine) තරංගයකි: සුමටව ඉහළ ගොස් පහළට එන, හැඩය නොවෙනස් වන ස්වභාවික දෝලනයකි. ප්‍රත්‍යාවර්ත ධාරා (AC) ප්‍රභවයක තරංගය මෙයයි.`,
+`සමචතුරස්‍රාකාර (Square) තරංගයකි: වෝල්ටීයතාව ඉහළ සහ පහළ අගයන් දෙකක් අතර ක්ෂණිකව මාරු වේ (සිරස් දාර).`,
+`ත්‍රිකෝණාකාර (Triangular) තරංගයකි: වෝල්ටීයතාව ඒකාකාරව සරල රේඛාවක් ලෙස ඉහළ ගොස් ඒකාකාරව පහළට එයි.`,
+`කියත් දැති (Sawtooth) තරංගයකි: වෝල්ටීයතාව ඒකාකාරව ඉහළ ගොස් එකවරම පහළට වැටේ.`];
+function traceInfo(i){const n=i+1,c=G.ch[i],m=meas(i),vd=VD[S.vi[i]],td=TD[S.ti];
+ if(!m)return[[`CH${n} තරංග රේඛාව`,`මෙය නාලිකා ${n} හි වෝල්ටීයතාව කාලය සමඟ වෙනස් වන ආකාරය පෙන්වන රේඛාවයි. දැනට ජනකයේ නාලිකා ${n} ප්‍රතිදානය ක්‍රියාත්මක නොවන නිසා රේඛාව 0 V හි සරල රේඛාවකි.`,`ජනකය ක්‍රියාත්මක කර, OK බොත්තමින් නාලිකා ${n} තෝරා, OUT බොත්තම එබූ පසු සංඥාව දිස්වේ.`,`සංඥාවක් නැති විට පෙනෙන සරල රේඛාව වෝල්ටීයතාව ශුන්‍ය බවට සාක්ෂියකි; පරිපථ ක්‍රියා නොකරන්නේ ඇයිදැයි සෙවීමට මෙය උපකාරී වේ.`]];
+ const dc=Math.abs(c.off)>0.004?` • සරල ධාරා මට්ටම ${c.off>0?'+':''}${c.off.toFixed(2)} V`:'';
+ return[[`CH${n} තරංග රේඛාව`,`මෙය නාලිකා ${n} හි වෝල්ටීයතාව කාලය සමඟ වෙනස් වන ආකාරයයි. ${WD[c.wave]}${c.wave===1||c.wave===2?` කාර්ය චක්‍රය/සමමිතිය ${c.duty.toFixed(1)}% කි.`:''}`,`රේඛාවේ උච්චයේ සිට උච්චයට සිරස් කොටු ගණන් කර කොටුවකට වෝල්ට් අගයෙන් ගුණ කරන්න (Vpp). එක් චක්‍රයක තිරස් කොටු ගණන් කර කොටුවකට කාල අගයෙන් ගුණ කරන්න (T). සරල ධාරා මට්ටම ශුන්‍ය ලකුණට (▸${n}) සාපේක්ෂව කියවන්න.`,`සැබෑ උපකරණයේ මෙම රේඛාව පරීක්ෂණ කේබලය මගින් පරිපථයෙන් ලැබෙන සැබෑ වෝල්ටීයතාව කාලය සමඟ ඇඳ පෙන්වයි.`],
+ `Vpp = ${(m.vpp/vd).toFixed(2)} කොටු × ${fV(vd)} = ${m.vpp.toFixed(2)} V • T = ${(m.T/td).toFixed(2)} කොටු × ${fT(td)} = ${fT(m.T)} • f = ${fF(m.f)}${dc}`]}
+function liveM(j){const i=S.mch,m=meas(i),vd=VD[S.vi[i]],td=TD[S.ti];
+ if(!m)return`CH${i+1}: සංඥාවක් නැත (ප්‍රතිදානය ක්‍රියාත්මක නොවේ)`;
+ return[`f = 1 ÷ T = 1 ÷ ${fT(m.T)} = ${fF(m.f)}`,`T = ${(m.T/td).toFixed(2)} කොටු × ${fT(td)} = ${fT(m.T)}`,`Vpp = ${(m.vpp/vd).toFixed(2)} කොටු × ${fV(vd)} = ${m.vpp.toFixed(2)} V`,`Vp = Vpp ÷ 2 = ${m.vpp.toFixed(2)} ÷ 2 = ${m.vp.toFixed(2)} V`][j]}
+function hit(x,y){
+ const yOf=(i,v)=>GY+GH/2-(v/VD[S.vi[i]]+S.pos[i])*D,td=TD[S.ti];
+ if(!S.on)return['screen','දෝලනේක්ෂය නිවී ඇත — ⏻ බොත්තම එබන්න'];
+ if(y<GY)return x<85?['logo']:x<165?['status',`වත්මන් තත්ත්වය: ${S.st}`]:x>GX+GW-195?['tinfo',`ප්‍රේරණය: CH${S.tsrc+1} ${S.slope?'↑ නැගීමේ දාරය':'↓ වැටීමේ දාරය'} • ${S.tl.toFixed(2)} V`]:['tmark'];
+ if(y>GY+GH+4)return x<GX+125?['vdiv1',vdS(0)]:x<GX+255?['vdiv2',vdS(1)]:x<GX+400?['tdiv',fT(td)+' / කොටුව']:['hpos',S.hp.toFixed(1)+' කොටු'];
+ const yT=yOf(S.tsrc,S.tl);
+ if(x>GX+GW+4){
+  if(Math.abs(y-yT)<10&&x<GX+GW+24)return['tlevel',S.tl.toFixed(3)+' V'];
+  if(!S.mes)return['screen'];
+  const j=Math.floor((y-GY-34)/52);
+  return j>=0&&j<4?[['mFreq','mPer','mVpp','mVp'][j],liveM(j)]:['mhead'];
+ }
+ if(x<GX+4)for(let i=0;i<2;i++)if(S.show[i]&&Math.abs(y-yOf(i,0))<12)return['pos'+(i+1),S.pos[i].toFixed(1)+' කොටු'];
+ let best=null,bd=11;
+ const dist=f=>{let lo=1e9,hi=-1e9;for(let dx=-4;dx<=4;dx++){const yy=f(S.t0+((x+dx-GX)/D-6-S.hp)*td);lo=Math.min(lo,yy);hi=Math.max(hi,yy)}return y<lo?lo-y:y>hi?y-hi:0};
+ [0,1].forEach(i=>{if(S.show[i]){const d=dist(t=>yOf(i,sig(i,t)));if(d<bd){bd=d;best=i}}});
+ if(S.math){const d=dist(t=>yOf(0,sig(0,t)+sig(1,t)));if(d<bd){bd=d;best='m'}}
+ if(best==='m')return['mtrace'];
+ if(best!==null)return traceInfo(best);
+ if(Math.abs(y-yT)<6)return['tlevel',S.tl.toFixed(3)+' V'];
+ return['grid',`1 කොටුව = ${fV(VD[S.vi[0]])} (CH1 සිරස්) / ${fT(td)} (තිරස්)`];
+}
+$('scr').addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect();show(...hit((e.clientX-r.left)*W/r.width,(e.clientY-r.top)*H/r.height))});
+$('lcd').addEventListener('click',e=>{
+ if(!G.on){show('lcd','ජනකය ක්‍රියාත්මක නොවේ — පළමුව ⏻ බොත්තම එබන්න');return}
+ const t=e.target.closest('[data-r]');if(!t){show('lcd');return}
+ const r=t.dataset.r;
+ if(r==='lch'||r==='lout'){show('l'+r,gv());return}
+ G.mode=r;
+ if(t.dataset.d!==undefined){G.cur[r]=+t.dataset.d;lcd();show(...digitInfo(r,+t.dataset.d));return}
+ lcd();show('l'+r,gv())});
+$('itg').addEventListener('click',()=>{S.help^=1;$('info').style.display=S.help?'':'none';
+ $('itg').textContent=S.help?'📖 විස්තර සඟවන්න':'📖 විස්තර පෙන්වන්න';$('itg').setAttribute('aria-pressed',!!S.help)});
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>විද්‍යුත් සූත්‍ර ගණක</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--card:#1c1c1e;--tx:#E0E0E0;--mu:#9a9aa0;--ac:#4fc3f7;--ok:#81c784;--bd:#2e2e32;--in:#121214;--wa:#ffb74d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root{--bg:#f5f6f8;--card:#fff;--tx:#1d1f23;--mu:#60646c;--ac:#0b6fa8;--ok:#1b7a33;--bd:#d9dce1;--in:#f0f2f5;--wa:#c25e00}}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Noto Sans Sinhala',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+header{padding:28px 16px 8px;max-width:1100px;margin:auto}
+h1{margin:0 0 6px;font-size:1.6rem}
+header p{margin:0;color:var(--mu);font-size:.95rem}
+nav{display:flex;flex-wrap:wrap;gap:8px;max-width:1100px;margin:14px auto 0;padding:0 16px}
+nav a{color:var(--ac);border:1px solid var(--bd);border-radius:20px;padding:3px 12px;text-decoration:none;font-size:.85rem}
+main{max-width:1100px;margin:auto;padding:0 16px 40px}
+h2{margin:28px 0 10px;font-size:1.2rem;border-bottom:1px solid var(--bd);padding-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.use{color:var(--mu);font-size:.85rem;margin:0 0 10px}
+.eq{font-size:1.25rem;display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:10px;background:var(--in);border-radius:8px;margin-bottom:10px;font-family:'Times New Roman',serif}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px}
+.fr b{font-weight:400;padding:0 4px}.fr b:first-child{border-bottom:1px solid var(--tx)}
+.chip{font:inherit;font-size:1.1rem;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:6px;padding:0 8px;cursor:pointer;min-width:30px}
+.chip:hover{border-color:var(--ac)}
+.chip.u{background:var(--ac);color:#fff;border-color:var(--ac)}
+.row{display:grid;grid-template-columns:48px 1fr 120px;align-items:center;gap:8px;padding:4px 0;font-size:.85rem}
+.row span{color:var(--mu)}
+input{width:100%;font:inherit;padding:5px 8px;border-radius:6px;border:1px solid var(--bd);background:var(--in);color:var(--tx)}
+input:focus{outline:2px solid var(--ac)}
+output{display:block;padding:5px 8px;border-radius:6px;background:var(--in);color:var(--ok);font-weight:700;border:1px solid var(--ok);overflow-x:auto;white-space:nowrap}
+.hint{font-size:.75rem;color:var(--mu);margin-top:6px}
+.steps{margin-top:12px;border-top:1px dashed var(--bd);padding-top:8px}
+.steps h4{margin:0 0 2px;font-size:.9rem}
+.st small{color:var(--mu);font-size:.75rem;display:block;margin-top:6px}
+.ln{font-family:'Times New Roman',serif;font-size:1.1rem;padding:8px;overflow-x:auto;white-space:nowrap;background:var(--in);border-radius:8px;margin-top:2px}
+.pair{position:relative}
+.gap{height:60px}
+.ar{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.ar text{font-size:11px;font-family:'Noto Sans Sinhala',sans-serif;fill:var(--tx);paint-order:stroke;stroke:var(--card);stroke-width:4px}
+.mv{color:var(--c);border-bottom:2px solid var(--c);padding:0 2px;font-weight:700}
+.rad{border-top:1px solid var(--tx);padding:0 3px;margin-left:1px;display:inline-block}
+</style>
+</head>
+<body>
+<header>
+<a href="electrical-technology-lesson.html" style="display:inline-block;margin-bottom:12px;color:var(--ac);text-decoration:none;font-weight:700">← විදුලි පාඩම් කොටස තෝරන්න</a>
+<h1>⚡ විද්‍යුත් සූත්‍ර ගණකය</h1>
+<p>A/L ඉංජිනේරු තාක්ෂණවේදය — සූත්‍රයේ ඕනෑම අකුරක් (සංකේතයක්) ඔබන්න: එය සොයන්නේ කුමක්ද යන්න බවට පත්වේ. අනෙක් අගයන් වෙනස් කරන විට පිළිතුර ස්වයංක්‍රීයව ගණනය වේ.</p>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+const fr=(a,b)=>`<span class="fr"><b>${a}</b><b>${b}</b></span>`;
+const s=(k,l,n,u,d)=>[k,l,n,u,d];
+const G=['ධාරාව හා ප්‍රතිරෝධය','ධාරිත්‍රක','ප්‍රේරක','ප්‍රත්‍යාවර්ත ධාරා','ජවය හා ශක්තිය'];
+const D=[
+[0,'ධාරාව','ආරෝපණ ගලා යාමේ සීඝ්‍රතාව (විද්‍යුත් ධාරාව) සෙවීමට.','{I} = '+fr('{Q}','{t}'),[s('I','I','ධාරාව','A',2),s('Q','Q','ආරෝපණය','C',10),s('t','t','කාලය','s',5)],v=>v.I-v.Q/v.t],
+[0,'ඕම් නියමය','පරිපථයක වෝල්ටීයතාව, ධාරාව හෝ ප්‍රතිරෝධය සෙවීමට.','{V} = {I} × {R}',[s('V','V','වෝල්ටීයතාව','V',12),s('I','I','ධාරාව','A',2),s('R','R','ප්‍රතිරෝධය','Ω',6)],v=>v.V-v.I*v.R],
+[0,'සන්නායකයක ප්‍රතිරෝධය','සන්නායකයක භෞතික මිනුම් මඟින් ප්‍රතිරෝධය සෙවීමට.','{R} = '+fr('{rho} × {L}','{A}'),[s('R','R','ප්‍රතිරෝධය','Ω',0.0168),s('rho','ρ','විශිෂ්ට ප්‍රතිරෝධතාව','Ω m',1.68e-8),s('L','L','දිග','m',10),s('A','A','හරස්කඩ වර්ගඵලය','m²',1e-5)],v=>v.R-v.rho*v.L/v.A],
+[0,'ශ්‍රේණිගත ප්‍රතිරෝධක','ශ්‍රේණිගතව සම්බන්ධ ප්‍රතිරෝධක වල සමක ප්‍රතිරෝධය.','{RT} = {R1} + {R2} + {R3}',[s('RT','R<sub>T</sub>','සමක ප්‍රතිරෝධය','Ω',60),s('R1','R<sub>1</sub>','ප්‍රතිරෝධය 1','Ω',10),s('R2','R<sub>2</sub>','ප්‍රතිරෝධය 2','Ω',20),s('R3','R<sub>3</sub>','ප්‍රතිරෝධය 3','Ω',30)],v=>v.RT-(v.R1+v.R2+v.R3)],
+[0,'සමාන්තර ප්‍රතිරෝධක','සමාන්තරගතව සම්බන්ධ ප්‍රතිරෝධක වල සමක ප්‍රතිරෝධය.',fr('1','{RT}')+' = '+fr('1','{R1}')+' + '+fr('1','{R2}')+' + '+fr('1','{R3}'),[s('RT','R<sub>T</sub>','සමක ප්‍රතිරෝධය','Ω',5.4545),s('R1','R<sub>1</sub>','ප්‍රතිරෝධය 1','Ω',10),s('R2','R<sub>2</sub>','ප්‍රතිරෝධය 2','Ω',20),s('R3','R<sub>3</sub>','ප්‍රතිරෝධය 3','Ω',30)],v=>1/v.RT-(1/v.R1+1/v.R2+1/v.R3)],
+[1,'ධාරිත්‍රකයේ ධාරිතාව','සමාන්තර තහඩු ධාරිත්‍රකයක ධාරිතාව සෙවීමට.','{C} = '+fr('{e} × {A}','{d}'),[s('C','C','ධාරිතාව','F',8.85e-11),s('e','ε','පාරවිද්‍යුත් නියතය','F/m',8.85e-12),s('A','A','තහඩුවක වර්ගඵලය','m²',0.01),s('d','d','තහඩු අතර දුර','m',0.001)],v=>v.C-v.e*v.A/v.d],
+[1,'ගබඩා වන ආරෝපණය','වෝල්ටීයතාවක් යටතේ ධාරිත්‍රකයක ගබඩා වන ආරෝපණය.','{Q} = {C} × {V}',[s('Q','Q','ආරෝපණය','C',0.0005),s('C','C','ධාරිතාව','F',0.0001),s('V','V','වෝල්ටීයතාව','V',5)],v=>v.Q-v.C*v.V],
+[1,'සමාන්තර ධාරිත්‍රක','සමාන්තරගත ධාරිත්‍රක වල සමක ධාරිතාව.','{CT} = {C1} + {C2} + {C3}',[s('CT','C<sub>T</sub>','මුළු ධාරිතාව','μF',60),s('C1','C<sub>1</sub>','ධාරිතාව 1','μF',10),s('C2','C<sub>2</sub>','ධාරිතාව 2','μF',20),s('C3','C<sub>3</sub>','ධාරිතාව 3','μF',30)],v=>v.CT-(v.C1+v.C2+v.C3)],
+[1,'ශ්‍රේණිගත ධාරිත්‍රක','ශ්‍රේණිගත ධාරිත්‍රක වල සමක ධාරිතාව.',fr('1','{CT}')+' = '+fr('1','{C1}')+' + '+fr('1','{C2}')+' + '+fr('1','{C3}'),[s('CT','C<sub>T</sub>','මුළු ධාරිතාව','μF',5.4545),s('C1','C<sub>1</sub>','ධාරිතාව 1','μF',10),s('C2','C<sub>2</sub>','ධාරිතාව 2','μF',20),s('C3','C<sub>3</sub>','ධාරිතාව 3','μF',30)],v=>1/v.CT-(1/v.C1+1/v.C2+1/v.C3)],
+[1,'කාල නියතය','ධාරිත්‍රකයක් ආරෝපණය / විසර්ජනය වීමේ කාල නියතය.','{T} = {R} × {C}',[s('T','T','කාල නියතය','s',0.1),s('R','R','ප්‍රතිරෝධය','Ω',1000),s('C','C','ධාරිතාව','F',0.0001)],v=>v.T-v.R*v.C],
+[2,'ප්‍රේරකතාව','දඟරයක ප්‍රේරකතාව එහි නිර්මාණය අනුව සෙවීමට.','{L} = '+fr('{mu} × {A} × {N}²','{l}'),[s('L','L','ප්‍රේරකතාව','H',0.0000126),s('mu','μ','පාරගම්‍යතාව','H/m',1.2566e-6),s('A','A','හරස්කඩ වර්ගඵලය','m²',0.0001),s('N','N','පොටවල් ගණන','',100),s('l','l','දඟරයේ දිග','m',0.1)],v=>v.L-v.mu*v.A*v.N**2/v.l],
+[2,'ප්‍රේරිත වි.ගා.බ','ධාරාව වෙනස් වන විට දඟරයේ ප්‍රේරණය වන වෝල්ටීයතාව.','{E} = −{L} × '+fr('{dI}','{dt}'),[s('E','E','වි.ගා.බ','V',-20),s('L','L','ප්‍රේරකතාව','H',2),s('dI','ΔI','ධාරා වෙනස','A',4),s('dt','Δt','කාල වෙනස','s',0.4)],v=>v.E+v.L*v.dI/v.dt],
+[2,'ප්‍රේරකයේ ශක්තිය','ප්‍රේරකයක ගබඩා වන චුම්භක ශක්තිය.','{W} = '+fr('1','2')+' × {L} × {I}²',[s('W','W','ශක්තිය','J',4),s('L','L','ප්‍රේරකතාව','H',2),s('I','I','ධාරාව','A',2)],v=>v.W-0.5*v.L*v.I**2],
+[3,'සංඛ්‍යාතය ↔ ආවර්ත කාලය','AC තරංගයක සංඛ්‍යාතය හා ආවර්ත කාලය අතර සම්බන්ධය (f = 1/T, T = 1/f).','{f} = '+fr('1','{T}'),[s('f','f','සංඛ්‍යාතය','Hz',50),s('T','T','ආවර්ත කාලය','s',0.02)],v=>v.f-1/v.T],
+[3,'වෝල්ටීයතාවේ මධ්‍ය අගය','AC වෝල්ටීයතාවක මධ්‍ය අගය.','{Vavg} = '+fr('2 × {Vp}','π'),[s('Vavg','V<sub>avg</sub>','මධ්‍ය අගය','V',203.6),s('Vp','V<sub>p</sub>','උපරිම අගය','V',320)],v=>v.Vavg-2*v.Vp/Math.PI],
+[3,'ධාරාවේ මධ්‍ය අගය','AC ධාරාවක මධ්‍ය අගය.','{Iavg} = '+fr('2 × {Ip}','π'),[s('Iavg','I<sub>avg</sub>','මධ්‍ය අගය','A',6.366),s('Ip','I<sub>p</sub>','උපරිම අගය','A',10)],v=>v.Iavg-2*v.Ip/Math.PI],
+[3,'වෝල්ටීයතාවේ RMS','සඵල (RMS) වෝල්ටීයතාව — මල්ටිමීටරයෙන් පෙන්වන්නේ මෙයයි.','{Vrms} = '+fr('{Vp}','√2'),[s('Vrms','V<sub>rms</sub>','සඵල අගය','V',226.27),s('Vp','V<sub>p</sub>','උපරිම අගය','V',320)],v=>v.Vrms-v.Vp/Math.SQRT2],
+[3,'ධාරාවේ RMS','සඵල (RMS) ධාරාව.','{Irms} = '+fr('{Ip}','√2'),[s('Irms','I<sub>rms</sub>','සඵල අගය','A',7.071),s('Ip','I<sub>p</sub>','උපරිම අගය','A',10)],v=>v.Irms-v.Ip/Math.SQRT2],
+[4,'ජවය (P = VI)','දී ඇති V හා I අනුව විදුලි ජවය.','{P} = {V} × {I}',[s('P','P','ජවය','W',460),s('V','V','වෝල්ටීයතාව','V',230),s('I','I','ධාරාව','A',2)],v=>v.P-v.V*v.I],
+[4,'ජවය (P = I²R)','දී ඇති I හා R අනුව විදුලි ජවය.','{P} = {I}² × {R}',[s('P','P','ජවය','W',40),s('I','I','ධාරාව','A',2),s('R','R','ප්‍රතිරෝධය','Ω',10)],v=>v.P-v.I**2*v.R],
+[4,'ජවය (P = V²/R)','දී ඇති V හා R අනුව විදුලි ජවය.','{P} = '+fr('{V}²','{R}'),[s('P','P','ජවය','W',1000),s('V','V','වෝල්ටීයතාව','V',100),s('R','R','ප්‍රතිරෝධය','Ω',10)],v=>v.P-v.V**2/v.R],
+[4,'ශක්තිය (E = Pt)','ජවය හා කාලය අනුව වැයවන විද්‍යුත් ශක්තිය.','{E} = {P} × {t}',[s('E','E','ශක්තිය','J',36000),s('P','P','ජවය','W',100),s('t','t','කාලය','s',360)],v=>v.E-v.P*v.t],
+[4,'ශක්තිය (E = VIt)','V, I හා කාලය අනුව ශක්තිය.','{E} = {V} × {I} × {t}',[s('E','E','ශක්තිය','J',27600),s('V','V','වෝල්ටීයතාව','V',230),s('I','I','ධාරාව','A',2),s('t','t','කාලය','s',60)],v=>v.E-v.V*v.I*v.t],
+[4,'ශක්තිය (E = I²Rt)','I, R හා කාලය අනුව ශක්තිය.','{E} = {I}² × {R} × {t}',[s('E','E','ශක්තිය','J',2400),s('I','I','ධාරාව','A',2),s('R','R','ප්‍රතිරෝධය','Ω',10),s('t','t','කාලය','s',60)],v=>v.E-v.I**2*v.R*v.t]
+];
+function solve(f,u,val){
+  const v={};
+  for(const x of f[4]){ if(x[0]!==u){ const n=parseFloat(val[x[0]]); if(isNaN(n))return null; v[x[0]]=n; } }
+  const h=x=>{v[u]=x;return f[5](v)};
+  const h0=h(0); if(h0===0)return 0;
+  for(const sg of [1,-1]){
+    let a=null,ha=null;
+    for(let k=-14;k<=14;k+=.25){
+      const b=sg*10**k,hb=h(b);
+      if(!isFinite(hb)){a=null;continue}
+      if(hb===0)return b;
+      if(a!==null&&ha*hb<0){
+        let lo=a,hi=b,hl=ha;
+        for(let i=0;i<200;i++){const m=(lo+hi)/2,hm=h(m);if(hm===0)return m;if(hl*hm<0)hi=m;else{lo=m;hl=hm}}
+        return (lo+hi)/2;
+      }
+      a=b;ha=hb;
+    }
+  }
+  return NaN;
+}
+const fmt=x=>x===null?'— අගයන් පුරවන්න —':isNaN(x)?'ගණනය කළ නොහැක':String(Number(x.toPrecision(7)));
+const SP=[
+{L:'I',N:['Q'],D:['t']},{L:'V',N:['I','R']},{L:'R',N:['rho','L'],D:['A']},
+{s:1,L:'RT',T:['R1','R2','R3']},{s:1,r:1,L:'RT',T:['R1','R2','R3']},
+{L:'C',N:['e','A'],D:['d']},{L:'Q',N:['C','V']},
+{s:1,L:'CT',T:['C1','C2','C3']},{s:1,r:1,L:'CT',T:['C1','C2','C3']},
+{L:'T',N:['R','C']},{L:'L',N:['mu','A','N^2'],D:['l']},{L:'E',N:['#−','L','dI'],D:['dt']},
+{L:'W',N:['L','I^2'],D:['#2']},{L:'f',N:[],D:['T']},
+{L:'Vavg',N:['#2','Vp'],D:['#π']},{L:'Iavg',N:['#2','Ip'],D:['#π']},
+{L:'Vrms',N:['Vp'],D:['#√2']},{L:'Irms',N:['Ip'],D:['#√2']},
+{L:'P',N:['V','I']},{L:'P',N:['I^2','R']},{L:'P',N:['V^2'],D:['R']},
+{L:'E',N:['P','t']},{L:'E',N:['V','I','t']},{L:'E',N:['I^2','R','t']}];
+const P=k=>{const m=/^(\w+)\^(\d)$/.exec(k);return m?[m[1],+m[2]]:[k,1]};
+const PAL=['#ffb74d','#4fc3f7','#ce93d8','#81c784','#f48fb1'];
+function steps(i,u,val,lab,res){
+  const sp=SP[i],L=sp.L,o=[];let idc=0;
+  const mk2=l=>({i:idc++,l});
+  const nv=k=>{const t=val[k];return t===''||t==null?'?':(+t<0?'('+t+')':t)};
+  const w=(h,m)=>m?`<span class="mv" data-m="${m.i}" data-l="${m.l}" style="--c:${PAL[m.i%5]}">${h}</span>`:h;
+  const it=(k,md,m)=>{if(k[0]==='#')return w(k.slice(1),m);const[n,p]=P(k);let h=md==='s'?lab[n]:(p>1?'('+nv(n)+')':nv(n));if(p>1)h+='<sup>'+p+'</sup>';return w(h,m)};
+  const ex=(N,D,md,mv={})=>{const sg=N.includes('#−');N=N.filter(x=>x!=='#−');const pre=sg?w('−',mv['#−']):'';const n=N.length?N.map(x=>it(x,md,mv[x])).join(' × '):'1';return D.length?pre+fr(n,D.map(x=>it(x,md,mv[x])).join(' × ')):pre+n};
+  const ln=(t,h)=>`<div class="st"><small>${t}</small><div class="ln">${h}</div></div>`;
+  const pair=(t,a,b)=>`<div class="st"><small>${t}</small><div class="pair"><div class="ln">${a}</div><div class="gap"></div><div class="ln">${b}</div><svg class="ar"></svg></div></div>`;
+  const rad=(h,m)=>w('√',m)+'<span class="rad">'+h+'</span>';
+  const T1='මුල් සූත්‍රය → පැත්ත මාරු කිරීම (ඊතලය බලන්න)',TS='අගයන් ආදේශ කිරීම';
+  if(sp.s){
+    const T=sp.T,r=sp.r,tm=(k,md,m)=>{const h=it(k,md,m);return r?fr('1',h):h};
+    const oth=T.filter(k=>k!==u),fl='දෙපැත්තම පෙරළන්න (⟲)';
+    if(u===L){
+      o.push(ln('මුල් සූත්‍රය',tm(L,'s')+' = '+T.map(k=>tm(k,'s')).join(' + ')));
+      if(r)o.push(ln(fl,lab[L]+' = '+fr('1',T.map(k=>tm(k,'s')).join(' + '))));
+      const n=T.map(k=>tm(k,'n')).join(' + ');
+      o.push(ln(TS,lab[L]+' = '+(r?fr('1',n):n)));
+    }else{
+      const mv={};oth.forEach(k=>mv[k]=mk2('+ → −'));
+      o.push(pair(T1,tm(L,'s')+' = '+T.map(k=>tm(k,'s',mv[k])).join(' + '),tm(u,'s')+' = '+tm(L,'s')+oth.map(k=>' − '+tm(k,'s',mv[k])).join('')));
+      if(r)o.push(ln(fl,lab[u]+' = '+fr('1',tm(L,'s')+oth.map(k=>' − '+tm(k,'s')).join(''))));
+      const n=tm(L,'n')+oth.map(k=>' − '+tm(k,'n')).join('');
+      o.push(ln(TS,lab[u]+' = '+(r?fr('1',n):n)));
+    }
+  }else{
+    const N=sp.N,D=sp.D||[];
+    if(u===L){
+      o.push(ln('මුල් සූත්‍රය',lab[L]+' = '+ex(N,D,'s')));
+      o.push(ln(TS,lab[L]+' = '+ex(N,D,'n')));
+    }else{
+      const xs=[...N,...D].find(k=>k[0]!=='#'&&P(k)[0]===u),p=P(xs)[1],inN=N.includes(xs);
+      let N2,D2,mv={},tl,bl;
+      const xl=p>1?lab[u]+'<sup>'+p+'</sup>':lab[u];
+      if(inN){
+        const ON=N.filter(k=>k!==xs);
+        ON.forEach(k=>mv[k]=mk2(k==='#−'?'(−) සලකුණ':'× → ÷'));D.forEach(k=>mv[k]=mk2('÷ → ×'));
+        N2=[...(N.includes('#−')?['#−']:[]),L,...D];D2=ON.filter(k=>k!=='#−');
+        tl=lab[L];bl=xl;
+      }else{
+        const OD=D.filter(k=>k!==xs);
+        const mx=mk2('↑ උඩට'),ml=mk2('↓ පහළට');
+        mv[xs]=mx;mv[L]=ml;OD.forEach(k=>mv[k]=mk2('→ ඉතිරි'));
+        N2=N;D2=[L,...OD];
+        tl=w(lab[L],ml);bl=w(xl,mx);
+      }
+      o.push(pair(T1,tl+' = '+ex(N,D,'s',mv),bl+' = '+ex(N2,D2,'s',mv)));
+      if(p>1){
+        const m=mk2('² → √');
+        o.push(pair('වර්ගයේ ඉවත් කිරීම (දෙපැත්තටම √)',lab[u]+w('<sup>'+p+'</sup>',m)+' = '+ex(N2,D2,'s'),lab[u]+' = '+rad(ex(N2,D2,'s'),m)));
+        o.push(ln(TS,lab[u]+' = '+rad(ex(N2,D2,'n'))));
+      }else o.push(ln(TS,lab[u]+' = '+ex(N2,D2,'n')));
+    }
+  }
+  o.push(ln('පිළිතුර',lab[u]+' = <b>'+res+'</b>'));
+  return '<h4>සුළු කිරීමේ පියවර</h4><div class="hint">එකම පාටින් ඇති සංකේත ඊතලයෙන් සම්බන්ධ කර ඇත: ඊතලය ආරම්භ වන්නේ ඒවා තිබූ තැනින්, අවසන් වන්නේ ගිය තැනේ ය. ඊතලය මත ඇත්තේ ක්‍රියාව වෙනස් වීමයි.</div>'+o.join('');
+}
+function draw(root){
+  root.querySelectorAll('.pair').forEach(pr=>{
+    const svg=pr.querySelector('.ar'),R=pr.getBoundingClientRect(),[a,b]=pr.querySelectorAll('.ln');
+    svg.setAttribute('viewBox',`0 0 ${R.width} ${R.height}`);
+    let h='<defs>'+PAL.map((c,j)=>`<marker id="ah${j}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${c}"/></marker>`).join('')+'</defs>';
+    a.querySelectorAll('[data-m]').forEach(el=>{
+      const id=el.dataset.m,dst=b.querySelector(`[data-m="${id}"]`);if(!dst)return;
+      const r1=el.getBoundingClientRect(),r2=dst.getBoundingClientRect();
+      const x1=r1.left+r1.width/2-R.left,y1=r1.bottom-R.top+3,x2=r2.left+r2.width/2-R.left,y2=r2.top-R.top-4,ym=(y1+y2)/2,c=PAL[id%5];
+      const near=Math.abs(x1-x2)<24;
+      h+=`<path d="M${x1} ${y1} C${x1} ${ym} ${x2} ${ym} ${x2} ${y2}" fill="none" stroke="${c}" stroke-width="2" marker-end="url(#ah${id%5})"/>`;
+      h+=`<text x="${near?x1+8:(x1+x2)/2}" y="${ym+4}" text-anchor="${near?'start':'middle'}">${el.dataset.l}</text>`;
+    });
+    svg.innerHTML=h;
+  });
+}
+function mk(f,i){
+  const st={u:f[4][0][0],val:{}};f[4].forEach(x=>st.val[x[0]]=x[4]);
+  const el=document.createElement('div');el.className='card';
+  const lab=Object.fromEntries(f[4].map(x=>[x[0],x[1]]));
+  let out;
+  const calc=()=>{const r=fmt(solve(f,st.u,st.val))+' '+(f[4].find(x=>x[0]===st.u)[3]||'');if(out)out.textContent=r;const sd=el.querySelector('.steps');if(sd){sd.innerHTML=steps(D.indexOf(f),st.u,st.val,lab,r);draw(sd)}};
+  function render(){
+    const eq=f[3].replace(/\{(\w+)\}/g,(m,k)=>lab[k]?`<button class="chip${k===st.u?' u':''}" data-k="${k}">${lab[k]}</button>`:m);
+    el.innerHTML=`<h3 style="margin:0 0 4px;font-size:1rem">${f[1]}</h3><p class="use">${f[2]}</p><div class="eq">${eq}</div>`+
+      f[4].map(x=>`<div class="row"><button class="chip${x[0]===st.u?' u':''}" data-k="${x[0]}">${x[1]}</button><span>${x[2]}${x[3]?' ('+x[3]+')':''}</span>${x[0]===st.u?'<output></output>':`<input type="number" step="any" data-k="${x[0]}" value="${st.val[x[0]]}">`}</div>`).join('')+
+      '<div class="hint">සංකේතයක් ඔබා එය සොයන අගය ලෙස තෝරන්න.</div><div class="steps"></div>';
+    out=el.querySelector('output');
+    el.querySelectorAll('button').forEach(b=>b.onclick=()=>{st.u=b.dataset.k;render()});
+    el.querySelectorAll('input').forEach(n=>n.oninput=()=>{st.val[n.dataset.k]=n.value;calc()});
+    calc();
+  }
+  render();return el;
+}
+const main=document.getElementById('main'),nav=document.getElementById('nav');
+G.forEach((g,gi)=>{
+  nav.insertAdjacentHTML('beforeend',`<a href="#g${gi}">${g}</a>`);
+  main.insertAdjacentHTML('beforeend',`<h2 id="g${gi}">${g}</h2>`);
+  const grid=document.createElement('div');grid.className='grid';
+  D.filter(f=>f[0]===gi).forEach(f=>grid.appendChild(mk(f)));
+  main.appendChild(grid);
+});
+const redraw=()=>document.querySelectorAll('.steps').forEach(draw);redraw();addEventListener('resize',redraw);document.fonts&&document.fonts.ready.then(redraw);
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://engineering-technology-sit.pages.dev/sitemap.xml

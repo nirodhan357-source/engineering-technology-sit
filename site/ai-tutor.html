@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="si">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>ඉංජිනේරු තාක්ෂණවේදය — AI ගුරු සහායක පෙරදසුන</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1220;
+      --surface: #121d2d;
+      --surface-2: #19263a;
+      --border: #2a3a52;
+      --text: #edf3fa;
+      --muted: #a7b5c8;
+      --accent: #6ee7d2;
+      --accent-2: #72a7ff;
+      --warning: #f5d58a;
+      --font: "Noto Sans Sinhala", "Iskoola Pota", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: radial-gradient(ellipse at top, #172943 0, var(--bg) 55%);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.65;
+    }
+
+    button, textarea, select { font: inherit; }
+    button, a, select { -webkit-tap-highlight-color: transparent; }
+
+    .app {
+      width: min(1050px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 18px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      background: rgba(18, 29, 45, .92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .avatar {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(140deg, #1d8e85, #315bd5);
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    h1 { margin: 0; font-size: clamp(1rem, 3vw, 1.35rem); line-height: 1.4; }
+    .subtitle { margin: 3px 0 0; color: var(--muted); font-size: .86rem; }
+    .badge {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 2px 9px;
+      border: 1px solid #477f79;
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: .72rem;
+    }
+
+    .top-actions { display: flex; gap: 8px; align-items: center; }
+    .home-link { color: var(--text); text-decoration: none; font-size: .82rem; padding: 8px 10px; border: 1px solid var(--border); border-radius: 10px; }
+    .top-actions button, .grade-filter, .suggestion {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface-2);
+      border-radius: 10px;
+    }
+
+    .top-actions button { padding: 8px 11px; cursor: pointer; }
+    .top-actions button:hover, .suggestion:hover { border-color: var(--accent-2); }
+
+    .notice {
+      padding: 11px 14px;
+      border: 1px solid #735f35;
+      border-radius: 12px;
+      background: rgba(82, 62, 23, .24);
+      color: #f7e6bd;
+      font-size: .86rem;
+    }
+
+    .chat-shell {
+      min-height: 360px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: rgba(18, 29, 45, .92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .messages {
+      flex: 1;
+      min-height: 300px;
+      max-height: 58vh;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      scroll-behavior: smooth;
+    }
+
+    .message { max-width: min(88%, 760px); display: flex; flex-direction: column; gap: 4px; }
+    .message.user { align-self: flex-end; align-items: flex-end; }
+    .message.bot { align-self: flex-start; }
+    .bubble {
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #172439;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .user .bubble {
+      background: #183664;
+      border-color: #31578d;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot .bubble { border-bottom-left-radius: 5px; }
+    .message-meta { color: var(--muted); font-size: .72rem; }
+    .answer-title { margin: 0 0 5px; color: var(--accent); font-weight: 700; }
+    .source { margin-top: 9px; font-size: .82rem; }
+    .source a { color: #9dc0ff; }
+    .grade-label { color: var(--warning); font-size: .78rem; }
+
+    .quick-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 16px 13px;
+    }
+
+    .suggestion { padding: 7px 10px; cursor: pointer; font-size: .8rem; }
+    .composer {
+      padding: 14px 16px 11px;
+      border-top: 1px solid var(--border);
+      background: #0f1929;
+    }
+
+    .compose-row { display: flex; align-items: flex-end; gap: 9px; }
+    textarea {
+      min-height: 48px;
+      max-height: 150px;
+      flex: 1;
+      resize: vertical;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-2);
+      color: var(--text);
+      outline: none;
+    }
+
+    textarea:focus, select:focus { border-color: var(--accent-2); }
+    textarea::placeholder { color: #91a1b7; }
+    .send {
+      min-width: 82px;
+      min-height: 46px;
+      padding: 9px 13px;
+      border: 0;
+      border-radius: 11px;
+      color: #071525;
+      background: var(--accent);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .send:hover { filter: brightness(1.06); }
+    .send:disabled { opacity: .55; cursor: wait; }
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .grade-filter { padding: 6px 9px; }
+    .coverage {
+      padding: 16px;
+      background: rgba(18, 29, 45, .92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .coverage h2 { margin: 0 0 6px; font-size: 1rem; }
+    .coverage p { margin: 0 0 11px; color: var(--muted); font-size: .84rem; }
+    .coverage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .grade-card { padding: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; }
+    .grade-card h3 { margin: 0 0 6px; color: var(--accent); font-size: .93rem; }
+    .grade-card ol { margin: 0; padding-left: 22px; color: #d3deeb; font-size: .79rem; }
+    .grade-card li { padding: 2px 0; }
+    .sources { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: .82rem; }
+    .sources a { color: #9dc0ff; }
+    footer { color: var(--muted); text-align: center; font-size: .75rem; }
+
+    @media (max-width: 650px) {
+      .app { padding: 10px 10px 18px; gap: 10px; }
+      header { align-items: flex-start; padding: 11px; }
+      .avatar { width: 40px; height: 40px; flex-basis: 40px; }
+      .top-actions button { padding: 7px 8px; font-size: .75rem; }
+      .messages { min-height: 260px; max-height: 55vh; padding: 13px 11px; }
+      .message { max-width: 94%; }
+      .bubble { padding: 10px 12px; font-size: .9rem; }
+      .composer { padding: 10px; }
+      .quick-prompts { padding: 0 10px 10px; }
+      .coverage-grid { grid-template-columns: 1fr; }
+      .controls { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">ET</div>
+        <div>
+          <h1>ඉංජිනේරු තාක්ෂණවේදය — AI ගුරු සහායකය</h1>
+          <p class="subtitle">12 සහ 13 ශ්‍රේණි සඳහා මූලාශ්‍ර-සීමිත පරීක්ෂණ පෙරදසුන</p>
+          <span class="badge">ස්ථිතික මූලාශ්‍ර-සීමිත ආදර්ශය</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="home-link" href="index.html">← මුල් පිටුව</a>
+        <button id="showCoverage" type="button">විෂය පථය</button>
+        <button id="clearChat" type="button">නව සංවාදය</button>
+      </div>
+    </header>
+
+    <div class="notice">
+      මෙය තවම සැබෑ ජනක AI සේවාවකට සම්බන්ධ නැති, පරීක්ෂණ සඳහා වූ දේශීය මූලාශ්‍ර සෙවුම් ආකෘතියකි. පිළිතුරක් සනාථ කළ දත්තවල නොමැති නම් එය පැහැදිලිව කියයි. මෙහි කිසිදු API රහසක් හෝ මුරපදයක් ඉල්ලන්නේවත් browser එකේ සුරකින්නේවත් නැත.
+    </div>
+
+    <main class="chat-shell" aria-label="සංවාදය">
+      <div class="messages" id="messages" aria-live="polite"></div>
+      <div class="quick-prompts" id="quickPrompts">
+        <button class="suggestion" type="button" data-prompt="12 ශ්‍රේණියේ විෂය ඒකක මොනවාද?">12 ශ්‍රේණියේ ඒකක</button>
+        <button class="suggestion" type="button" data-prompt="13 ශ්‍රේණියේ විෂය ඒකක මොනවාද?">13 ශ්‍රේණියේ ඒකක</button>
+        <button class="suggestion" type="button" data-prompt="සිව්පහර එන්ජිමක සිදුවීම් මොනවාද?">සිව්පහර එන්ජිම</button>
+        <button class="suggestion" type="button" data-prompt="ගෘහස්ථ ජල සැපයුම හා අපද්‍රව්‍ය කළමනාකරණය පැහැදිලි කරන්න">ජල සැපයුම</button>
+      </div>
+      <div class="composer">
+        <div class="compose-row">
+          <textarea id="question" rows="1" aria-label="ඔබගේ ප්‍රශ්නය" placeholder="12 හෝ 13 ශ්‍රේණියේ පාඩමක් ගැන සිංහලෙන් අසන්න..."></textarea>
+          <button class="send" id="send" type="button">යවන්න</button>
+        </div>
+        <div class="controls">
+          <label for="gradeFilter">සෙවිය යුතු ශ්‍රේණිය:
+            <select class="grade-filter" id="gradeFilter">
+              <option value="all">12 සහ 13</option>
+              <option value="12">12 ශ්‍රේණිය</option>
+              <option value="13">13 ශ්‍රේණිය</option>
+            </select>
+          </label>
+          <span>Enter — යවන්න · Shift+Enter — නව පේළිය</span>
+        </div>
+      </div>
+    </main>
+
+    <section class="coverage" id="coverage">
+      <h2>මෙම පරීක්ෂණ අනුවාදයේ ඇතුළත් විෂය පථය</h2>
+      <p>පහත මාතෘකා NIE ගුරු මාර්ගෝපදේශවල නිපුණතා හා උපනිපුණතා අනුව කෙටියෙන් නැවත සකස් කර ඇත. මේවා සම්පූර්ණ පාඩම් පෙළ නොවේ.</p>
+      <div class="coverage-grid">
+        <article class="grade-card">
+          <h3>12 ශ්‍රේණිය — නිපුණතා 9</h3>
+          <ol id="grade12List"></ol>
+        </article>
+        <article class="grade-card">
+          <h3>13 ශ්‍රේණිය — නිපුණතා 7</h3>
+          <ol id="grade13List"></ol>
+        </article>
+      </div>
+      <div class="sources">
+        <a href="https://nie.lk/pdffiles/tg/sGr12TG%20Eng%20Tech.pdf" target="_blank" rel="noopener noreferrer">NIE: 12 ශ්‍රේණිය ඉංජිනේරු තාක්ෂණවේදය ගුරු මාර්ගෝපදේශය (2017 සංශෝධිත මුද්‍රණය)</a>
+        <a href="https://nie.lk/pdffiles/tg/sGr13TG%20EngiTech.pdf" target="_blank" rel="noopener noreferrer">NIE: 13 ශ්‍රේණිය ඉංජිනේරු තාක්ෂණවේදය ගුරු මාර්ගෝපදේශය (2017)</a>
+      </div>
+    </section>
+    <footer>නිල මූලාශ්‍ර: ජාතික අධ්‍යාපන ආයතනය (NIE). මෙම මාර්ගෝපදේශ 2017 මුද්‍රණ වන බැවින් වර්තමාන සංශෝධන සමඟ 100% ගැළපීම තහවුරු කර නැත.</footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    const sources = {
+      "12": {
+        label: "12 ශ්‍රේණිය — NIE ගුරු මාර්ගෝපදේශය (2017 සංශෝධිත මුද්‍රණය)",
+        url: "https://nie.lk/pdffiles/tg/sGr12TG%20Eng%20Tech.pdf"
+      },
+      "13": {
+        label: "13 ශ්‍රේණිය — NIE ගුරු මාර්ගෝපදේශය (2017)",
+        url: "https://nie.lk/pdffiles/tg/sGr13TG%20EngiTech.pdf"
+      }
+    };
+
+    const topics = [
+      {
+        grade: "12", unit: "නිපුණතාව 1", title: "ඉංජිනේරු තාක්ෂණවේදය සහ සමාජය",
+        keywords: ["ඉංජිනේරු තාක්ෂණ", "තාක්ෂණයේ දායකත්වය", "දේශීය කර්මාන්ත", "වාණිජකරණය", "commercialization", "local industry"],
+        answer: "මෙම ඒකකය ඉංජිනේරු තාක්ෂණවේදයේ දියුණුව මිනිසාගේ සහ පරිසරයේ අවශ්‍යතා සමඟ ඇති සම්බන්ධය, භාණ්ඩ හා සේවා සංවර්ධනය, වාණිජකරණය සහ දේශීය කර්මාන්ත කෙරෙහි තාක්ෂණයේ බලපෑම සලකා බලයි. මෙය ඉංජිනේරු තාක්ෂණවේදයේ කාර්යභාරය තේරුම් ගැනීමට යොමු වූ ඒකකයකි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 2", title: "ඉංජිනේරු සැලසුම් චිත්‍ර",
+        keywords: ["සැලසුම් චිත්‍ර", "ඉංජිනේරු ඇඳීම", "ප්‍රක්ෂේපණ", "ජ්‍යාමිතික උපකරණ", "drawing", "projection", "scale"],
+        answer: "මෙම කොටස සැලසුම් චිත්‍ර කියවීම, සංකේත තේරුම් ගැනීම, ජ්‍යාමිතික උපකරණ හා සම්මත භාවිතය, ජ්‍යාමිතික නිර්මාණ, ප්‍රක්ෂේපණ සහ නිෂ්පාදනයකට අවශ්‍ය දළ සැලසුම් සකස් කිරීම ආවරණය කරයි. නිශ්චිත චිත්‍ර ප්‍රශ්නයක් සඳහා චිත්‍රය හෝ දත්ත අවශ්‍ය වේ."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 3", title: "වැඩබිම් ආරක්ෂාව සහ සෞඛ්‍යය",
+        keywords: ["ආරක්ෂාව", "සෞඛ්‍යය", "උවදුරු", "අවදානම", "ppe", "වැඩබිම", "hazard", "safety"],
+        answer: "මෙම ඒකකය සේව්‍ය හා සේවක වගකීම්, වැඩබිම් උවදුරු හඳුනාගැනීම, ඒවායේ අවදානම තක්සේරු කිරීම සහ පාලන ක්‍රියාමාර්ග ගැනීම පිළිබඳවයි. ප්‍රායෝගික අවස්ථාවකදී පළමුව උවදුර හඳුනාගෙන, ඇති විය හැකි හානිය සලකා, අවදානම අඩු කරන සුදුසු පාලනය තෝරා ගත යුතුය."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 4", title: "ගොඩනැගිලි ඉදිකිරීම්",
+        keywords: ["ගොඩනැගිලි", "ඉදිකිරීම්", "ගොඩනැගිලි ද්‍රව්‍ය", "කොන්ක්‍රීට්", "ගඩොල්", "construction", "building materials"],
+        answer: "මෙම ඒකකය ඉදිකිරීම් ද්‍රව්‍ය ඒවායේ ගුණ හා යෙදීම අනුව හඳුනාගෙන, ගොඩනැගිලි කාර්යයට සුදුසු ද්‍රව්‍ය තෝරාගැනීම සහ ඉදිකිරීම් කටයුතුවලදී අදාළ තාක්ෂණික තොරතුරු භාවිත කිරීම කෙරෙහි අවධානය යොමු කරයි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 5", title: "යන්ත්‍රවල චලිත පරිවර්තනය",
+        keywords: ["චලිත පරිවර්තනය", "යන්ත්‍රණ", "යාන්ත්‍රික චලිත", "කැම්", "crank", "motion conversion", "mechanism"],
+        answer: "මෙහිදී යන්ත්‍රයක පවතින මූලික චලිත ආකාර හඳුනාගෙන, එක් චලිතයක් තවත් චලිතයකට පරිවර්තනය කරන යන්ත්‍රණ සහ ඒවා භාවිත වන අවස්ථා අධ්‍යයනය කරයි. නිශ්චිත යන්ත්‍රණයක ක්‍රියාව පිළිබඳ ප්‍රශ්නයක් ඇසූ විට එහි ආදාන චලිතය, ප්‍රතිදාන චලිතය සහ සම්බන්ධක කොටස් සසඳන්න."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.1", title: "මෝටර් රථ පද්ධති හැඳින්වීම",
+        keywords: ["මෝටර් රථ පද්ධති", "මෝටර් රථයක පද්ධති", "engine systems", "vehicle systems"],
+        answer: "NIE මාර්ගෝපදේශයේ මෝටර් රථ ඒකකය එන්ජිම සහ එයට සහාය වන ඉන්ධන, සිසිලන, ස්නේහන හා ජ්වලන පද්ධති ඇතුළු ප්‍රධාන පද්ධතිවල කාර්යයන් සහ එකිනෙක සම්බන්ධය හඳුනාගැනීමෙන් ආරම්භ වේ."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.2–6.3", title: "අභ්‍යන්තර දහන එන්ජිම",
+        keywords: ["එන්ජිම", "engine", "පිස්ටනය", "සිව්පහර", "දෙපහර", "four stroke", "two stroke", "එන්ජින් වර්ග"],
+        answer: "මෙම විෂය කොටස ප්‍රධාන වශයෙන් පිස්ටන් වර්ගයේ එන්ජිමක කොටස්, ඒවායේ කාර්යයන් සහ අන්තර්සම්බන්ධතාව මෙන්ම එන්ජින් වර්ගීකරණය සලකා බලයි. සිව්පහර එන්ජිමක චූෂණ, සම්පීඩන, බල සහ පිටාර පහර අනුපිළිවෙළින් සිදුවේ; දෙපහර එන්ජිමක චක්‍රය ක්‍රෑන්ක් දණ්ඩේ එක් වටයකදී සම්පූර්ණ වේ. විස්තරයේදී පෙට්‍රල් සහ ඩීසල් ජ්වලන ක්‍රම එකිනෙකට පටලවා නොගන්න."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.4", title: "මෝටර් රථ ජව සම්ප්‍රේෂණය",
+        keywords: ["සම්ප්‍රේෂණය", "ක්ලච්", "ගියර් පෙට්ටිය", "ගියර්", "ප්‍රොපෙලර්", "ඩිෆරෙන්ෂල්", "differential", "clutch", "gearbox", "power transmission"],
+        answer: "සම්ප්‍රේෂණ පද්ධතිය එන්ජිමෙන් ලැබෙන කැරකීමේ ජවය ධාවක රෝද වෙත ගෙන යන අතර අවශ්‍ය පරිදි වේගය, ව්‍යාවර්ථය සහ බලය යොදාගැනීමට උපකාරී වේ. NIE මාර්ගෝපදේශය මෙම පද්ධතියේ ප්‍රධාන සංරචක සහ ඒවායේ අන්තර්සම්බන්ධතාව හඳුනාගැනීම අපේක්ෂා කරයි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.5", title: "බැටරි-දඟර ජ්වලනය",
+        keywords: ["ජ්වලනය", "බැටරි දඟර", "විස්පර්ශක", "කන්ඩෙන්සරය", "බෙදාහරිනය", "spark plug", "ignition", "distributor", "contact breaker"],
+        answer: "බැටරි-දඟර ජ්වලන පද්ධතිය පෙට්‍රල් එන්ජිමේ සම්පීඩන පහර අවසානයට ආසන්නව අවශ්‍ය පුළිඟුව ලබාදීමට භාවිත වේ. පද්ධතියේ කොටස්වල කාර්යය, ඒවා අතර සම්බන්ධතාව සහ සරල දෝෂ හඳුනාගැනීම මෙම නිපුණතා මට්ටමේ අරමුණු අතර වේ."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.6", title: "ඉන්ධන සැපයුම් පද්ධති",
+        keywords: ["ඉන්ධන", "කාබියුරේටරය", "ඩීසල්", "නිර්වාතනය", "fuel system", "carburetor", "fuel supply"],
+        answer: "මෙම කොටස ඉන්ධන පද්ධතියේ සංරචක සහ ඒවායේ කාර්යයන්, එන්ජිමට අවශ්‍ය ඉන්ධන හෝ ඉන්ධන-වායු මිශ්‍රණය සැපයීම සහ පූර්ණ දහනයේ වැදගත්කම විමසයි. මාර්ගෝපදේශයේ කාබියුරේටර දෝෂ සහ ඩීසල් පද්ධතිය නිර්වාතනය කිරීමද ඉගෙනුම් ප්‍රතිඵලවල සඳහන් වේ."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.7", title: "එන්ජිම සිසිලනය",
+        keywords: ["සිසිලනය", "සිසිලන පද්ධතිය", "විකිරකය", "රේඩියේටරය", "cooling", "radiator", "overheating"],
+        answer: "සිසිලන පද්ධතිය එන්ජිමෙන් අතිරික්ත තාපය ඉවත් කර, එන්ජිමට අධික තාපයෙන් සිදුවිය හැකි හානි අවම කරයි. විවිධ සිසිලන ක්‍රම, සිසිලන කාර්යක්ෂමතාවට බලපාන කරුණු සහ පද්ධතියේ දෝෂ පිළිබඳව මෙම කොටස අධ්‍යයනය කරයි. උණුසුම් විකිරක මූඩියක් විවෘත කිරීම අනතුරුදායකය."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.8", title: "එන්ජිම ස්නේහනය",
+        keywords: ["ස්නේහනය", "ලිහිසි", "ලිහිසි තෙල්", "තෙල් පද්ධතිය", "lubrication", "lubricating oil"],
+        answer: "ස්නේහක චලනය වන කොටස් අතර ඝර්ෂණය හා ඒ සමඟ ඇතිවන තාපය සහ ගෙවීම අඩු කිරීමට උපකාරී වේ. මෙම කොටස ස්නේහන ක්‍රම තෝරාගැනීම, ඒවායේ වාසි හා අවාසි සංසන්දනය සහ එන්ජිමේ කාලීන ස්නේහන නඩත්තුව පිළිබඳවයි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.9", title: "මෝටර් රථ තිරිංග",
+        keywords: ["තිරිංග", "රෝධක", "හයිඩ්‍රොලික්", "ප්‍රධාන සිලින්ඩරය", "wheel cylinder", "brakes", "abs", "පැස්කල්"],
+        answer: "මෙම කොටස යාන්ත්‍රික සහ ද්‍රව පීඩක තිරිංග පද්ධතිවල ක්‍රියාකාරිත්වය, ප්‍රධාන සංරචක සහ නඩත්තුව සලකා බලයි. තිරිංග පද්ධතිය ධාවනය වන වාහනයක වේගය අඩු කිරීම හෝ නතර කිරීමත්, නවතා ඇති වාහනයක් චලනය වීම වැළැක්වීමත් සඳහා යොදා ගනී."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.10–6.11", title: "පණගැන්වීම, ආරෝපණය සහ රථ විදුලි පද්ධතිය",
+        keywords: ["starter", "පණගැන්වුම්", "ආරෝපණය", "alternator", "බැටරිය", "නළා", "විදුලි පද්ධතිය", "charging system", "starting system"],
+        answer: "පණගැන්වුම් පද්ධතියේදී බැටරියෙන් ලැබෙන විදුලි ශක්තියෙන් ආරම්භක මෝටරය එන්ජිම කරකවයි; සොලනොයිඩ් ස්විචය අධික ධාරා මාර්ගය පාලනය කරයි. ආරෝපණ පද්ධතිය බැටරිය නැවත ආරෝපණය කරයි. රථයේ විදුලි පරිපථ කියවීම සහ සරල දෝෂ හඳුනාගැනීමද මාර්ගෝපදේශයේ අරමුණු අතර වේ."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 6.12–6.14", title: "ස්ථායිතාව, ආරක්ෂාව සහ විශේෂිත රථ පද්ධති",
+        keywords: ["සුක්කානම", "steering", "අවලම්බන", "suspension", "ස්ථායිතාව", "වාහන ආරක්ෂාව", "turbo", "විමෝචන", "emission"],
+        answer: "NIE මාර්ගෝපදේශය වාහනයේ ස්ථායිතාවට දායක වන සුක්කානම් සහ අවලම්බන පද්ධති, මගී ආරක්ෂක උපක්‍රම, නවීන එන්ජින් කාර්යක්ෂමතා ක්‍රම සහ පිටාර වායු දූෂණය පාලනය කිරීම පිළිබඳ මූලික අධ්‍යයනයද ඇතුළත් කරයි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 7", title: "විදුලි ජවය සහ මූලික පරිපථ",
+        keywords: ["විදුලි ජවය", "විදුලි පරිපථ", "ධාරාව", "වෝල්ටීයතාව", "ප්‍රතිරෝධක", "ධාරිත්‍රක", "ප්‍රේරක", "ac", "dc", "electric circuit"],
+        answer: "මෙම ඒකකය එදිනෙදා කාර්යයන්හි විදුලි ජවය භාවිත කිරීම සඳහා අවශ්‍ය පරිපථ උපාංග හා ඒවායේ දත්ත හඳුනාගැනීම, සරල ධාරා සහ ප්‍රත්‍යාවර්ත ධාරා අතර වෙනස සහ ප්‍රතිරෝධක, ධාරිත්‍රක, ප්‍රේරක වැනි අක්‍රීය උපාංග පිළිබඳ මූලික අවබෝධය ගොඩනගයි."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 8", title: "නිෂ්පාදන ද්‍රව්‍ය සහ ශිල්පීය ක්‍රම",
+        keywords: ["නිෂ්පාදන", "ද්‍රව්‍ය", "ගුණාත්මකභාවය", "නිෂ්පාදන තාක්ෂණය", "manufacturing", "materials", "quality"],
+        answer: "මෙම කොටස නිෂ්පාදනයක ගුණාත්මකභාවයට බලපාන සාධක හඳුනාගෙන, අදාළ ද්‍රව්‍ය සහ ශිල්පීය ක්‍රම තෝරාගැනීමේ අවබෝධය ලබාදෙයි. ද්‍රව්‍යයක් තෝරන විට එහි ගුණ, යෙදීම සහ නිෂ්පාදනයේ අවශ්‍යතාව සසඳා බැලීම වැදගත්ය."
+      },
+      {
+        grade: "12", unit: "නිපුණතාව 9", title: "මිනුම් ඒකක සහ උපකරණ",
+        keywords: ["මිනුම්", "ඒකක", "si", "මිනුම් උපකරණ", "වර්නියර්", "මයික්‍රෝමීටරය", "measurement", "measuring instrument"],
+        answer: "මෙම ඒකකය තාක්ෂණික මිනුම් සඳහා සම්මත අන්තර්ජාතික ඒකක හඳුනාගැනීම සහ මිනුම් උපකරණ පිළිබඳ මූලික අවබෝධය ලබාදෙයි. නිශ්චිත පාඨාංක ගණනයකට උපකරණයේ පරිමාණය, කුඩාම මිනුම සහ ලබා දී ඇති දත්ත අවශ්‍ය වේ."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 1", title: "ඉංජිනේරු ප්‍රමිති සහ පිරිවිතර",
+        keywords: ["ප්‍රමිති", "පිරිවිතර", "standard", "specification", "iso", "engineering standards"],
+        answer: "මෙම ඒකකය තාක්ෂණික පරිසරයක ප්‍රමිති සහ පිරිවිතර භාවිතයේ වැදගත්කම, ඒවා සකස් කිරීමේ නිර්ණායක සහ නිෂ්පාදන/සේවා සඳහා ගුණාත්මකභාවය, ආරක්ෂාව හා එකිනෙකට ගැළපීම තහවුරු කිරීමේ කාර්යය විමසයි."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 2", title: "විදුලි ජව උත්පාදනය සහ බෙදාහැරීම",
+        keywords: ["විදුලි උත්පාදනය", "විදුලි බලාගාර", "සම්ප්‍රේෂණය", "බෙදාහැරීම", "ජාතික විදුලිබල", "transformer", "generator", "power generation", "transmission"],
+        answer: "මෙම නිපුණතාව විදුලි ජවය උත්පාදනය, සම්ප්‍රේෂණය, බෙදාහැරීම සහ භාවිතය ආවරණය කරයි. විදුලි බලාගාර, ශක්ති ප්‍රභව, ජාල උපපොළ සහ විදුලි යන්ත්‍ර/පරිණාමකවල මූලික කාර්යයන් එහි අධ්‍යයන පරාසයට අයත් වේ."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 3", title: "ඉලෙක්ට්‍රොනික තාක්ෂණය",
+        keywords: ["ඉලෙක්ට්‍රොනික", "අර්ධ සන්නායක", "ඩයෝඩ", "ට්‍රාන්සිස්ටර", "rectifier", "logic gate", "amplifier", "electronics"],
+        answer: "මෙම ඒකකය අර්ධ සන්නායක ද්‍රව්‍ය, ඩයෝඩ සහ ඍජුකාරක, ට්‍රාන්සිස්ටර, වර්ධක, මූලික තර්ක පරිපථ සහ සන්නිවේදන ඉලෙක්ට්‍රොනික සංකල්ප වැනි මාතෘකා හරහා ඉලෙක්ට්‍රොනික තාක්ෂණයේ භාවිතය විමසයි."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 4", title: "තරල භාවිත යන්ත්‍ර",
+        keywords: ["තරල යන්ත්‍ර", "වායව", "ද්‍රාව", "පොම්ප", "සම්පීඩක", "hydraulic", "pneumatic", "pump", "compressor"],
+        answer: "මෙම කොටස තරලවල ඉංජිනේරුමය භාවිත, වායව සහ ද්‍රාව පද්ධති, පොම්ප හා සම්පීඩක වැනි තරල යන්ත්‍රවල ප්‍රධාන කොටස් සහ ඒවායේ කාර්යයන් අධ්‍යයනය කරයි."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 5", title: "බිම් මැනීම සහ මට්ටම් ගැනීම",
+        keywords: ["බිම් මැනීම", "බිම් මැනුම", "මට්ටම් ගැනීම", "surveying", "leveling", "theodolite"],
+        answer: "මෙම ඒකකය බිම් මැනුමේ මූලධර්ම, භූ ලක්ෂණවල සාපේක්ෂ පිහිටීම සටහන් කිරීම සහ මට්ටම් ගැනීමේ මූලික ක්‍රම හඳුන්වා දෙයි. භූමියේ මිනුම් දත්ත භාවිතයෙන් සැලැස්මක් හෝ මට්ටම් වෙනසක් තීරණය කරයි."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 6", title: "ගෘහස්ථ ජල සැපයුම සහ අපද්‍රව්‍ය කළමනාකරණය",
+        keywords: ["ජල සැපයුම", "ජල චක්‍රය", "කසළ", "අපද්‍රව්‍ය", "waste management", "water supply", "sewage"],
+        answer: "මෙම කොටස සීමිත සම්පතක් ලෙස ජලයේ වැදගත්කම, ගෘහස්ථ ජල සැපයුම සහ අපද්‍රව්‍ය කළමනාකරණය පිළිබඳවයි. ජල භාවිතය, සම්පත් සංරක්ෂණය සහ අපද්‍රව්‍ය පාලනයේ මූලික අදහස් පාඩමේ කොටසකි."
+      },
+      {
+        grade: "13", unit: "නිපුණතාව 7", title: "ප්‍රමාණ බිල්පත් සහ පිරිවැය",
+        keywords: ["ප්‍රමාණ බිල්පත", "පිරිවැය", "quantity surveying", "bill of quantities", "boq", "ප්‍රමාණ ගණනය"],
+        answer: "මෙම ඒකකය ගොඩනැගිලි සැලසුම් කියවා, තෝරාගත් කාර්ය අයිතම සඳහා සම්මත මිනුම් ක්‍රම අනුව ප්‍රමාණ ගණනය කර, ප්‍රමාණ බිල්පතක් සකස් කිරීම සහ පිරිවැය ගණනය කිරීම ආවරණය කරයි."
+      }
+    ];
+
+    const messages = document.getElementById("messages");
+    const question = document.getElementById("question");
+    const gradeFilter = document.getElementById("gradeFilter");
+    const sendButton = document.getElementById("send");
+
+    function normalize(value) {
+      return value.toLocaleLowerCase("si").replace(/[^\p{L}\p{M}\p{N}\s.-]/gu, " ").replace(/\s+/g, " ").trim();
+    }
+
+    function addMessage(role, text, topic) {
+      const row = document.createElement("div");
+      row.className = `message ${role}`;
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+
+      if (topic) {
+        const title = document.createElement("p");
+        title.className = "answer-title";
+        title.textContent = `${topic.unit}: ${topic.title}`;
+        bubble.appendChild(title);
+        const answer = document.createElement("div");
+        answer.textContent = text;
+        bubble.appendChild(answer);
+
+        const meta = document.createElement("div");
+        meta.className = "source";
+        const source = sources[topic.grade];
+        const link = document.createElement("a");
+        link.href = source.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = `මූලාශ්‍රය: ${source.label}`;
+        meta.appendChild(link);
+        const grade = document.createElement("div");
+        grade.className = "grade-label";
+        grade.textContent = `මෙම පිළිතුරේ පදනම: ${topic.grade} ශ්‍රේණිය`;
+        bubble.append(grade, meta);
+      } else {
+        bubble.textContent = text;
+      }
+
+      const stamp = document.createElement("span");
+      stamp.className = "message-meta";
+      stamp.textContent = role === "user" ? "ඔබ" : "පෙරදසුන";
+      row.append(bubble, stamp);
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function listCurriculum(grade) {
+      const units = topics.filter(topic => topic.grade === grade && !topic.unit.startsWith("නිපුණතාව 6."));
+      const vehicle = topics.filter(topic => topic.grade === grade && topic.unit.startsWith("නිපුණතාව 6."));
+      const lines = [`${grade} ශ්‍රේණියේ මාර්ගෝපදේශයේ ප්‍රධාන නිපුණතා:`];
+      for (const unit of units) lines.push(`• ${unit.unit}: ${unit.title}`);
+      if (vehicle.length) {
+        lines.push("• නිපුණතාව 6: මෝටර් රථ පද්ධති — එන්ජිම, සම්ප්‍රේෂණය, ජ්වලනය, ඉන්ධන, සිසිලනය, ස්නේහනය, තිරිංග, පණගැන්වීම/ආරෝපණය, විදුලි පද්ධතිය, ස්ථායිතාව, ආරක්ෂාව සහ විශේෂිත පද්ධති.");
+      }
+      lines.push("මෙය කෙටි විෂය පථ සිතියමක් පමණි; සම්පූර්ණ පාඩම් අන්තර්ගතයක් හෝ නවතම සංශෝධිත විෂය නිර්දේශයක් නොවේ.");
+      return lines.join("\n");
+    }
+
+    function answerQuestion(raw) {
+      const q = normalize(raw);
+      const asksForCurriculum = q.includes("විෂය පථ") || q.includes("ඒකක") || q.includes("curriculum") || q.includes("syllabus") || /all.*(units|topics|lessons)/u.test(q);
+      const asksGrade12 = /(?:^|\D)12(?:\D|$)/u.test(q) || q.includes("grade 12");
+      const asksGrade13 = /(?:^|\D)13(?:\D|$)/u.test(q) || q.includes("grade 13");
+      if (asksForCurriculum || asksGrade12 || asksGrade13) {
+        if (asksGrade13 && !asksGrade12) return { text: listCurriculum("13") };
+        if (asksGrade12 && !asksGrade13) return { text: listCurriculum("12") };
+        return { text: `${listCurriculum("12")}\n\n${listCurriculum("13")}` };
+      }
+
+      const selectedGrade = asksGrade12 ? "12" : asksGrade13 ? "13" : gradeFilter.value;
+      const matches = topics
+        .filter(topic => selectedGrade === "all" || topic.grade === selectedGrade)
+        .map(topic => {
+          const title = normalize(topic.title);
+          const unit = normalize(topic.unit);
+          let score = q.includes(title) || q.includes(unit) ? 4 : 0;
+          for (const keyword of topic.keywords) {
+            const key = normalize(keyword);
+            if (key && q.includes(key)) score += key.includes(" ") ? 2 : 1;
+          }
+          return { topic, score };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      if (!matches.length) {
+        return {
+          text: "මේ ප්‍රශ්නයට පිළිතුරු දීමට මෙම පරීක්ෂණ අනුවාදයේ සනාථ කළ සාරාංශයක් මට හමු වුණේ නැහැ. මෙය සම්පූර්ණ ජනක AI සේවාවක් නොවන නිසා අනුමාන පිළිතුරක් නොදෙමි. විෂය පථයේ ඇති මාතෘකාවක් තෝරා නැවත අසන්න; අවශ්‍ය නම් අදාළ NIE මාර්ගෝපදේශය බලන්න."
+        };
+      }
+
+      const best = matches[0];
+      if (matches[1] && matches[1].score === best.score && matches[1].topic.grade !== best.topic.grade) {
+        return { text: "මෙම වචනය ශ්‍රේණි දෙකෙහිම මාතෘකාවලට ගැළපේ. 12 හෝ 13 ශ්‍රේණිය සඳහන් කර ප්‍රශ්නය නැවත අසන්න." };
+      }
+      return { text: best.topic.answer, topic: best.topic };
+    }
+
+    function send() {
+      const raw = question.value.trim();
+      if (!raw) return;
+      addMessage("user", raw);
+      question.value = "";
+      const response = answerQuestion(raw);
+      addMessage("bot", response.text, response.topic);
+      question.focus();
+    }
+
+    function populateCoverage(grade, id) {
+      const list = document.getElementById(id);
+      const rows = topics.filter(topic => topic.grade === grade && !topic.unit.startsWith("නිපුණතාව 6."));
+      for (const topic of rows) {
+        const item = document.createElement("li");
+        item.textContent = topic.title;
+        list.appendChild(item);
+      }
+      if (grade === "12") {
+        const item = document.createElement("li");
+        item.textContent = "මෝටර් රථ තාක්ෂණය: ප්‍රධාන පද්ධති හා නඩත්තුව";
+        list.insertBefore(item, list.children[5] || null);
+      }
+    }
+
+    sendButton.addEventListener("click", send);
+    question.addEventListener("keydown", event => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        send();
+      }
+    });
+
+    document.getElementById("clearChat").addEventListener("click", () => {
+      messages.replaceChildren();
+      addMessage("bot", "ආයුබෝවන්! 12 සහ 13 ශ්‍රේණි NIE ගුරු මාර්ගෝපදේශවලින් සකස් කළ පරීක්ෂණ සාරාංශයක් ගැන සිංහලෙන් අසන්න. සනාථ කළ දත්ත නොමැති නම් මම එය පැහැදිලිව කියමි.");
+    });
+
+    document.getElementById("showCoverage").addEventListener("click", () => {
+      document.getElementById("coverage").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.querySelectorAll(".suggestion").forEach(button => {
+      button.addEventListener("click", () => {
+        question.value = button.dataset.prompt || "";
+        send();
+      });
+    });
+
+    populateCoverage("12", "grade12List");
+    populateCoverage("13", "grade13List");
+    addMessage("bot", "ආයුබෝවන්! NIE 12 සහ 13 ශ්‍රේණි ඉංජිනේරු තාක්ෂණවේදය ගුරු මාර්ගෝපදේශ මත පදනම් වූ මෙම සීමිත පෙරදසුන පරීක්ෂා කරන්න. උදාහරණයක් ලෙස, “සිව්පහර එන්ජිම”, “ඉලෙක්ට්‍රොනික තාක්ෂණය” හෝ “විදුලි ජව බෙදාහැරීම” ගැන අසන්න. සාරාංශවලින් පිටත ප්‍රශ්නවලට පිළිතුරක් අනුමාන නොකරමි.");
+  </script>
+</body>
+</html>
+
